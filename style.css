@@ -1,1630 +1,599 @@
-/* =========================
-   General
-   ========================= */
+<!DOCTYPE html>
+<html lang="en">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<head>
 
-html {
-    scroll-behavior: smooth;
-}
+    <meta charset="UTF-8">
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    color: #222222;
-    line-height: 1.6;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+    <title>
+        SVD-Based Image Watermarking | Harshada Kale
+    </title>
 
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
 
-/* =========================
-   Navigation
-   ========================= */
+</head>
 
-.navbar {
-    max-width: 1100px;
-    height: 80px;
 
-    margin: auto;
-    padding: 0 30px;
+<body>
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.logo {
-    font-size: 20px;
-    font-weight: 600;
-}
+    <!-- =========================
+         Navigation
+         ========================= -->
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
+    <header class="navbar">
 
-.nav-links a {
-    color: #555555;
-    font-size: 15px;
+        <a href="../index.html" class="logo">
+            Harshada Kale
+        </a>
 
-    transition: color 0.2s ease;
-}
+        <nav class="nav-links">
 
-.nav-links a:hover {
-    color: #000000;
-}
+            <a href="../index.html#projects">
+                Projects
+            </a>
 
+            <a href="../index.html#articles">
+                Articles
+            </a>
 
-/* =========================
-   Hero
-   ========================= */
+            <a href="../index.html#contact">
+                Contact
+            </a>
 
-.hero {
-    max-width: 1100px;
-    min-height: 600px;
+        </nav>
 
-    margin: auto;
-    padding: 80px 30px;
+    </header>
 
-    display: grid;
-    grid-template-columns: 1fr 220px;
 
-    gap: 80px;
+    <!-- =========================
+         Article
+         ========================= -->
 
-    align-items: center;
-}
+    <main class="article-page">
 
-.subtitle {
-    font-size: 15px;
-    color: #777777;
 
-    margin-bottom: 15px;
-}
+        <!-- Article Header -->
 
-.hero h1 {
-    font-size: 56px;
-    font-weight: 600;
+        <header class="article-header">
 
-    letter-spacing: -1px;
+            <p class="article-category">
+                COMPUTER VISION · LINEAR ALGEBRA
+            </p>
 
-    margin-bottom: 20px;
-}
+            <h1>
+                SVD-Based Image Watermarking
+                and Robustness Analysis
+            </h1>
 
-.intro {
-    max-width: 600px;
+            <p class="article-subtitle">
+                Exploring Singular Value Decomposition for image
+                watermarking and studying the trade-off between
+                image quality and watermark robustness.
+            </p>
 
-    font-size: 19px;
-    color: #555555;
+            <div class="article-meta">
 
-    margin-bottom: 30px;
-}
+                <span>
+                    Harshada Kale
+                </span>
 
+                <span>·</span>
 
-/* =========================
-   Social Links
-   ========================= */
+                <span>
+                    Computer Vision Project
+                </span>
 
-.social-links {
-    display: flex;
-    gap: 20px;
+            </div>
 
-    margin-bottom: 25px;
-}
+            <a
+                href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="article-github"
+            >
+                View project on GitHub →
+            </a>
 
-.social-links a {
-    font-size: 15px;
-    color: #444444;
+        </header>
 
-    border-bottom: 1px solid #aaaaaa;
 
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
-}
+        <!-- Article Body -->
 
-.social-links a:hover {
-    color: #000000;
-    border-color: #000000;
-}
+        <article class="article-content">
 
 
-/* =========================
-   Resume Button
-   ========================= */
+            <h2>
+                Introduction
+            </h2>
 
-.resume-button {
-    display: inline-block;
+            <p>
+                Digital watermarking is a technique for embedding
+                information into an image while keeping the visual
+                appearance of the original image largely unchanged.
+            </p>
 
-    padding: 10px 18px;
+            <p>
+                In this project, I implemented an image watermarking
+                pipeline based on Singular Value Decomposition (SVD).
+                A QR-code watermark is embedded into RGB cover images
+                and later recovered from the watermarked image.
+            </p>
 
-    background: #222222;
-    color: #ffffff;
+            <p>
+                The main goal was to study the trade-off between
+                watermark strength, image quality, and robustness
+                against image degradation.
+            </p>
 
-    border-radius: 5px;
 
-    font-size: 14px;
+            <h2>
+                Why SVD?
+            </h2>
 
-    transition: background 0.2s ease;
-}
+            <p>
+                Singular Value Decomposition represents a matrix as
+                the product of three matrices:
+            </p>
 
-.resume-button:hover {
-    background: #444444;
-}
+            <div class="article-equation">
+                A = UΣV<sup>T</sup>
+            </div>
 
+            <p>
+                The singular values contain information about the
+                magnitude of different components of the image.
+                This makes them useful for embedding additional
+                information without directly modifying individual
+                image pixels.
+            </p>
 
-/* =========================
-   Profile Image
-   ========================= */
 
-.hero-image img {
-    width: 200px;
-    height: 200px;
+            <h2>
+                The Watermarking Pipeline
+            </h2>
 
-    object-fit: cover;
+            <p>
+                The overall process consists of decomposing the cover
+                image and watermark, modifying the singular values,
+                reconstructing the watermarked image, and finally
+                attempting to recover the embedded watermark.
+            </p>
 
-    border-radius: 50%;
-}
 
+            <div class="article-pipeline">
 
-/* =========================
-   Projects
-   ========================= */
+                <div>
+                    <span>01</span>
+                    <strong>Cover Image</strong>
+                </div>
 
-.projects {
-    max-width: 1100px;
+                <div class="pipeline-arrow">
+                    →
+                </div>
 
-    margin: auto;
-    padding: 80px 30px;
-}
+                <div>
+                    <span>02</span>
+                    <strong>SVD</strong>
+                </div>
 
-.projects h2,
-.articles h2,
-.contact h2 {
-    font-size: 32px;
+                <div class="pipeline-arrow">
+                    →
+                </div>
 
-    margin-bottom: 40px;
-}
+                <div>
+                    <span>03</span>
+                    <strong>Embedding</strong>
+                </div>
 
+                <div class="pipeline-arrow">
+                    →
+                </div>
 
-/* Project Grid */
+                <div>
+                    <span>04</span>
+                    <strong>Reconstruction</strong>
+                </div>
 
-.project-grid {
-    display: grid;
+            </div>
 
-    grid-template-columns: repeat(2, 1fr);
 
-    gap: 20px;
-}
+            <div class="pipeline-vertical">
+                ↓
+            </div>
 
 
-/* Project Card */
+            <div class="article-pipeline pipeline-second">
 
-.project-card {
-    border: 1px solid #e2e2e2;
+                <div>
+                    <span>05</span>
+                    <strong>Degradation</strong>
+                </div>
 
-    padding: 30px;
+                <div class="pipeline-arrow">
+                    →
+                </div>
 
-    border-radius: 8px;
+                <div>
+                    <span>06</span>
+                    <strong>Recovery</strong>
+                </div>
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
+                <div class="pipeline-arrow">
+                    →
+                </div>
 
-.project-card:hover {
-    transform: translateY(-3px);
+                <div>
+                    <span>07</span>
+                    <strong>QR Check</strong>
+                </div>
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.06);
-}
+            </div>
 
-.project-card h3 {
-    font-size: 21px;
 
-    margin-bottom: 10px;
-}
+            <figure class="article-figure">
 
-.project-tech {
-    font-size: 13px;
+                <figcaption>
+                    Figure 1 — Overview of the watermarking and
+                    recovery pipeline.
+                </figcaption>
 
-    color: #777777;
+            </figure>
 
-    margin-bottom: 15px;
-}
 
-.project-card p {
-    color: #555555;
+            <h2>
+                Embedding the Watermark
+            </h2>
 
-    margin-bottom: 20px;
-}
+            <p>
+                Let the cover image be represented by C. Its singular
+                value decomposition is:
+            </p>
 
-.project-card a {
-    font-size: 14px;
+            <div class="article-equation">
+                C = U<sub>C</sub>Σ<sub>C</sub>V<sub>C</sub><sup>T</sup>
+            </div>
 
-    font-weight: 600;
-}
+            <p>
+                The QR-code watermark Q is similarly decomposed:
+            </p>
 
+            <div class="article-equation">
+                Q = U<sub>Q</sub>Σ<sub>Q</sub>V<sub>Q</sub><sup>T</sup>
+            </div>
 
-/* =========================
-   Articles
-   ========================= */
+            <p>
+                The watermark is embedded by modifying the singular
+                values of the cover image:
+            </p>
 
-.articles {
-    max-width: 1100px;
+            <div class="article-equation">
+                Σ̃ = Σ<sub>C</sub> + αΣ<sub>Q</sub>
+            </div>
 
-    margin: auto;
-    padding: 80px 30px;
-}
+            <p>
+                Here, α controls the watermark strength. Increasing α
+                makes the watermark stronger, but can also increase
+                distortion in the cover image.
+            </p>
 
-.article {
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
+            <p>
+                The watermarked image is then reconstructed using
+                the original singular vectors:
+            </p>
 
-    padding: 25px 0;
+            <div class="article-equation">
+                C<sub>α</sub> =
+                U<sub>C</sub>Σ̃V<sub>C</sub><sup>T</sup>
+            </div>
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+            <p>
+                The same process is applied independently to the
+                three RGB channels.
+            </p>
 
-    gap: 30px;
-}
 
-.article-category {
-    font-size: 13px;
+            <h2>
+                Implementing SVD from Eigendecomposition
+            </h2>
 
-    color: #777777;
+            <p>
+                One part of the project involved implementing SVD
+                without directly relying on a library SVD routine.
+            </p>
 
-    margin-bottom: 8px;
-}
+            <p>
+                For a matrix M, the Gram matrix can be constructed as:
+            </p>
 
-.article h3 {
-    font-size: 21px;
+            <div class="article-equation">
+                G = MM<sup>T</sup>
+            </div>
 
-    margin-bottom: 8px;
-}
+            <p>
+                The eigenvalues of this matrix are related to the
+                singular values of M:
+            </p>
 
-.article p {
-    color: #555555;
-}
+            <div class="article-equation">
+                σ<sub>i</sub> = √λ<sub>i</sub>
+            </div>
 
-.article > a {
-    white-space: nowrap;
+            <p>
+                The resulting eigenvectors and singular values can
+                then be used to construct the SVD components and
+                reconstruct the original matrix.
+            </p>
 
-    font-weight: 600;
-}
 
+            <h2>
+                Recovering the Watermark
+            </h2>
 
-/* =========================
-   Contact
-   ========================= */
+            <p>
+                After obtaining a watermarked image, the embedded
+                watermark component can be estimated from the
+                difference between the original and modified
+                singular values.
+            </p>
 
-.contact {
-    max-width: 1100px;
+            <div class="article-equation">
+                Σ′<sub>Q</sub> =
+                (Σ′ − Σ<sub>C</sub>) / α
+            </div>
 
-    margin: auto;
-    padding: 80px 30px;
-}
+            <p>
+                The estimated watermark singular values are combined
+                with the watermark singular vectors to reconstruct
+                the recovered QR image.
+            </p>
 
-.contact p {
-    color: #555555;
+            <p>
+                Recovery is evaluated using both numerical similarity
+                and whether the recovered QR code can actually be
+                decoded.
+            </p>
 
-    margin-bottom: 25px;
-}
 
-.contact-links {
-    display: flex;
-    gap: 25px;
-}
+            <h2>
+                Baseline Results
+            </h2>
 
-.contact-links a {
-    font-weight: 600;
-}
+            <p>
+                Before testing robustness, the basic embedding and
+                recovery pipeline was evaluated on the cover images.
+            </p>
 
 
-/* =========================
-   Footer
-   ========================= */
+            <!--
+                Replace these image paths with the exact paths
+                used in your repository.
+            -->
 
-footer {
-    border-top: 1px solid #eeeeee;
+            <div class="image-row">
 
-    text-align: center;
+                <figure class="article-figure">
 
-    padding: 30px;
+                    <img
+                        src="../images/projects/svd/baseline/Recovered_img.png"
+                        alt="Recovered watermark"
+                    >
 
-    color: #777777;
+                    <figcaption>
+                        Figure 2 — Example of the recovered watermark.
+                    </figcaption>
 
-    font-size: 14px;
-}
+                </figure>
 
 
-/* =========================
-   Mobile
-   ========================= */
+                <figure class="article-figure">
 
-@media (max-width: 700px) {
+                    <img
+                        src="../images/projects/svd/baseline/psnr_comparison.png"
+                        alt="PSNR comparison"
+                    >
 
-    .nav-links {
-        display: none;
-    }
+                    <figcaption>
+                        Figure 3 — PSNR comparison for the
+                        watermarking experiment.
+                    </figcaption>
 
-    .hero {
-        grid-template-columns: 1fr;
+                </figure>
 
-        text-align: center;
+            </div>
 
-        gap: 40px;
 
-        padding-top: 60px;
-    }
+            <h2>
+                Choosing the Watermark Strength
+            </h2>
 
-    .hero-image {
-        order: -1;
-    }
+            <p>
+                The watermark strength α was varied to study how it
+                affects image quality and watermark recovery.
+            </p>
 
-    .hero-image img {
-        width: 150px;
-        height: 150px;
-    }
+            <p>
+                When α is very small, the watermark introduces little
+                distortion, but the embedded information can become
+                more difficult to recover after degradation.
+            </p>
 
-    .hero h1 {
-        font-size: 42px;
-    }
+            <p>
+                Increasing α makes the watermark stronger. However,
+                increasing the strength indefinitely does not guarantee
+                better recovery because additional distortion and
+                clipping can affect the result.
+            </p>
 
-    .social-links {
-        justify-content: center;
-    }
 
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
+            <figure class="article-figure">
 
-    .article {
-        flex-direction: column;
+                <img
+                    src="../images/projects/svd/psnr_vs_alpha_noise.png"
+                    alt="PSNR versus alpha under Gaussian noise"
+                >
 
-        align-items: flex-start;
-    }
+                <figcaption>
+                    Figure 4 — Effect of watermark strength under
+                    Gaussian noise.
+                </figcaption>
 
-    .contact-links {
-        flex-wrap: wrap;
-    }
-}
-/* =========================
-   General
-   ========================= */
+            </figure>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html {
-    scroll-behavior: smooth;
-}
+            <h2>
+                Robustness to Gaussian Noise
+            </h2>
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    color: #222222;
-    line-height: 1.6;
-}
+            <p>
+                Gaussian noise was added to the watermarked images
+                before attempting watermark recovery.
+            </p>
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+            <p>
+                The experiment was used to study how increasing noise
+                affects the quality of the recovered watermark and
+                the ability to decode the QR information.
+            </p>
 
 
-/* =========================
-   Navigation
-   ========================= */
+            <h2>
+                Robustness to JPEG Compression
+            </h2>
 
-.navbar {
-    max-width: 1100px;
-    height: 80px;
+            <p>
+                JPEG compression was used as a second degradation
+                experiment. Different compression quality factors
+                were applied before recovering the watermark.
+            </p>
 
-    margin: auto;
-    padding: 0 30px;
+            <figure class="article-figure">
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+                <img
+                    src="../images/projects/svd/psnr_vs_alpha_compression.png"
+                    alt="PSNR versus alpha under JPEG compression"
+                >
 
-.logo {
-    font-size: 20px;
-    font-weight: 600;
-}
+                <figcaption>
+                    Figure 5 — Effect of watermark strength under
+                    JPEG compression.
+                </figcaption>
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
+            </figure>
 
-.nav-links a {
-    color: #555555;
-    font-size: 15px;
 
-    transition: color 0.2s ease;
-}
+            <h2>
+                Evaluation
+            </h2>
 
-.nav-links a:hover {
-    color: #000000;
-}
+            <p>
+                The experiments use multiple measures to evaluate
+                the watermarking system.
+            </p>
 
+            <p>
+                <strong>PSNR</strong> measures the numerical similarity
+                between images and provides a way to quantify image
+                quality and watermark recovery.
+            </p>
 
-/* =========================
-   Hero
-   ========================= */
+            <p>
+                <strong>QR decoding</strong> provides a more practical
+                test: whether the recovered watermark still contains
+                usable information.
+            </p>
 
-.hero {
-    max-width: 1100px;
-    min-height: 600px;
 
-    margin: auto;
-    padding: 80px 30px;
+            <h2>
+                What the Experiments Showed
+            </h2>
 
-    display: grid;
-    grid-template-columns: 1fr 220px;
+            <p>
+                The experiments demonstrate a trade-off between
+                watermark strength and image quality. A weak watermark
+                produces less distortion but can be more sensitive to
+                degradation.
+            </p>
 
-    gap: 80px;
+            <p>
+                A stronger watermark can improve recovery under some
+                degradation levels, but increasing the strength too
+                much introduces additional distortion and does not
+                necessarily provide better recovery.
+            </p>
 
-    align-items: center;
-}
+            <p>
+                The results therefore show that the watermark strength
+                should be selected based on the expected degradation
+                rather than simply maximized.
+            </p>
 
-.subtitle {
-    font-size: 15px;
-    color: #777777;
 
-    margin-bottom: 15px;
-}
+            <h2>
+                Conclusion
+            </h2>
 
-.hero h1 {
-    font-size: 56px;
-    font-weight: 600;
+            <p>
+                This project provided a practical look at how SVD can
+                be used for image watermarking and how the choice of
+                embedding strength affects both visual quality and
+                robustness.
+            </p>
 
-    letter-spacing: -1px;
+            <p>
+                The project also connected the mathematical properties
+                of SVD with an actual image-processing application,
+                including implementation, reconstruction, degradation,
+                and watermark recovery.
+            </p>
 
-    margin-bottom: 20px;
-}
 
-.intro {
-    max-width: 600px;
+            <h2>
+                Tools Used
+            </h2>
 
-    font-size: 19px;
-    color: #555555;
+            <p class="article-tools">
+                Python · NumPy · OpenCV · Matplotlib ·
+                Singular Value Decomposition · QR Decoding
+            </p>
 
-    margin-bottom: 30px;
-}
 
+            <div class="article-end">
 
-/* =========================
-   Social Links
-   ========================= */
+                <a
+                    href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="article-github"
+                >
+                    View the complete project on GitHub →
+                </a>
 
-.social-links {
-    display: flex;
-    gap: 20px;
+            </div>
 
-    margin-bottom: 25px;
-}
 
-.social-links a {
-    font-size: 15px;
-    color: #444444;
+        </article>
 
-    border-bottom: 1px solid #aaaaaa;
+    </main>
 
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
-}
 
-.social-links a:hover {
-    color: #000000;
-    border-color: #000000;
-}
+    <footer>
 
+        <p>
+            © 2026 Harshada Kale
+        </p>
 
-/* =========================
-   Resume Button
-   ========================= */
+    </footer>
 
-.resume-button {
-    display: inline-block;
 
-    padding: 10px 18px;
+</body>
 
-    background: #222222;
-    color: #ffffff;
-
-    border-radius: 5px;
-
-    font-size: 14px;
-
-    transition: background 0.2s ease;
-}
-
-.resume-button:hover {
-    background: #444444;
-}
-
-
-/* =========================
-   Profile Image
-   ========================= */
-
-.hero-image img {
-    width: 200px;
-    height: 200px;
-
-    object-fit: cover;
-
-    border-radius: 50%;
-}
-
-
-/* =========================
-   Projects
-   ========================= */
-
-.projects {
-    max-width: 1100px;
-
-    margin: auto;
-    padding: 80px 30px;
-}
-
-.projects h2,
-.articles h2,
-.contact h2 {
-    font-size: 32px;
-
-    margin-bottom: 40px;
-}
-
-
-/* Project Grid */
-
-.project-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
-}
-
-
-/* Project Card */
-
-.project-card {
-    border: 1px solid #e2e2e2;
-
-    padding: 30px;
-
-    border-radius: 8px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-.project-card h3 {
-    font-size: 21px;
-
-    margin-bottom: 10px;
-}
-
-.project-tech {
-    font-size: 13px;
-
-    color: #777777;
-
-    margin-bottom: 15px;
-}
-
-.project-card p {
-    color: #555555;
-
-    margin-bottom: 20px;
-}
-
-.project-card a {
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-
-/* =========================
-   Articles
-   ========================= */
-
-.articles {
-    max-width: 1100px;
-
-    margin: auto;
-    padding: 80px 30px;
-}
-
-.article {
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-
-    padding: 25px 0;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 30px;
-}
-
-.article-category {
-    font-size: 13px;
-
-    color: #777777;
-
-    margin-bottom: 8px;
-}
-
-.article h3 {
-    font-size: 21px;
-
-    margin-bottom: 8px;
-}
-
-.article p {
-    color: #555555;
-}
-
-.article > a {
-    white-space: nowrap;
-
-    font-weight: 600;
-}
-
-
-/* =========================
-   Contact
-   ========================= */
-
-.contact {
-    max-width: 1100px;
-
-    margin: auto;
-    padding: 80px 30px;
-}
-
-.contact p {
-    color: #555555;
-
-    margin-bottom: 25px;
-}
-
-.contact-links {
-    display: flex;
-    gap: 25px;
-}
-
-.contact-links a {
-    font-weight: 600;
-}
-
-
-/* =========================
-   Footer
-   ========================= */
-
-footer {
-    border-top: 1px solid #eeeeee;
-
-    text-align: center;
-
-    padding: 30px;
-
-    color: #777777;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   Mobile
-   ========================= */
-
-@media (max-width: 700px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-
-        text-align: center;
-
-        gap: 40px;
-
-        padding-top: 60px;
-    }
-
-    .hero-image {
-        order: -1;
-    }
-
-    .hero-image img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .article {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .contact-links {
-        flex-wrap: wrap;
-    }
-}
-
-/* =========================
-   Project Page
-   ========================= */
-
-.project-page {
-    max-width: 1000px;
-    margin: auto;
-    padding: 80px 30px 120px;
-}
-
-
-/* Project Hero */
-
-.project-hero {
-    max-width: 850px;
-    padding: 70px 0 100px;
-}
-
-.project-label {
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    color: #777;
-    margin-bottom: 20px;
-}
-
-.project-hero h1 {
-    font-size: 56px;
-    line-height: 1.1;
-    font-weight: 600;
-    letter-spacing: -1.5px;
-    margin-bottom: 25px;
-}
-
-.project-intro {
-    max-width: 760px;
-    font-size: 20px;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 30px;
-}
-
-
-/* Buttons */
-
-.project-links {
-    display: flex;
-    gap: 15px;
-}
-
-.project-button {
-    display: inline-block;
-
-    padding: 11px 18px;
-
-    background: #222;
-    color: #fff;
-
-    border-radius: 5px;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: background 0.2s ease;
-}
-
-.project-button:hover {
-    background: #444;
-}
-
-
-/* Sections */
-
-.project-section {
-    padding: 70px 0;
-
-    border-top: 1px solid #e5e5e5;
-}
-
-.project-section h2 {
-    font-size: 32px;
-    font-weight: 600;
-
-    margin-bottom: 30px;
-}
-
-.project-section p {
-    max-width: 800px;
-
-    font-size: 17px;
-    line-height: 1.8;
-
-    color: #555;
-
-    margin-bottom: 20px;
-}
-
-
-/* Highlight */
-
-.project-highlight {
-    margin: 30px 0 70px;
-
-    padding: 45px;
-
-    background: #f7f7f7;
-
-    border-radius: 8px;
-}
-
-.highlight-label {
-    font-size: 12px !important;
-
-    letter-spacing: 1.5px;
-
-    color: #777 !important;
-
-    margin-bottom: 15px !important;
-}
-
-.project-highlight h2 {
-    max-width: 780px;
-
-    font-size: 27px;
-    line-height: 1.5;
-
-    font-weight: 500;
-}
-
-.small-highlight {
-    margin-top: 35px;
-    margin-bottom: 0;
-}
-
-.small-highlight p:last-child {
-    margin-bottom: 0;
-}
-
-
-/* Equations */
-
-.equation {
-    width: fit-content;
-
-    margin: 25px auto;
-    padding: 18px 30px;
-
-    background: #f7f7f7;
-
-    border-radius: 6px;
-
-    font-family: Georgia, serif;
-
-    font-size: 22px;
-
-    color: #222;
-}
-
-
-/* Pipeline */
-
-.pipeline {
-    display: flex;
-    align-items: stretch;
-
-    gap: 15px;
-
-    margin-bottom: 20px;
-}
-
-.pipeline-step {
-    flex: 1;
-
-    padding: 25px 20px;
-
-    border: 1px solid #e2e2e2;
-
-    border-radius: 8px;
-}
-
-.pipeline-step span {
-    display: block;
-
-    font-size: 12px;
-
-    color: #888;
-
-    margin-bottom: 15px;
-}
-
-.pipeline-step strong {
-    display: block;
-
-    font-size: 17px;
-
-    margin-bottom: 7px;
-}
-
-.pipeline-step p {
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    margin: 0;
-}
-
-.pipeline-arrow {
-    display: flex;
-
-    align-items: center;
-
-    color: #999;
-
-    font-size: 20px;
-}
-
-.pipeline-second {
-    max-width: 750px;
-
-    margin: 30px auto 0;
-}
-
-
-/* Images */
-
-.image-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 25px;
-
-    margin-top: 35px;
-}
-
-.image-grid figure {
-    margin: 0;
-}
-
-.image-grid img {
-    width: 100%;
-
-    display: block;
-
-    border: 1px solid #e5e5e5;
-
-    border-radius: 6px;
-}
-
-.image-grid figcaption {
-    font-size: 13px;
-
-    color: #777;
-
-    margin-top: 10px;
-}
-
-
-.large-plot {
-    width: 100%;
-
-    max-width: 850px;
-
-    display: block;
-
-    margin: 35px 0;
-
-    border: 1px solid #e5e5e5;
-
-    border-radius: 6px;
-}
-
-
-/* Metrics */
-
-.metrics {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
-
-    margin: 30px 0;
-}
-
-.metric-card {
-    padding: 25px;
-
-    border: 1px solid #e2e2e2;
-
-    border-radius: 8px;
-}
-
-.metric-card strong {
-    display: block;
-
-    font-size: 17px;
-
-    margin-bottom: 8px;
-}
-
-.metric-card span {
-    color: #777;
-
-    font-size: 14px;
-}
-
-
-/* Parameters */
-
-.parameter-row {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin: 25px 0;
-}
-
-.parameter-row span {
-    padding: 8px 13px;
-
-    background: #f4f4f4;
-
-    border-radius: 5px;
-
-    font-size: 14px;
-
-    color: #555;
-}
-
-
-/* Evaluation */
-
-.evaluation-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-.evaluation-card {
-    padding: 25px;
-
-    border: 1px solid #e2e2e2;
-
-    border-radius: 8px;
-}
-
-.evaluation-card h3 {
-    font-size: 18px;
-
-    margin-bottom: 10px;
-}
-
-.evaluation-card .equation {
-    margin: 20px 0;
-
-    padding: 12px;
-
-    font-size: 18px;
-}
-
-.evaluation-card p {
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-
-/* Findings */
-
-.findings {
-    border-top: 1px solid #e5e5e5;
-}
-
-.finding {
-    display: grid;
-
-    grid-template-columns: 60px 1fr;
-
-    gap: 20px;
-
-    padding: 22px 0;
-
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.finding span {
-    color: #888;
-
-    font-size: 13px;
-}
-
-.finding p {
-    margin: 0;
-
-    font-size: 16px;
-}
-
-
-/* Future Work */
-
-.future-list {
-    padding-left: 20px;
-}
-
-.future-list li {
-    margin-bottom: 13px;
-
-    color: #555;
-
-    font-size: 16px;
-}
-
-
-/* Technologies */
-
-.tech-list {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-}
-
-.tech-list span {
-    padding: 8px 13px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 5px;
-
-    font-size: 14px;
-
-    color: #555;
-}
-
-
-/* End */
-
-.project-end {
-    padding: 70px 0;
-
-    border-top: 1px solid #e5e5e5;
-
-    text-align: center;
-}
-
-/* =========================
-   Medium-Style Project Article
-   ========================= */
-
-.article-page {
-    width: 100%;
-    padding: 0 20px 100px;
-}
-
-
-/* =========================
-   Article Header
-   ========================= */
-
-.article-header {
-    max-width: 780px;
-    margin: 0 auto;
-
-    padding: 65px 0 55px;
-}
-
-.article-category {
-    margin: 0 0 20px;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    letter-spacing: 1.5px;
-
-    color: #777;
-}
-
-.article-header h1 {
-    margin: 0 0 22px;
-
-    font-size: 52px;
-    line-height: 1.08;
-
-    font-weight: 600;
-
-    letter-spacing: -1.5px;
-
-    color: #181818;
-}
-
-.article-subtitle {
-    max-width: 720px;
-
-    margin: 0 0 25px;
-
-    font-size: 20px;
-    line-height: 1.55;
-
-    color: #666;
-}
-
-.article-meta {
-    display: flex;
-    gap: 8px;
-
-    margin-bottom: 25px;
-
-    font-size: 14px;
-
-    color: #777;
-}
-
-.article-github {
-    display: inline-block;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    color: #222;
-
-    text-decoration: none;
-
-    border-bottom: 1px solid #999;
-
-    padding-bottom: 2px;
-
-    transition: color 0.2s ease;
-}
-
-.article-github:hover {
-    color: #777;
-}
-
-
-/* =========================
-   Article Content
-   ========================= */
-
-.article-content {
-    max-width: 720px;
-
-    margin: 0 auto;
-}
-
-.article-content p {
-    margin: 0 0 24px;
-
-    font-size: 17px;
-    line-height: 1.8;
-
-    color: #333;
-}
-
-.article-content strong {
-    font-weight: 600;
-    color: #222;
-}
-
-
-/* =========================
-   Headings
-   ========================= */
-
-.article-content h2 {
-    margin: 65px 0 22px;
-
-    font-size: 30px;
-    line-height: 1.25;
-
-    font-weight: 600;
-
-    letter-spacing: -0.4px;
-
-    color: #181818;
-}
-
-.article-content h2:first-child {
-    margin-top: 15px;
-}
-
-
-/* =========================
-   Equations
-   ========================= */
-
-.article-equation {
-    margin: 35px auto;
-
-    padding: 8px 0;
-
-    text-align: center;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 25px;
-
-    color: #222;
-}
-
-
-/* =========================
-   Pipeline
-   ========================= */
-
-.article-pipeline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-
-    margin: 40px 0 20px;
-}
-
-.article-pipeline > div:not(.pipeline-arrow) {
-    min-width: 105px;
-
-    text-align: center;
-}
-
-.article-pipeline span {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 11px;
-
-    color: #999;
-}
-
-.article-pipeline strong {
-    display: block;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-.pipeline-arrow {
-    margin: 0 18px;
-
-    font-size: 20px;
-
-    color: #aaa;
-}
-
-.pipeline-vertical {
-    text-align: center;
-
-    margin: 5px 0;
-
-    font-size: 20px;
-
-    color: #aaa;
-}
-
-.pipeline-second {
-    max-width: 570px;
-
-    margin: 20px auto 45px;
-}
-
-
-/* =========================
-   Figures
-   ========================= */
-
-.article-figure {
-    margin: 45px 0;
-}
-
-.article-figure img {
-    display: block;
-
-    width: 100%;
-    max-width: 850px;
-
-    height: auto;
-
-    margin: 0 auto;
-
-    border-radius: 3px;
-}
-
-.article-figure figcaption {
-    max-width: 650px;
-
-    margin: 12px auto 0;
-
-    font-size: 13px;
-    line-height: 1.5;
-
-    text-align: center;
-
-    color: #777;
-}
-
-
-/* =========================
-   Side-by-Side Images
-   ========================= */
-
-.image-row {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
-
-    margin: 35px 0;
-}
-
-.image-row .article-figure {
-    margin: 0;
-}
-
-
-/* =========================
-   Tools
-   ========================= */
-
-.article-tools {
-    font-size: 16px !important;
-
-    color: #666 !important;
-}
-
-
-/* =========================
-   End
-   ========================= */
-
-.article-end {
-    margin-top: 70px;
-
-    padding-top: 30px;
-
-    border-top: 1px solid #e5e5e5;
-
-    text-align: center;
-}
-
-
-/* =========================
-   Mobile
-   ========================= */
-
-@media (max-width: 700px) {
-
-    .article-page {
-        padding: 0 18px 70px;
-    }
-
-    .article-header {
-        padding: 40px 0 45px;
-    }
-
-    .article-header h1 {
-        font-size: 38px;
-        line-height: 1.1;
-
-        letter-spacing: -0.8px;
-    }
-
-    .article-subtitle {
-        font-size: 18px;
-    }
-
-    .article-meta {
-        flex-wrap: wrap;
-    }
-
-    .article-content p {
-        font-size: 16px;
-        line-height: 1.75;
-    }
-
-    .article-content h2 {
-        margin-top: 50px;
-
-        font-size: 26px;
-    }
-
-    .article-equation {
-        font-size: 21px;
-
-        overflow-x: auto;
-    }
-
-    .article-pipeline {
-        flex-direction: column;
-
-        gap: 15px;
-
-        margin: 30px 0;
-    }
-
-    .article-pipeline > div:not(.pipeline-arrow) {
-        min-width: 0;
-    }
-
-    .pipeline-arrow {
-        margin: 0;
-
-        transform: rotate(90deg);
-    }
-
-    .pipeline-vertical {
-        display: none;
-    }
-
-    .pipeline-second {
-        margin-top: 30px;
-    }
-
-    .image-row {
-        grid-template-columns: 1fr;
-
-        gap: 35px;
-    }
-
-    .article-figure {
-        margin: 35px 0;
-    }
-}
+</html>
