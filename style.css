@@ -1,599 +1,769 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
-<head>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <meta charset="UTF-8">
+html {
+    scroll-behavior: smooth;
+}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #222222;
+    line-height: 1.6;
+}
 
-    <title>
-        SVD-Based Image Watermarking | Harshada Kale
-    </title>
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-    <link
-        rel="stylesheet"
-        href="../style.css"
-    >
 
-</head>
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
+.navbar {
+    max-width: 1100px;
+    height: 80px;
 
-<body>
+    margin: auto;
+    padding: 0 30px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    <!-- =========================
-         Navigation
-         ========================= -->
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+}
 
-    <header class="navbar">
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
 
-        <a href="../index.html" class="logo">
-            Harshada Kale
-        </a>
+.nav-links a {
+    color: #555;
+    font-size: 15px;
 
-        <nav class="nav-links">
+    transition: color 0.2s ease;
+}
 
-            <a href="../index.html#projects">
-                Projects
-            </a>
+.nav-links a:hover {
+    color: #000;
+}
 
-            <a href="../index.html#articles">
-                Articles
-            </a>
 
-            <a href="../index.html#contact">
-                Contact
-            </a>
+/* =========================================================
+   HOMEPAGE HERO
+   ========================================================= */
 
-        </nav>
+.hero {
+    max-width: 1100px;
+    min-height: 600px;
 
-    </header>
+    margin: auto;
+    padding: 80px 30px;
 
+    display: grid;
+    grid-template-columns: 1fr 220px;
 
-    <!-- =========================
-         Article
-         ========================= -->
+    gap: 80px;
 
-    <main class="article-page">
+    align-items: center;
+}
 
+.subtitle {
+    font-size: 15px;
+    color: #777;
 
-        <!-- Article Header -->
+    margin-bottom: 15px;
+}
 
-        <header class="article-header">
+.hero h1 {
+    font-size: 56px;
+    font-weight: 600;
 
-            <p class="article-category">
-                COMPUTER VISION · LINEAR ALGEBRA
-            </p>
+    letter-spacing: -1px;
 
-            <h1>
-                SVD-Based Image Watermarking
-                and Robustness Analysis
-            </h1>
+    margin-bottom: 20px;
+}
 
-            <p class="article-subtitle">
-                Exploring Singular Value Decomposition for image
-                watermarking and studying the trade-off between
-                image quality and watermark robustness.
-            </p>
+.intro {
+    max-width: 600px;
 
-            <div class="article-meta">
+    font-size: 19px;
+    color: #555;
 
-                <span>
-                    Harshada Kale
-                </span>
+    margin-bottom: 30px;
+}
 
-                <span>·</span>
 
-                <span>
-                    Computer Vision Project
-                </span>
+/* =========================================================
+   SOCIAL LINKS
+   ========================================================= */
 
-            </div>
+.social-links {
+    display: flex;
+    gap: 20px;
 
-            <a
-                href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-github"
-            >
-                View project on GitHub →
-            </a>
+    margin-bottom: 25px;
+}
 
-        </header>
+.social-links a {
+    font-size: 15px;
+    color: #444;
 
+    border-bottom: 1px solid #aaa;
 
-        <!-- Article Body -->
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
 
-        <article class="article-content">
+.social-links a:hover {
+    color: #000;
+    border-color: #000;
+}
 
 
-            <h2>
-                Introduction
-            </h2>
+/* =========================================================
+   RESUME
+   ========================================================= */
 
-            <p>
-                Digital watermarking is a technique for embedding
-                information into an image while keeping the visual
-                appearance of the original image largely unchanged.
-            </p>
+.resume-button {
+    display: inline-block;
 
-            <p>
-                In this project, I implemented an image watermarking
-                pipeline based on Singular Value Decomposition (SVD).
-                A QR-code watermark is embedded into RGB cover images
-                and later recovered from the watermarked image.
-            </p>
+    padding: 10px 18px;
 
-            <p>
-                The main goal was to study the trade-off between
-                watermark strength, image quality, and robustness
-                against image degradation.
-            </p>
+    background: #222;
+    color: #fff;
 
+    border-radius: 5px;
 
-            <h2>
-                Why SVD?
-            </h2>
+    font-size: 14px;
 
-            <p>
-                Singular Value Decomposition represents a matrix as
-                the product of three matrices:
-            </p>
+    transition: background 0.2s ease;
+}
 
-            <div class="article-equation">
-                A = UΣV<sup>T</sup>
-            </div>
+.resume-button:hover {
+    background: #444;
+}
 
-            <p>
-                The singular values contain information about the
-                magnitude of different components of the image.
-                This makes them useful for embedding additional
-                information without directly modifying individual
-                image pixels.
-            </p>
 
+/* =========================================================
+   PROFILE IMAGE
+   ========================================================= */
 
-            <h2>
-                The Watermarking Pipeline
-            </h2>
+.hero-image img {
+    width: 200px;
+    height: 200px;
 
-            <p>
-                The overall process consists of decomposing the cover
-                image and watermark, modifying the singular values,
-                reconstructing the watermarked image, and finally
-                attempting to recover the embedded watermark.
-            </p>
+    object-fit: cover;
 
+    border-radius: 50%;
+}
 
-            <div class="article-pipeline">
 
-                <div>
-                    <span>01</span>
-                    <strong>Cover Image</strong>
-                </div>
+/* =========================================================
+   HOMEPAGE PROJECTS
+   ========================================================= */
 
-                <div class="pipeline-arrow">
-                    →
-                </div>
+.projects {
+    max-width: 1100px;
 
-                <div>
-                    <span>02</span>
-                    <strong>SVD</strong>
-                </div>
+    margin: auto;
+    padding: 80px 30px;
+}
 
-                <div class="pipeline-arrow">
-                    →
-                </div>
+.projects h2,
+.articles h2,
+.contact h2 {
+    font-size: 32px;
 
-                <div>
-                    <span>03</span>
-                    <strong>Embedding</strong>
-                </div>
+    margin-bottom: 40px;
+}
 
-                <div class="pipeline-arrow">
-                    →
-                </div>
+.project-grid {
+    display: grid;
 
-                <div>
-                    <span>04</span>
-                    <strong>Reconstruction</strong>
-                </div>
+    grid-template-columns: repeat(2, 1fr);
 
-            </div>
+    gap: 20px;
+}
 
+.project-card {
+    border: 1px solid #e2e2e2;
 
-            <div class="pipeline-vertical">
-                ↓
-            </div>
+    padding: 30px;
 
+    border-radius: 8px;
 
-            <div class="article-pipeline pipeline-second">
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
 
-                <div>
-                    <span>05</span>
-                    <strong>Degradation</strong>
-                </div>
+.project-card:hover {
+    transform: translateY(-3px);
 
-                <div class="pipeline-arrow">
-                    →
-                </div>
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
 
-                <div>
-                    <span>06</span>
-                    <strong>Recovery</strong>
-                </div>
+.project-card h3 {
+    font-size: 21px;
 
-                <div class="pipeline-arrow">
-                    →
-                </div>
+    margin-bottom: 10px;
+}
 
-                <div>
-                    <span>07</span>
-                    <strong>QR Check</strong>
-                </div>
+.project-tech {
+    font-size: 13px;
 
-            </div>
+    color: #777;
 
+    margin-bottom: 15px;
+}
 
-            <figure class="article-figure">
+.project-card p {
+    color: #555;
 
-                <figcaption>
-                    Figure 1 — Overview of the watermarking and
-                    recovery pipeline.
-                </figcaption>
+    margin-bottom: 20px;
+}
 
-            </figure>
+.project-card a {
+    font-size: 14px;
+    font-weight: 600;
+}
 
 
-            <h2>
-                Embedding the Watermark
-            </h2>
+/* =========================================================
+   HOMEPAGE ARTICLES
+   ========================================================= */
 
-            <p>
-                Let the cover image be represented by C. Its singular
-                value decomposition is:
-            </p>
+.articles {
+    max-width: 1100px;
 
-            <div class="article-equation">
-                C = U<sub>C</sub>Σ<sub>C</sub>V<sub>C</sub><sup>T</sup>
-            </div>
+    margin: auto;
+    padding: 80px 30px;
+}
 
-            <p>
-                The QR-code watermark Q is similarly decomposed:
-            </p>
+.article {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 
-            <div class="article-equation">
-                Q = U<sub>Q</sub>Σ<sub>Q</sub>V<sub>Q</sub><sup>T</sup>
-            </div>
+    padding: 25px 0;
 
-            <p>
-                The watermark is embedded by modifying the singular
-                values of the cover image:
-            </p>
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-            <div class="article-equation">
-                Σ̃ = Σ<sub>C</sub> + αΣ<sub>Q</sub>
-            </div>
+    gap: 30px;
+}
 
-            <p>
-                Here, α controls the watermark strength. Increasing α
-                makes the watermark stronger, but can also increase
-                distortion in the cover image.
-            </p>
+.article-category {
+    font-size: 13px;
 
-            <p>
-                The watermarked image is then reconstructed using
-                the original singular vectors:
-            </p>
+    color: #777;
 
-            <div class="article-equation">
-                C<sub>α</sub> =
-                U<sub>C</sub>Σ̃V<sub>C</sub><sup>T</sup>
-            </div>
+    margin-bottom: 8px;
+}
 
-            <p>
-                The same process is applied independently to the
-                three RGB channels.
-            </p>
+.article h3 {
+    font-size: 21px;
 
+    margin-bottom: 8px;
+}
 
-            <h2>
-                Implementing SVD from Eigendecomposition
-            </h2>
+.article p {
+    color: #555;
+}
 
-            <p>
-                One part of the project involved implementing SVD
-                without directly relying on a library SVD routine.
-            </p>
+.article > a {
+    white-space: nowrap;
 
-            <p>
-                For a matrix M, the Gram matrix can be constructed as:
-            </p>
+    font-weight: 600;
+}
 
-            <div class="article-equation">
-                G = MM<sup>T</sup>
-            </div>
 
-            <p>
-                The eigenvalues of this matrix are related to the
-                singular values of M:
-            </p>
+/* =========================================================
+   HOMEPAGE CONTACT
+   ========================================================= */
 
-            <div class="article-equation">
-                σ<sub>i</sub> = √λ<sub>i</sub>
-            </div>
+.contact {
+    max-width: 1100px;
 
-            <p>
-                The resulting eigenvectors and singular values can
-                then be used to construct the SVD components and
-                reconstruct the original matrix.
-            </p>
+    margin: auto;
+    padding: 80px 30px;
+}
 
+.contact p {
+    color: #555;
 
-            <h2>
-                Recovering the Watermark
-            </h2>
+    margin-bottom: 25px;
+}
 
-            <p>
-                After obtaining a watermarked image, the embedded
-                watermark component can be estimated from the
-                difference between the original and modified
-                singular values.
-            </p>
+.contact-links {
+    display: flex;
+    gap: 25px;
+}
 
-            <div class="article-equation">
-                Σ′<sub>Q</sub> =
-                (Σ′ − Σ<sub>C</sub>) / α
-            </div>
+.contact-links a {
+    font-weight: 600;
+}
 
-            <p>
-                The estimated watermark singular values are combined
-                with the watermark singular vectors to reconstruct
-                the recovered QR image.
-            </p>
 
-            <p>
-                Recovery is evaluated using both numerical similarity
-                and whether the recovered QR code can actually be
-                decoded.
-            </p>
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
+footer {
+    border-top: 1px solid #eee;
 
-            <h2>
-                Baseline Results
-            </h2>
+    text-align: center;
 
-            <p>
-                Before testing robustness, the basic embedding and
-                recovery pipeline was evaluated on the cover images.
-            </p>
+    padding: 30px;
 
+    color: #777;
 
-            <!--
-                Replace these image paths with the exact paths
-                used in your repository.
-            -->
+    font-size: 14px;
+}
 
-            <div class="image-row">
 
-                <figure class="article-figure">
+/* =========================================================
+   MEDIUM-STYLE PROJECT ARTICLE
+   ========================================================= */
 
-                    <img
-                        src="../images/projects/svd/baseline/Recovered_img.png"
-                        alt="Recovered watermark"
-                    >
+.article-page {
+    width: 100%;
 
-                    <figcaption>
-                        Figure 2 — Example of the recovered watermark.
-                    </figcaption>
+    padding: 0 20px 100px;
+}
 
-                </figure>
 
+/* =========================================================
+   ARTICLE HEADER
+   ========================================================= */
 
-                <figure class="article-figure">
+.article-header {
+    max-width: 760px;
 
-                    <img
-                        src="../images/projects/svd/baseline/psnr_comparison.png"
-                        alt="PSNR comparison"
-                    >
+    margin: 0 auto;
 
-                    <figcaption>
-                        Figure 3 — PSNR comparison for the
-                        watermarking experiment.
-                    </figcaption>
+    padding: 55px 0 50px;
+}
 
-                </figure>
+.article-category {
+    margin-bottom: 18px;
 
-            </div>
+    font-size: 12px;
+    font-weight: 600;
 
+    letter-spacing: 1.4px;
 
-            <h2>
-                Choosing the Watermark Strength
-            </h2>
+    color: #777;
+}
 
-            <p>
-                The watermark strength α was varied to study how it
-                affects image quality and watermark recovery.
-            </p>
+.article-header h1 {
+    margin-bottom: 20px;
 
-            <p>
-                When α is very small, the watermark introduces little
-                distortion, but the embedded information can become
-                more difficult to recover after degradation.
-            </p>
+    font-size: 50px;
+    line-height: 1.1;
 
-            <p>
-                Increasing α makes the watermark stronger. However,
-                increasing the strength indefinitely does not guarantee
-                better recovery because additional distortion and
-                clipping can affect the result.
-            </p>
+    font-weight: 600;
 
+    letter-spacing: -1.5px;
 
-            <figure class="article-figure">
+    color: #181818;
+}
 
-                <img
-                    src="../images/projects/svd/psnr_vs_alpha_noise.png"
-                    alt="PSNR versus alpha under Gaussian noise"
-                >
+.article-subtitle {
+    max-width: 700px;
 
-                <figcaption>
-                    Figure 4 — Effect of watermark strength under
-                    Gaussian noise.
-                </figcaption>
+    margin-bottom: 22px;
 
-            </figure>
+    font-size: 19px;
+    line-height: 1.6;
 
+    color: #666;
+}
 
-            <h2>
-                Robustness to Gaussian Noise
-            </h2>
+.article-meta {
+    display: flex;
+    gap: 8px;
 
-            <p>
-                Gaussian noise was added to the watermarked images
-                before attempting watermark recovery.
-            </p>
+    margin-bottom: 22px;
 
-            <p>
-                The experiment was used to study how increasing noise
-                affects the quality of the recovered watermark and
-                the ability to decode the QR information.
-            </p>
+    font-size: 14px;
 
+    color: #777;
+}
 
-            <h2>
-                Robustness to JPEG Compression
-            </h2>
+.article-github {
+    display: inline-block;
 
-            <p>
-                JPEG compression was used as a second degradation
-                experiment. Different compression quality factors
-                were applied before recovering the watermark.
-            </p>
+    font-size: 14px;
+    font-weight: 600;
 
-            <figure class="article-figure">
+    color: #222;
 
-                <img
-                    src="../images/projects/svd/psnr_vs_alpha_compression.png"
-                    alt="PSNR versus alpha under JPEG compression"
-                >
+    border-bottom: 1px solid #999;
 
-                <figcaption>
-                    Figure 5 — Effect of watermark strength under
-                    JPEG compression.
-                </figcaption>
+    padding-bottom: 2px;
 
-            </figure>
+    transition: color 0.2s ease;
+}
 
+.article-github:hover {
+    color: #777;
+}
 
-            <h2>
-                Evaluation
-            </h2>
 
-            <p>
-                The experiments use multiple measures to evaluate
-                the watermarking system.
-            </p>
+/* =========================================================
+   ARTICLE BODY
+   ========================================================= */
 
-            <p>
-                <strong>PSNR</strong> measures the numerical similarity
-                between images and provides a way to quantify image
-                quality and watermark recovery.
-            </p>
+.article-content {
+    max-width: 720px;
 
-            <p>
-                <strong>QR decoding</strong> provides a more practical
-                test: whether the recovered watermark still contains
-                usable information.
-            </p>
+    margin: 0 auto;
+}
 
+.article-content p {
+    margin-bottom: 24px;
 
-            <h2>
-                What the Experiments Showed
-            </h2>
+    font-size: 17px;
+    line-height: 1.8;
 
-            <p>
-                The experiments demonstrate a trade-off between
-                watermark strength and image quality. A weak watermark
-                produces less distortion but can be more sensitive to
-                degradation.
-            </p>
+    color: #333;
+}
 
-            <p>
-                A stronger watermark can improve recovery under some
-                degradation levels, but increasing the strength too
-                much introduces additional distortion and does not
-                necessarily provide better recovery.
-            </p>
+.article-content strong {
+    font-weight: 600;
 
-            <p>
-                The results therefore show that the watermark strength
-                should be selected based on the expected degradation
-                rather than simply maximized.
-            </p>
+    color: #222;
+}
 
 
-            <h2>
-                Conclusion
-            </h2>
+/* =========================================================
+   ARTICLE HEADINGS
+   ========================================================= */
 
-            <p>
-                This project provided a practical look at how SVD can
-                be used for image watermarking and how the choice of
-                embedding strength affects both visual quality and
-                robustness.
-            </p>
+.article-content h2 {
+    margin: 60px 0 22px;
 
-            <p>
-                The project also connected the mathematical properties
-                of SVD with an actual image-processing application,
-                including implementation, reconstruction, degradation,
-                and watermark recovery.
-            </p>
+    font-size: 29px;
+    line-height: 1.3;
 
+    font-weight: 600;
 
-            <h2>
-                Tools Used
-            </h2>
+    letter-spacing: -0.3px;
 
-            <p class="article-tools">
-                Python · NumPy · OpenCV · Matplotlib ·
-                Singular Value Decomposition · QR Decoding
-            </p>
+    color: #181818;
+}
 
 
-            <div class="article-end">
+/* =========================================================
+   EQUATIONS
+   ========================================================= */
 
-                <a
-                    href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="article-github"
-                >
-                    View the complete project on GitHub →
-                </a>
+.article-equation {
+    margin: 32px auto;
 
-            </div>
+    text-align: center;
 
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-        </article>
+    font-size: 25px;
 
-    </main>
+    color: #222;
+}
 
 
-    <footer>
+/* =========================================================
+   PIPELINE
+   ========================================================= */
 
-        <p>
-            © 2026 Harshada Kale
-        </p>
+.article-pipeline {
+    display: flex;
 
-    </footer>
+    align-items: center;
+    justify-content: center;
 
+    width: 100%;
 
-</body>
+    margin: 40px 0 18px;
+}
 
-</html>
+.article-pipeline > div:not(.pipeline-arrow) {
+    min-width: 100px;
+
+    text-align: center;
+}
+
+.article-pipeline span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 11px;
+
+    color: #999;
+}
+
+.article-pipeline strong {
+    display: block;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.pipeline-arrow {
+    margin: 0 15px;
+
+    font-size: 19px;
+
+    color: #aaa;
+}
+
+.pipeline-vertical {
+    text-align: center;
+
+    margin: 3px 0;
+
+    font-size: 20px;
+
+    color: #aaa;
+}
+
+.pipeline-second {
+    max-width: 560px;
+
+    margin: 18px auto 45px;
+}
+
+
+/* =========================================================
+   FIGURES
+   ========================================================= */
+
+.article-figure {
+    margin: 42px 0;
+}
+
+.article-figure img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 2px;
+}
+
+.article-figure figcaption {
+    max-width: 650px;
+
+    margin: 11px auto 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   SIDE-BY-SIDE IMAGES
+   ========================================================= */
+
+.image-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin: 35px 0;
+}
+
+.image-row .article-figure {
+    margin: 0;
+}
+
+
+/* =========================================================
+   TOOLS
+   ========================================================= */
+
+.article-tools {
+    font-size: 16px !important;
+
+    color: #666 !important;
+}
+
+
+/* =========================================================
+   ARTICLE END
+   ========================================================= */
+
+.article-end {
+    margin-top: 65px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid #e5e5e5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 40px;
+
+        padding-top: 60px;
+    }
+
+    .hero-image {
+        order: -1;
+    }
+
+    .hero-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .article {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .contact-links {
+        flex-wrap: wrap;
+    }
+
+
+    /* Article */
+
+    .article-page {
+        padding: 0 18px 70px;
+    }
+
+    .article-header {
+        padding: 40px 0 42px;
+    }
+
+    .article-header h1 {
+        font-size: 38px;
+
+        line-height: 1.1;
+
+        letter-spacing: -0.8px;
+    }
+
+    .article-subtitle {
+        font-size: 18px;
+    }
+
+    .article-meta {
+        flex-wrap: wrap;
+    }
+
+    .article-content p {
+        font-size: 16px;
+
+        line-height: 1.75;
+    }
+
+    .article-content h2 {
+        margin-top: 48px;
+
+        font-size: 26px;
+    }
+
+    .article-equation {
+        font-size: 21px;
+
+        overflow-x: auto;
+    }
+
+    .article-pipeline {
+        flex-direction: column;
+
+        gap: 14px;
+
+        margin: 30px 0;
+    }
+
+    .article-pipeline > div:not(.pipeline-arrow) {
+        min-width: 0;
+    }
+
+    .pipeline-arrow {
+        margin: 0;
+
+        transform: rotate(90deg);
+    }
+
+    .pipeline-vertical {
+        display: none;
+    }
+
+    .pipeline-second {
+        margin-top: 28px;
+    }
+
+    .image-row {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .article-figure {
+        margin: 35px 0;
+    }
+}
