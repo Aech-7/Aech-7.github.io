@@ -1253,7 +1253,7 @@ footer {
 
 .article-page {
     width: 100%;
-    padding: 0 20px 100px;
+    padding: 0 35px 70px;
 }
 
 
@@ -1262,10 +1262,9 @@ footer {
    ========================= */
 
 .article-header {
-    max-width: 780px;
+    max-width: 1000px;
     margin: 0 auto;
-
-    padding: 65px 0 55px;
+    padding: 40px 0 30px;
 }
 
 .article-category {
@@ -1280,13 +1279,15 @@ footer {
 }
 
 .article-header h1 {
-    margin: 0 0 22px;
+    max-width: 900px;
 
-    font-size: 52px;
+    margin-bottom: 16px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 48px;
     line-height: 1.08;
 
     font-weight: 600;
-
     letter-spacing: -1.5px;
 
     color: #181818;
@@ -1341,18 +1342,24 @@ footer {
    ========================= */
 
 .article-content {
-    max-width: 720px;
-
+    max-width: 1000px;
     margin: 0 auto;
+
+    font-family: Charter, Georgia, Cambria, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.58;
+    letter-spacing: -0.003em;
+
+    color: #242424;
 }
 
 .article-content p {
-    margin: 0 0 24px;
+    max-width: 900px;
 
-    font-size: 17px;
-    line-height: 1.8;
+    margin-bottom: 20px;
 
-    color: #333;
+    font-size: 18px;
+    line-height: 1.58;
 }
 
 .article-content strong {
@@ -1366,14 +1373,14 @@ footer {
    ========================= */
 
 .article-content h2 {
-    margin: 65px 0 22px;
+    margin: 48px 0 18px;
 
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     line-height: 1.25;
 
     font-weight: 600;
-
-    letter-spacing: -0.4px;
+    letter-spacing: -0.3px;
 
     color: #181818;
 }
@@ -1388,15 +1395,13 @@ footer {
    ========================= */
 
 .article-equation {
-    margin: 35px auto;
-
-    padding: 8px 0;
+    margin: 25px 0;
 
     text-align: center;
 
     font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 1.4;
 
     color: #222;
 }
@@ -1471,20 +1476,18 @@ footer {
    ========================= */
 
 .article-figure {
-    margin: 45px 0;
+    margin: 30px 0;
 }
 
 .article-figure img {
     display: block;
 
     width: 100%;
-    max-width: 850px;
-
     height: auto;
 
     margin: 0 auto;
 
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .article-figure figcaption {
@@ -1510,9 +1513,9 @@ footer {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 25px;
+    gap: 28px;
 
-    margin: 35px 0;
+    margin: 30px 0;
 }
 
 .image-row .article-figure {
