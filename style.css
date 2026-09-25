@@ -397,3 +397,525 @@ footer {
         flex-wrap: wrap;
     }
 }
+
+/* =========================
+   Project Page
+   ========================= */
+
+.project-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 80px 30px 120px;
+}
+
+
+/* Project Hero */
+
+.project-hero {
+    max-width: 850px;
+    padding: 70px 0 100px;
+}
+
+.project-label {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.project-hero h1 {
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    margin-bottom: 25px;
+}
+
+.project-intro {
+    max-width: 760px;
+    font-size: 20px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+/* Buttons */
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-button {
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    background: #222;
+    color: #fff;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: background 0.2s ease;
+}
+
+.project-button:hover {
+    background: #444;
+}
+
+
+/* Sections */
+
+.project-section {
+    padding: 70px 0;
+
+    border-top: 1px solid #e5e5e5;
+}
+
+.project-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+
+    margin-bottom: 30px;
+}
+
+.project-section p {
+    max-width: 800px;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    color: #555;
+
+    margin-bottom: 20px;
+}
+
+
+/* Highlight */
+
+.project-highlight {
+    margin: 30px 0 70px;
+
+    padding: 45px;
+
+    background: #f7f7f7;
+
+    border-radius: 8px;
+}
+
+.highlight-label {
+    font-size: 12px !important;
+
+    letter-spacing: 1.5px;
+
+    color: #777 !important;
+
+    margin-bottom: 15px !important;
+}
+
+.project-highlight h2 {
+    max-width: 780px;
+
+    font-size: 27px;
+    line-height: 1.5;
+
+    font-weight: 500;
+}
+
+.small-highlight {
+    margin-top: 35px;
+    margin-bottom: 0;
+}
+
+.small-highlight p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Equations */
+
+.equation {
+    width: fit-content;
+
+    margin: 25px auto;
+    padding: 18px 30px;
+
+    background: #f7f7f7;
+
+    border-radius: 6px;
+
+    font-family: Georgia, serif;
+
+    font-size: 22px;
+
+    color: #222;
+}
+
+
+/* Pipeline */
+
+.pipeline {
+    display: flex;
+    align-items: stretch;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.pipeline-step {
+    flex: 1;
+
+    padding: 25px 20px;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 8px;
+}
+
+.pipeline-step span {
+    display: block;
+
+    font-size: 12px;
+
+    color: #888;
+
+    margin-bottom: 15px;
+}
+
+.pipeline-step strong {
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+.pipeline-step p {
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin: 0;
+}
+
+.pipeline-arrow {
+    display: flex;
+
+    align-items: center;
+
+    color: #999;
+
+    font-size: 20px;
+}
+
+.pipeline-second {
+    max-width: 750px;
+
+    margin: 30px auto 0;
+}
+
+
+/* Images */
+
+.image-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+    margin-top: 35px;
+}
+
+.image-grid figure {
+    margin: 0;
+}
+
+.image-grid img {
+    width: 100%;
+
+    display: block;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 6px;
+}
+
+.image-grid figcaption {
+    font-size: 13px;
+
+    color: #777;
+
+    margin-top: 10px;
+}
+
+
+.large-plot {
+    width: 100%;
+
+    max-width: 850px;
+
+    display: block;
+
+    margin: 35px 0;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 6px;
+}
+
+
+/* Metrics */
+
+.metrics {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin: 30px 0;
+}
+
+.metric-card {
+    padding: 25px;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 8px;
+}
+
+.metric-card strong {
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 8px;
+}
+
+.metric-card span {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* Parameters */
+
+.parameter-row {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin: 25px 0;
+}
+
+.parameter-row span {
+    padding: 8px 13px;
+
+    background: #f4f4f4;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+
+/* Evaluation */
+
+.evaluation-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.evaluation-card {
+    padding: 25px;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 8px;
+}
+
+.evaluation-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+.evaluation-card .equation {
+    margin: 20px 0;
+
+    padding: 12px;
+
+    font-size: 18px;
+}
+
+.evaluation-card p {
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* Findings */
+
+.findings {
+    border-top: 1px solid #e5e5e5;
+}
+
+.finding {
+    display: grid;
+
+    grid-template-columns: 60px 1fr;
+
+    gap: 20px;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.finding span {
+    color: #888;
+
+    font-size: 13px;
+}
+
+.finding p {
+    margin: 0;
+
+    font-size: 16px;
+}
+
+
+/* Future Work */
+
+.future-list {
+    padding-left: 20px;
+}
+
+.future-list li {
+    margin-bottom: 13px;
+
+    color: #555;
+
+    font-size: 16px;
+}
+
+
+/* Technologies */
+
+.tech-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.tech-list span {
+    padding: 8px 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+
+/* End */
+
+.project-end {
+    padding: 70px 0;
+
+    border-top: 1px solid #e5e5e5;
+
+    text-align: center;
+}
+
+
+/* =========================
+   Mobile Project Page
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .project-page {
+        padding: 40px 20px 80px;
+    }
+
+    .project-hero {
+        padding: 40px 0 70px;
+    }
+
+    .project-hero h1 {
+        font-size: 40px;
+    }
+
+    .project-intro {
+        font-size: 17px;
+    }
+
+    .project-section {
+        padding: 55px 0;
+    }
+
+    .project-section h2 {
+        font-size: 27px;
+    }
+
+    .project-highlight {
+        padding: 30px;
+    }
+
+    .project-highlight h2 {
+        font-size: 22px;
+    }
+
+    .pipeline {
+        flex-direction: column;
+    }
+
+    .pipeline-arrow {
+        justify-content: center;
+
+        transform: rotate(90deg);
+
+        height: 20px;
+    }
+
+    .pipeline-second {
+        max-width: none;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .evaluation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .finding {
+        grid-template-columns: 40px 1fr;
+    }
+}
