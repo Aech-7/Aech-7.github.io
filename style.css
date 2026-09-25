@@ -1247,74 +1247,384 @@ footer {
     text-align: center;
 }
 
+/* =========================
+   Medium-Style Project Article
+   ========================= */
+
+.article-page {
+    width: 100%;
+    padding: 0 20px 100px;
+}
+
 
 /* =========================
-   Mobile Project Page
+   Article Header
+   ========================= */
+
+.article-header {
+    max-width: 780px;
+    margin: 0 auto;
+
+    padding: 65px 0 55px;
+}
+
+.article-category {
+    margin: 0 0 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    color: #777;
+}
+
+.article-header h1 {
+    margin: 0 0 22px;
+
+    font-size: 52px;
+    line-height: 1.08;
+
+    font-weight: 600;
+
+    letter-spacing: -1.5px;
+
+    color: #181818;
+}
+
+.article-subtitle {
+    max-width: 720px;
+
+    margin: 0 0 25px;
+
+    font-size: 20px;
+    line-height: 1.55;
+
+    color: #666;
+}
+
+.article-meta {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 25px;
+
+    font-size: 14px;
+
+    color: #777;
+}
+
+.article-github {
+    display: inline-block;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #222;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid #999;
+
+    padding-bottom: 2px;
+
+    transition: color 0.2s ease;
+}
+
+.article-github:hover {
+    color: #777;
+}
+
+
+/* =========================
+   Article Content
+   ========================= */
+
+.article-content {
+    max-width: 720px;
+
+    margin: 0 auto;
+}
+
+.article-content p {
+    margin: 0 0 24px;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    color: #333;
+}
+
+.article-content strong {
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* =========================
+   Headings
+   ========================= */
+
+.article-content h2 {
+    margin: 65px 0 22px;
+
+    font-size: 30px;
+    line-height: 1.25;
+
+    font-weight: 600;
+
+    letter-spacing: -0.4px;
+
+    color: #181818;
+}
+
+.article-content h2:first-child {
+    margin-top: 15px;
+}
+
+
+/* =========================
+   Equations
+   ========================= */
+
+.article-equation {
+    margin: 35px auto;
+
+    padding: 8px 0;
+
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+
+    color: #222;
+}
+
+
+/* =========================
+   Pipeline
+   ========================= */
+
+.article-pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 40px 0 20px;
+}
+
+.article-pipeline > div:not(.pipeline-arrow) {
+    min-width: 105px;
+
+    text-align: center;
+}
+
+.article-pipeline span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+
+    color: #999;
+}
+
+.article-pipeline strong {
+    display: block;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.pipeline-arrow {
+    margin: 0 18px;
+
+    font-size: 20px;
+
+    color: #aaa;
+}
+
+.pipeline-vertical {
+    text-align: center;
+
+    margin: 5px 0;
+
+    font-size: 20px;
+
+    color: #aaa;
+}
+
+.pipeline-second {
+    max-width: 570px;
+
+    margin: 20px auto 45px;
+}
+
+
+/* =========================
+   Figures
+   ========================= */
+
+.article-figure {
+    margin: 45px 0;
+}
+
+.article-figure img {
+    display: block;
+
+    width: 100%;
+    max-width: 850px;
+
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 3px;
+}
+
+.article-figure figcaption {
+    max-width: 650px;
+
+    margin: 12px auto 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+/* =========================
+   Side-by-Side Images
+   ========================= */
+
+.image-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin: 35px 0;
+}
+
+.image-row .article-figure {
+    margin: 0;
+}
+
+
+/* =========================
+   Tools
+   ========================= */
+
+.article-tools {
+    font-size: 16px !important;
+
+    color: #666 !important;
+}
+
+
+/* =========================
+   End
+   ========================= */
+
+.article-end {
+    margin-top: 70px;
+
+    padding-top: 30px;
+
+    border-top: 1px solid #e5e5e5;
+
+    text-align: center;
+}
+
+
+/* =========================
+   Mobile
    ========================= */
 
 @media (max-width: 700px) {
 
-    .project-page {
-        padding: 40px 20px 80px;
+    .article-page {
+        padding: 0 18px 70px;
     }
 
-    .project-hero {
-        padding: 40px 0 70px;
+    .article-header {
+        padding: 40px 0 45px;
     }
 
-    .project-hero h1 {
-        font-size: 40px;
+    .article-header h1 {
+        font-size: 38px;
+        line-height: 1.1;
+
+        letter-spacing: -0.8px;
     }
 
-    .project-intro {
-        font-size: 17px;
+    .article-subtitle {
+        font-size: 18px;
     }
 
-    .project-section {
-        padding: 55px 0;
+    .article-meta {
+        flex-wrap: wrap;
     }
 
-    .project-section h2 {
-        font-size: 27px;
+    .article-content p {
+        font-size: 16px;
+        line-height: 1.75;
     }
 
-    .project-highlight {
-        padding: 30px;
+    .article-content h2 {
+        margin-top: 50px;
+
+        font-size: 26px;
     }
 
-    .project-highlight h2 {
-        font-size: 22px;
+    .article-equation {
+        font-size: 21px;
+
+        overflow-x: auto;
     }
 
-    .pipeline {
+    .article-pipeline {
         flex-direction: column;
+
+        gap: 15px;
+
+        margin: 30px 0;
+    }
+
+    .article-pipeline > div:not(.pipeline-arrow) {
+        min-width: 0;
     }
 
     .pipeline-arrow {
-        justify-content: center;
+        margin: 0;
 
         transform: rotate(90deg);
+    }
 
-        height: 20px;
+    .pipeline-vertical {
+        display: none;
     }
 
     .pipeline-second {
-        max-width: none;
+        margin-top: 30px;
     }
 
-    .image-grid {
+    .image-row {
         grid-template-columns: 1fr;
+
+        gap: 35px;
     }
 
-    .metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .evaluation-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .finding {
-        grid-template-columns: 40px 1fr;
+    .article-figure {
+        margin: 35px 0;
     }
 }
