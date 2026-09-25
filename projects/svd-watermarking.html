@@ -1,63 +1,730 @@
-<div class="watermark-flow">
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="flow-item">
-        <span>01</span>
-        <strong>Cover Image</strong>
-        <small>RGB image</small>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="flow-line"></div>
+    <title>SVD-Based Image Watermarking | Harshada Kale</title>
 
-    <div class="flow-item">
-        <span>02</span>
-        <strong>SVD</strong>
-        <small>UΣVᵀ</small>
-    </div>
+    <link rel="stylesheet" href="../style.css">
+</head>
 
-    <div class="flow-line"></div>
+<body>
 
-    <div class="flow-item">
-        <span>03</span>
-        <strong>Embed</strong>
-        <small>Modify Σ</small>
-    </div>
+    <!-- =========================
+         Navigation
+         ========================= -->
 
-    <div class="flow-line"></div>
+    <header class="navbar">
+        <a href="../index.html" class="logo">
+            Harshada Kale
+        </a>
 
-    <div class="flow-item">
-        <span>04</span>
-        <strong>Reconstruct</strong>
-        <small>Inverse SVD</small>
-    </div>
+        <nav class="nav-links">
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#articles">Articles</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
 
-</div>
 
-<div class="flow-down">
-    ↓
-</div>
+    <!-- =========================
+         Project
+         ========================= -->
 
-<div class="watermark-flow second-flow">
+    <main class="project-page">
 
-    <div class="flow-item">
-        <span>05</span>
-        <strong>Degradation</strong>
-        <small>Noise / JPEG</small>
-    </div>
+        <!-- Hero -->
 
-    <div class="flow-line"></div>
+        <section class="project-hero">
 
-    <div class="flow-item">
-        <span>06</span>
-        <strong>Recovery</strong>
-        <small>Estimate watermark</small>
-    </div>
+            <p class="project-label">
+                COMPUTER VISION · LINEAR ALGEBRA
+            </p>
 
-    <div class="flow-line"></div>
+            <h1>
+                SVD-Based Image Watermarking
+            </h1>
 
-    <div class="flow-item">
-        <span>07</span>
-        <strong>QR Check</strong>
-        <small>Decode watermark</small>
-    </div>
+            <p class="project-intro">
+                An image watermarking system using Singular Value
+                Decomposition to embed and recover a QR-code watermark,
+                with experiments studying image quality and robustness
+                under Gaussian noise and JPEG compression.
+            </p>
 
-</div>
+            <a
+                href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-button"
+            >
+                View on GitHub →
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+             Overview
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Overview</h2>
+
+            <p>
+                Digital watermarking allows information to be embedded
+                into an image without placing an obvious visible mark
+                on the image.
+            </p>
+
+            <p>
+                In this project, a QR code containing a roll number is
+                embedded into RGB cover images using Singular Value
+                Decomposition. The watermark strength is controlled
+                using a parameter α.
+            </p>
+
+            <p>
+                The project focuses on the trade-off between image
+                quality, watermark recoverability, and robustness
+                when the watermarked image is degraded.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Main Question
+             ========================= -->
+
+        <section class="project-highlight">
+
+            <p class="highlight-label">
+                MAIN QUESTION
+            </p>
+
+            <h2>
+                How strong should the watermark be so that it remains
+                recoverable without unnecessarily degrading the image?
+            </h2>
+
+        </section>
+
+
+        <!-- =========================
+             Watermarking Pipeline
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>How It Works</h2>
+
+            <div class="watermark-flow">
+
+                <div class="flow-item">
+                    <span>01</span>
+                    <strong>Cover Image</strong>
+                    <small>RGB image</small>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="flow-item">
+                    <span>02</span>
+                    <strong>SVD</strong>
+                    <small>UΣVᵀ</small>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="flow-item">
+                    <span>03</span>
+                    <strong>Embed</strong>
+                    <small>Modify Σ</small>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="flow-item">
+                    <span>04</span>
+                    <strong>Reconstruct</strong>
+                    <small>Inverse SVD</small>
+                </div>
+
+            </div>
+
+
+            <div class="flow-down">
+                ↓
+            </div>
+
+
+            <div class="watermark-flow second-flow">
+
+                <div class="flow-item">
+                    <span>05</span>
+                    <strong>Degradation</strong>
+                    <small>Noise / JPEG</small>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="flow-item">
+                    <span>06</span>
+                    <strong>Recovery</strong>
+                    <small>Estimate watermark</small>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="flow-item">
+                    <span>07</span>
+                    <strong>QR Check</strong>
+                    <small>Decode watermark</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SVD Method
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>The SVD Approach</h2>
+
+            <p>
+                For a cover image C, Singular Value Decomposition gives:
+            </p>
+
+            <div class="equation">
+                C = U<sub>C</sub>Σ<sub>C</sub>V<sub>C</sub><sup>T</sup>
+            </div>
+
+            <p>
+                The QR-code watermark Q is decomposed in the same way:
+            </p>
+
+            <div class="equation">
+                Q = U<sub>Q</sub>Σ<sub>Q</sub>V<sub>Q</sub><sup>T</sup>
+            </div>
+
+            <p>
+                The watermark is embedded by modifying the singular
+                values of the cover image:
+            </p>
+
+            <div class="equation">
+                Σ̃ = Σ<sub>C</sub> + αΣ<sub>Q</sub>
+            </div>
+
+            <p>
+                Here, α controls the watermark strength. The watermarked
+                image is then reconstructed as:
+            </p>
+
+            <div class="equation">
+                C<sub>α</sub> = U<sub>C</sub>Σ̃V<sub>C</sub><sup>T</sup>
+            </div>
+
+            <p>
+                The process is applied independently to the three RGB
+                channels.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SVD Implementation
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>SVD Implementation</h2>
+
+            <p>
+                Instead of directly calling
+                <code>numpy.linalg.svd</code>, the SVD was implemented
+                using eigendecomposition of the Gram matrix.
+            </p>
+
+            <div class="equation">
+                G = MM<sup>T</sup>
+            </div>
+
+            <p>
+                The eigenvalues of G are used to obtain the singular
+                values:
+            </p>
+
+            <div class="equation">
+                σ<sub>i</sub> = √λ<sub>i</sub>
+            </div>
+
+            <p>
+                The corresponding eigenvectors are used to construct the
+                singular-vector matrices required for reconstruction.
+                Small singular values are handled separately to avoid
+                numerical instability.
+            </p>
+
+            <p>
+                This makes the implementation useful for understanding
+                the internal mechanics of SVD rather than treating it
+                as a black-box operation.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Recovery
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Watermark Recovery</h2>
+
+            <p>
+                During recovery, the singular values of the watermarked
+                image are used together with the original cover singular
+                values to estimate the watermark singular values.
+            </p>
+
+            <div class="equation">
+                Σ̃<sub>Q</sub> =
+                (Σ′ − Σ<sub>C</sub>) / α
+            </div>
+
+            <p>
+                The estimated singular values are then combined with the
+                watermark's singular vectors to reconstruct the QR code.
+            </p>
+
+            <p>
+                Recovery is evaluated in two ways: PSNR measures numerical
+                similarity, while QR decoding checks whether the recovered
+                watermark is actually usable.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Baseline Results
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Baseline Results</h2>
+
+            <p>
+                The first experiment verifies the complete watermarking
+                and recovery pipeline before introducing additional
+                image degradation.
+            </p>
+
+            <div class="result-grid">
+
+                <figure>
+                    <img
+                        src="../images/projects/svd/Recovered_img.png"
+                        alt="Recovered watermark"
+                    >
+
+                    <figcaption>
+                        Recovered watermark
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img
+                        src="../images/projects/svd/psnr_comparison.png"
+                        alt="PSNR comparison"
+                    >
+
+                    <figcaption>
+                        PSNR comparison
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Watermark Strength
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Effect of Watermark Strength</h2>
+
+            <p>
+                The watermark strength α is varied from 0.01 to 0.50.
+                For each value, the image quality and recovered watermark
+                quality are evaluated using PSNR.
+            </p>
+
+            <div class="parameter-row">
+
+                <span>α = 0.01</span>
+                <span>α → 0.50</span>
+
+            </div>
+
+            <p>
+                Increasing α makes the watermark stronger but also
+                introduces more distortion into the cover image.
+                Recovery quality also varies with α, showing that the
+                strongest watermark is not necessarily the best choice.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Gaussian Noise
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Robustness to Gaussian Noise</h2>
+
+            <p>
+                Gaussian noise is added to the watermarked images before
+                attempting watermark recovery.
+            </p>
+
+            <div class="parameter-row">
+
+                <span>σ = 0.01</span>
+                <span>σ = 0.05</span>
+                <span>σ = 0.10</span>
+                <span>σ = 0.15</span>
+
+            </div>
+
+            <img
+                class="large-plot"
+                src="../images/projects/svd/psnr_vs_alpha_noise.png"
+                alt="PSNR versus watermark strength under Gaussian noise"
+            >
+
+            <p>
+                At lower noise levels, the watermark remains recoverable
+                for the tested images. At higher noise levels, recovery
+                quality drops significantly and QR decoding fails for
+                the tested watermark strengths.
+            </p>
+
+            <div class="project-highlight small-highlight">
+
+                <p class="highlight-label">
+                    OBSERVATION
+                </p>
+
+                <h2>
+                    Increasing watermark strength alone cannot compensate
+                    for sufficiently strong noise.
+                </h2>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JPEG Compression
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Robustness to JPEG Compression</h2>
+
+            <p>
+                Watermarked images are compressed using different JPEG
+                quality factors.
+            </p>
+
+            <div class="parameter-row">
+
+                <span>Quality = 90</span>
+                <span>Quality = 70</span>
+                <span>Quality = 50</span>
+                <span>Quality = 30</span>
+
+            </div>
+
+            <img
+                class="large-plot"
+                src="../images/projects/svd/psnr_vs_alpha_compression.png"
+                alt="PSNR versus watermark strength under JPEG compression"
+            >
+
+            <p>
+                JPEG compression reduces the quality of the recovered
+                watermark as compression becomes stronger.
+            </p>
+
+            <p>
+                For the tested images, watermark recovery was strongest
+                around an intermediate watermark strength of approximately
+                α ≈ 0.1–0.15.
+            </p>
+
+            <p>
+                Increasing α beyond this range does not continuously
+                improve recovery because additional distortion and
+                clipping can affect the result.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Evaluation
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Evaluation</h2>
+
+            <div class="evaluation-grid">
+
+                <div class="evaluation-card">
+
+                    <h3>Image Quality</h3>
+
+                    <div class="equation">
+                        PSNR(C, C<sub>α</sub>)
+                    </div>
+
+                    <p>
+                        Measures the distortion introduced into the
+                        cover image during watermark embedding.
+                    </p>
+
+                </div>
+
+
+                <div class="evaluation-card">
+
+                    <h3>Watermark Recovery</h3>
+
+                    <div class="equation">
+                        PSNR(Q, Q̂)
+                    </div>
+
+                    <p>
+                        Measures the similarity between the original
+                        and recovered watermark.
+                    </p>
+
+                </div>
+
+
+                <div class="evaluation-card">
+
+                    <h3>QR Decoding</h3>
+
+                    <div class="evaluation-text">
+                        Functional check
+                    </div>
+
+                    <p>
+                        Checks whether the recovered watermark can
+                        actually be decoded.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Key Findings
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Key Findings</h2>
+
+            <div class="findings">
+
+                <div class="finding">
+                    <span>01</span>
+
+                    <p>
+                        α controls the trade-off between watermark
+                        strength and cover-image distortion.
+                    </p>
+                </div>
+
+                <div class="finding">
+                    <span>02</span>
+
+                    <p>
+                        Very small α values preserve the cover image
+                        better but can be more sensitive to degradation.
+                    </p>
+                </div>
+
+                <div class="finding">
+                    <span>03</span>
+
+                    <p>
+                        Very large α values introduce more distortion
+                        and can cause clipping.
+                    </p>
+                </div>
+
+                <div class="finding">
+                    <span>04</span>
+
+                    <p>
+                        Gaussian noise has a strong effect on watermark
+                        recovery at higher noise levels.
+                    </p>
+                </div>
+
+                <div class="finding">
+                    <span>05</span>
+
+                    <p>
+                        JPEG compression increasingly degrades recovery
+                        as compression becomes stronger.
+                    </p>
+                </div>
+
+                <div class="finding">
+                    <span>06</span>
+
+                    <p>
+                        An intermediate α can provide a better balance
+                        between image quality and watermark recovery
+                        than simply maximizing watermark strength.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Takeaway
+             ========================= -->
+
+        <section class="project-highlight">
+
+            <p class="highlight-label">
+                TAKEAWAY
+            </p>
+
+            <h2>
+                The important part of the project was not simply
+                embedding a QR code, but understanding how watermark
+                strength, image quality, and robustness interact.
+            </h2>
+
+        </section>
+
+
+        <!-- =========================
+             Technologies
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Technologies</h2>
+
+            <div class="tech-list">
+
+                <span>Python</span>
+                <span>NumPy</span>
+                <span>OpenCV</span>
+                <span>Matplotlib</span>
+                <span>SVD</span>
+                <span>Eigendecomposition</span>
+                <span>PSNR</span>
+                <span>QR Decoding</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Future Work
+             ========================= -->
+
+        <section class="project-section">
+
+            <h2>Future Improvements</h2>
+
+            <ul class="future-list">
+
+                <li>
+                    Compare SVD watermarking with DCT- and DWT-based methods.
+                </li>
+
+                <li>
+                    Test robustness against resizing, filtering, and cropping.
+                </li>
+
+                <li>
+                    Automate QR-decoding success rates across all experiments.
+                </li>
+
+                <li>
+                    Add perceptual image-quality metrics alongside PSNR.
+                </li>
+
+                <li>
+                    Study the optimal α for different types and levels
+                    of image degradation.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================
+             End
+             ========================= -->
+
+        <section class="project-end">
+
+            <a
+                href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-button"
+            >
+                View Source Code on GitHub →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 Harshada Kale</p>
+    </footer>
+
+</body>
+
+</html>
