@@ -30,7 +30,7 @@ a {
    ========================= */
 
 .navbar {
-    width: 100%;
+    max-width: 1400px;
     height: 80px;
 
     margin: auto;
@@ -68,7 +68,7 @@ a {
    ========================= */
 
 .hero {
-    width: 100%;
+    max-width: 1400px;
     min-height: 600px;
 
     margin: auto;
@@ -179,7 +179,7 @@ a {
    ========================= */
 
 .projects {
-    width: 100%;
+    max-width: 1400px;
 
     margin: auto;
     padding: 80px 40px;
@@ -258,7 +258,7 @@ a {
    ========================= */
 
 .articles {
-    width: 100%;
+    max-width: 1400px;
 
     margin: auto;
     padding: 80px 40px;
@@ -307,7 +307,7 @@ a {
    ========================= */
 
 .contact {
-    width: 100%;
+    max-width: 1400px;
 
     margin: auto;
     padding: 80px 40px;
