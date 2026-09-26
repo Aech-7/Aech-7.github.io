@@ -30,7 +30,7 @@ a {
    ========================= */
 
 .navbar {
-    max-width: 1400px;
+    max-width: 1600px;
     height: 80px;
 
     margin: auto;
@@ -68,7 +68,7 @@ a {
    ========================= */
 
 .hero {
-    max-width: 1400px;
+    max-width: 1600px;
     min-height: 600px;
 
     margin: auto;
@@ -90,7 +90,7 @@ a {
 }
 
 .hero h1 {
-    font-size: 56px;
+    font-size: 64px;
     font-weight: 600;
 
     letter-spacing: -1px;
@@ -101,7 +101,7 @@ a {
 .intro {
     max-width: 600px;
 
-    font-size: 19px;
+    font-size: 21px;
     color: #555555;
 
     margin-bottom: 30px;
@@ -179,7 +179,7 @@ a {
    ========================= */
 
 .projects {
-    max-width: 1400px;
+    max-width: 1600px;
 
     margin: auto;
     padding: 80px 40px;
@@ -188,7 +188,7 @@ a {
 .projects h2,
 .articles h2,
 .contact h2 {
-    font-size: 32px;
+    font-size: 36px;
 
     margin-bottom: 40px;
 }
@@ -227,13 +227,13 @@ a {
 }
 
 .project-card h3 {
-    font-size: 21px;
+    font-size: 24px;
 
     margin-bottom: 10px;
 }
 
 .project-tech {
-    font-size: 13px;
+    font-size: 14px;
 
     color: #777777;
 
@@ -244,6 +244,7 @@ a {
     color: #555555;
 
     margin-bottom: 20px;
+   font-size: 19px;
 }
 
 .project-card a {
@@ -258,7 +259,7 @@ a {
    ========================= */
 
 .articles {
-    max-width: 1400px;
+    max-width: 1600px;
 
     margin: auto;
     padding: 80px 40px;
@@ -307,7 +308,7 @@ a {
    ========================= */
 
 .contact {
-    max-width: 1400px;
+    max-width: 1600px;
 
     margin: auto;
     padding: 80px 40px;
