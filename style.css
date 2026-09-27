@@ -231,13 +231,16 @@ a {
 }
 
 
-/* --- Media (video on the left side of card) --- */
+/* --- Media (video on the right side of card) --- */
 
 .card-media {
     position: relative;
 
-    flex: 0 0 200px;
+    flex: 0 0 220px;
     min-height: 180px;
+
+    /* push video to the right of the text */
+    order: 2;
 
     overflow: hidden;
 }
@@ -251,15 +254,15 @@ a {
     display: block;
 }
 
-/* gradient dissolve into the white card body (left → right) */
+/* gradient: white on left edge fading into transparent video */
 .card-media::after {
     content: "";
     position: absolute;
     inset: 0;
 
     background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 55%,
+        to left,
+        rgba(255, 255, 255, 0) 50%,
         rgba(255, 255, 255, 1) 100%
     );
 
@@ -269,7 +272,7 @@ a {
 .card-tag {
     position: absolute;
     top: 14px;
-    left: 14px;
+    right: 14px;
     z-index: 2;
 
     padding: 6px 14px;
@@ -290,7 +293,10 @@ a {
     flex: 1;
     min-width: 0;
 
-    padding: 20px 22px 22px 16px;
+    /* text stays on the left */
+    order: 1;
+
+    padding: 20px 12px 22px 22px;
 
     display: flex;
     flex-direction: column;
