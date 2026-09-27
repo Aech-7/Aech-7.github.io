@@ -80,7 +80,7 @@ a {
     padding: 70px 40px 80px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 260px 1fr 1fr;
     gap: 24px;
 
     align-items: start;
@@ -217,7 +217,7 @@ a {
     border-radius: 16px;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
     transition:
         transform 0.2s ease,
@@ -231,13 +231,13 @@ a {
 }
 
 
-/* --- Media (photo/video top of card) --- */
+/* --- Media (video on the left side of card) --- */
 
 .card-media {
     position: relative;
 
-    width: 100%;
-    height: 260px;
+    flex: 0 0 200px;
+    min-height: 180px;
 
     overflow: hidden;
 }
@@ -251,14 +251,14 @@ a {
     display: block;
 }
 
-/* gradient dissolve into the white card body */
+/* gradient dissolve into the white card body (left → right) */
 .card-media::after {
     content: "";
     position: absolute;
     inset: 0;
 
     background: linear-gradient(
-        to bottom,
+        to right,
         rgba(255, 255, 255, 0) 55%,
         rgba(255, 255, 255, 1) 100%
     );
@@ -269,7 +269,7 @@ a {
 .card-tag {
     position: absolute;
     top: 14px;
-    right: 14px;
+    left: 14px;
     z-index: 2;
 
     padding: 6px 14px;
@@ -287,13 +287,16 @@ a {
 /* --- Body (title, venue, button) --- */
 
 .card-body {
-    margin-top: -10px;
+    flex: 1;
+    min-width: 0;
 
-    padding: 14px 22px 24px;
+    padding: 20px 22px 22px 16px;
 
     display: flex;
     flex-direction: column;
     gap: 6px;
+
+    justify-content: center;
 }
 
 .featured-card h3 {
@@ -571,6 +574,16 @@ footer {
 
     .featured-grid {
         grid-template-columns: 1fr;
+    }
+
+    .featured-card {
+        flex-direction: column;
+    }
+
+    .card-media {
+        flex: none;
+        width: 100%;
+        height: 200px;
     }
 
     .project-panel {
