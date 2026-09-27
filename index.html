@@ -31,7 +31,16 @@
 
 
     <!-- Hero Section -->
-    <section class="hero">
+<section class="intro-section">
+
+    <div class="about-block">
+
+        <div class="hero-image">
+            <img
+                src="images/profile2.jpeg"
+                alt="Harshada Kale"
+            >
+        </div>
 
         <div class="hero-content">
 
@@ -75,473 +84,266 @@
 
         </div>
 
+    </div>
 
-        <div class="hero-image">
 
-            <img
-                src="images/profile2.jpeg"
-                alt="Harshada Kale"
-            >
+    <div class="featured-block">
+
+        <p class="section-kicker">
+            Selected Work
+        </p>
+
+        <h2>
+            Featured Projects
+        </h2>
+
+        <div class="featured-grid">
+
+            <article class="featured-card">
+
+                <span>01</span>
+
+                <h3>Dough Rolling Robot</h3>
+
+                <p>
+                    Force-controlled robotic manipulation using
+                    a Franka arm, ROS2 and vision.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </article>
+
+
+            <article class="featured-card">
+
+                <span>02</span>
+
+                <h3>Eternal</h3>
+
+                <p>
+                    Autonomous warehouse navigation, mapping,
+                    computer vision and inventory tracking.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </article>
+
+
+            <article class="featured-card">
+
+                <span>03</span>
+
+                <h3>Humanoid Supervisor Robot</h3>
+
+                <p>
+                    Local LLM reasoning connected to speech,
+                    tool calling and physical robot actuation.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </article>
+
+
+            <article class="featured-card">
+
+                <span>04</span>
+
+                <h3>Multimodal Sentiment Analysis</h3>
+
+                <p>
+                    Data-efficient multimodal learning using
+                    weak supervision, active learning and LLMs.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </article>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
     <!-- Projects -->
-    <section id="projects" class="projects">
+<section class="project-panel">
 
-        <h2>Selected Projects</h2>
-        <div class="project-grid">
+    <div class="panel-inner">
 
-        <!-- Project 1 -->
-        <div class="project-card">
-    
-            <h3>Dough Rolling Robot</h3>
-    
-            <p class="project-tech">
-                ROS2 · Force Control · Franka · Computer Vision
-            </p>
-    
-            <p>
-                Developing a Franka-based robotic system for rolling dough
-                to a uniform thickness using force-aware manipulation,
-                ROS2 and vision-based surface estimation.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
+        <div class="panel-video">
+            <!-- video will go here -->
+            <div class="video-placeholder">
+                Robotics & Manipulation
+            </div>
         </div>
-    
-    
-        <!-- Project 2 -->
-        <div class="project-card">
-    
-            <h3>Humanoid Supervisor Robot</h3>
-    
-            <p class="project-tech">
-                LLMs · Agentic AI · Embedded Systems · Robotics
+
+        <div class="panel-content">
+
+            <p class="section-kicker">
+                Robotics
             </p>
-    
+
+            <h2>
+                Robotics &amp; Manipulation
+            </h2>
+
             <p>
-                Built a humanoid robot combining speech recognition,
-                a locally hosted LLaMA model, tool calling and physical
-                servo control for interactive robot behavior.
+                I work on robotic manipulation across perception,
+                kinematics, trajectory planning and force-aware
+                control, from simulation to physical hardware.
             </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
+
+            <div class="panel-projects">
+
+                <span>Dough Rolling Robot</span>
+                <span>Vision-Guided Peg Sorting</span>
+                <span>Mobile Peg Insertion</span>
+                <span>Robot Trajectory Learning</span>
+                <span>MuJoCo Pick &amp; Place</span>
+                <span>Hardware Pick &amp; Place</span>
+
+            </div>
+
         </div>
-    
-    
-        <!-- Project 3 -->
-        <div class="project-card">
-    
-            <h3>Autonomous Warehouse Rover</h3>
-    
-            <p class="project-tech">
-                ROS2 · SLAM · Computer Vision · Autonomous Navigation
-            </p>
-    
-            <p>
-                Built an autonomous warehouse rover combining LiDAR/IMU
-                mapping, navigation, camera-based QR detection and
-                inventory logging.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 4 -->
-        <div class="project-card">
-    
-            <h3>Multimodal Sentiment Analysis</h3>
-    
-            <p class="project-tech">
-                LLMs · Active Learning · Weak Supervision · PyTorch
-            </p>
-    
-            <p>
-                Built a cost-efficient labeling pipeline combining human
-                annotation, weak supervision, active learning and
-                LLM-based labeling for text and speech sentiment data.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 5 -->
-        <div class="project-card">
-    
-            <h3>Team RUDRA — DD-Robocon</h3>
-    
-            <p class="project-tech">
-                Robot Mechanisms · CAD · ROS2 · Computer Vision
-            </p>
-    
-            <p>
-                Designed robotic mechanisms for game-object handling,
-                robot lifting, weapon assembly and autonomous navigation
-                as part of Team RUDRA for National DD-Robocon.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 6 -->
-        <div class="project-card">
-    
-            <h3>Quadcopter Attitude & Altitude Control</h3>
-    
-            <p class="project-tech">
-                Control Systems · MATLAB/Simulink · Dynamics · PID
-            </p>
-    
-            <p>
-                Modeled a six-DOF quadcopter using Euler–Lagrange dynamics,
-                motor and aerodynamic models, and implemented attitude-rate
-                and altitude control in MATLAB/Simulink.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 7 -->
-        <div class="project-card">
-    
-            <h3>Towfish Cable Dynamics</h3>
-    
-            <p class="project-tech">
-                Numerical Modeling · Dynamics · ODE Solvers · Python
-            </p>
-    
-            <p>
-                Developed a lumped-mass model of a towed underwater cable
-                and compared numerical approaches for predicting its
-                steady-state and dynamic configuration.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 8 -->
-        <div class="project-card">
-    
-            <h3>VR-Based Hand Rehabilitation Glove</h3>
-    
-            <p class="project-tech">
-                Wearable Robotics · VR · Arduino · Sensors
-            </p>
-    
-            <p>
-                Developed a wearable glove using flex sensors to track
-                finger motion in real time and translate it into
-                gamified VR rehabilitation exercises.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 9 -->
-        <div class="project-card">
-    
-            <h3>Image Classification & Representation Learning</h3>
-    
-            <p class="project-tech">
-                PyTorch · CNNs · Representation Learning · t-SNE
-            </p>
-    
-            <p>
-                Compared MLPs, traditional machine-learning models,
-                custom CNNs and pretrained networks to study classification
-                accuracy, computational trade-offs and learned representations.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 10 -->
-        <div class="project-card">
-    
-            <h3>Human Activity Recognition with Decision Trees</h3>
-    
-            <p class="project-tech">
-                Machine Learning · PCA · Time-Series · Decision Trees
-            </p>
-    
-            <p>
-                Implemented a Decision Tree classifier from scratch using
-                accelerometer data, feature engineering, PCA and nested
-                cross-validation for activity recognition.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 11 -->
-        <div class="project-card">
-    
-            <h3>SVD-Based Image Watermarking</h3>
-    
-            <p class="project-tech">
-                SVD · OpenCV · Image Processing · Robustness
-            </p>
-    
-            <p>
-                Implemented SVD-based QR watermark embedding and recovery,
-                then evaluated the trade-off between image quality and
-                robustness under noise and JPEG compression.
-            </p>
-    
-            <a
-                href="projects/svd-watermarking.html"
-                target="_blank"
-            >
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 12 -->
-        <div class="project-card">
-    
-            <h3>Classical Computer Vision from Scratch</h3>
-    
-            <p class="project-tech">
-                Computer Vision · OpenCV · Feature Matching · Image Processing
-            </p>
-    
-            <p>
-                Implemented image-processing and feature-detection methods
-                from scratch, then built template- and feature-based object
-                detectors robust to scale, rotation, noise and occlusion.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 13 -->
-        <div class="project-card">
-    
-            <h3>Vision-Guided Robotic Peg Sorting</h3>
-    
-            <p class="project-tech">
-                Computer Vision · IK · Path Planning · Manipulation
-            </p>
-    
-            <p>
-                Built a manipulation pipeline using color and shape perception,
-                kinematics, path planning and trajectory generation to identify
-                pegs and place them into their corresponding sockets.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 14 -->
-        <div class="project-card">
-    
-            <h3>Mobile Manipulation for Peg Insertion</h3>
-    
-            <p class="project-tech">
-                Mobile Manipulation · Computer Vision · IK · Planning
-            </p>
-    
-            <p>
-                Combined perception, mobile manipulation, kinematics,
-                workspace analysis and trajectory planning for precise
-                peg insertion on a vertical board.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 15 -->
-        <div class="project-card">
-    
-            <h3>Learning and Replaying Robot Trajectories</h3>
-    
-            <p class="project-tech">
-                Robot Learning · DLS-IK · Trajectory Planning · ROS2
-            </p>
-    
-            <p>
-                Taught a robot to trace a 3D wire path through
-                gravity-compensated demonstration, trajectory processing,
-                DLS inverse kinematics and velocity-controlled replay.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 16 -->
-        <div class="project-card">
-    
-            <h3>Comparing Inverse Kinematics for Robot Pick-and-Place</h3>
-    
-            <p class="project-tech">
-                MuJoCo · Inverse Kinematics · Simulation · Motion Planning
-            </p>
-    
-            <p>
-                Built a randomized MuJoCo pick-and-place environment and
-                compared an off-the-shelf IK solution with custom inverse
-                kinematics approaches.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 17 -->
-        <div class="project-card">
-    
-            <h3>Hardware Pick-and-Place Manipulation</h3>
-    
-            <p class="project-tech">
-                Robot Manipulation · IK · Cartesian Control · Hardware
-            </p>
-    
-            <p>
-                Implemented a physical robot pick-and-place task,
-                progressing from joint-space waypoints toward Cartesian
-                control using inverse kinematics.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 18 -->
-        <div class="project-card">
-    
-            <h3>Gesture-Controlled Robotic Car</h3>
-    
-            <p class="project-tech">
-                Embedded Systems · Sensors · Arduino · Robotics
-            </p>
-    
-            <p>
-                Built a robotic car controlled through hand gestures using
-                flex sensors, microcontroller-based sensing, motor drivers
-                and wireless control.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 19 -->
-        <div class="project-card">
-    
-            <h3>ROS2 Mobile Robot Development</h3>
-    
-            <p class="project-tech">
-                ROS2 · TurtleBot3 · Gazebo · Python
-            </p>
-    
-            <p>
-                Worked with TurtleBot3 hardware and simulation to develop
-                ROS2 nodes for robot control, velocity commands, camera
-                data processing and mobile robotics experiments.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
-    
-        <!-- Project 20 -->
-        <div class="project-card">
-    
-            <h3>PCA-Based Data Analysis</h3>
-    
-            <p class="project-tech">
-                PCA · Python · Data Analysis · Visualization
-            </p>
-    
-            <p>
-                Applied Principal Component Analysis to reduce feature
-                dimensionality and visualize structure in datasets such
-                as Iris while studying feature-space transformations.
-            </p>
-    
-            <a href="#">
-                View Project →
-            </a>
-    
-        </div>
-    
+
     </div>
-        
 
+</section>
+<section class="project-panel">
 
-    </section>
+    <div class="panel-inner">
 
+        <div class="panel-video">
+            <div class="video-placeholder">
+                Autonomous Robotics
+            </div>
+        </div>
+
+        <div class="panel-content">
+
+            <p class="section-kicker">
+                Robotics
+            </p>
+
+            <h2>
+                Autonomous &amp; Embedded Robotics
+            </h2>
+
+            <p>
+                Projects combining sensing, embedded systems,
+                perception and autonomous decision-making for
+                robots operating in real environments.
+            </p>
+
+            <div class="panel-projects">
+
+                <span>Eternal</span>
+                <span>Team RUDRA</span>
+                <span>Humanoid Supervisor Robot</span>
+                <span>Gesture-Controlled Car</span>
+                <span>TurtleBot3 / ROS2</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="project-panel">
+
+    <div class="panel-inner">
+
+        <div class="panel-video">
+            <div class="video-placeholder">
+                Machine Learning &amp; Computer Vision
+            </div>
+        </div>
+
+        <div class="panel-content">
+
+            <p class="section-kicker">
+                AI / CV
+            </p>
+
+            <h2>
+                Machine Learning &amp; Computer Vision
+            </h2>
+
+            <p>
+                Work spanning classical computer vision, deep
+                learning and multimodal AI, from models built
+                from scratch to data-efficient learning systems.
+            </p>
+
+            <div class="panel-projects">
+
+                <span>Multimodal Sentiment Analysis</span>
+                <span>Image Classification</span>
+                <span>Classical Computer Vision</span>
+                <span>SVD Watermarking</span>
+                <span>Human Activity Recognition</span>
+                <span>PCA / Data Analysis</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="project-panel">
+
+    <div class="panel-inner">
+
+        <div class="panel-video">
+            <div class="video-placeholder">
+                Controls &amp; Simulation
+            </div>
+        </div>
+
+        <div class="panel-content">
+
+            <p class="section-kicker">
+                Controls
+            </p>
+
+            <h2>
+                Controls &amp; Computational Modeling
+            </h2>
+
+            <p>
+                Projects focused on modeling physical systems,
+                numerical simulation and feedback control,
+                with an emphasis on understanding system dynamics.
+            </p>
+
+            <div class="panel-projects">
+
+                <span>Quadcopter Attitude &amp; Altitude Control</span>
+                <span>Towfish Cable Dynamics</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <!-- Articles -->
     <section id="articles" class="articles">
