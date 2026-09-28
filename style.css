@@ -236,7 +236,7 @@ a {
 .card-media {
     position: relative;
 
-    flex: 0 0 340px;
+    flex: 0 0 380px;
     min-height: 180px;
 
     /* push video to the right of the text */
