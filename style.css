@@ -10,7 +10,7 @@
 
 :root {
     --card-accent:   #1d4ed8;
-    --card-height:   220px;
+    --card-height:   300px;
     --media-ratio:   9 / 16;   /* portrait video: width/height. Change to 16/9 for landscape */
 }
 
