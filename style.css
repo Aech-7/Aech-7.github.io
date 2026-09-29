@@ -212,6 +212,8 @@ a {
     position: relative;
     overflow: hidden;
 
+    height: 150px;
+
     background: #ffffff;
     border: 1px solid #e2e2e2;
     border-radius: 16px;
