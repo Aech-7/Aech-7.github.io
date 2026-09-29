@@ -9,8 +9,9 @@
 }
 
 :root {
-    /* change this one value to reskin every card tag/venue/button */
-    --card-accent: #1d4ed8;
+    --card-accent:   #1d4ed8;
+    --card-height:   170px;
+    --media-ratio:   9 / 16;   /* portrait video: width/height. Change to 16/9 for landscape */
 }
 
 html {
@@ -205,7 +206,7 @@ a {
 .featured-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 150px;
+    grid-auto-rows: var(--card-height);
     gap: 24px;
 }
 
@@ -213,7 +214,7 @@ a {
     position: relative;
     overflow: hidden;
 
-    height: 150px;
+    height: var(--card-height);
     min-height: 0;
 
     background: #ffffff;
@@ -222,10 +223,9 @@ a {
 
     display: flex;
     flex-direction: row;
+    align-items: stretch;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .featured-card:hover {
@@ -239,15 +239,15 @@ a {
 
 .card-media {
     position: relative;
-
-    flex: 0 0 60%;
-    height: 100%;
-    min-height: 0;
-
-    /* push video to the right of the text */
     order: 2;
 
+    flex: 0 0 auto;                    /* width is derived from height + aspect-ratio */
+    height: 100%;
+    aspect-ratio: var(--media-ratio);  /* box matches the video's shape */
+    min-height: 0;
+
     overflow: hidden;
+    background: #f3f3f3;
 }
 
 .card-media img,
@@ -257,59 +257,61 @@ a {
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    object-fit: contain;               /* whole video visible — no zoom or crop */
     display: block;
 }
 
-/* gradient: white on left edge fading into transparent video */
+/* gradient hidden — box already matches video shape, no bars to hide */
 .card-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 0) 50%,
-        rgba(255, 255, 255, 1) 100%
-    );
-
-    pointer-events: none;
+    display: none;
 }
 
 .card-tag {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 8px;
+    right: 8px;
     z-index: 2;
 
-    padding: 6px 14px;
+    padding: 4px 10px;
 
     background: var(--card-accent, #1d4ed8);
     color: #ffffff;
 
     border-radius: 999px;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+}
+
+/* placeholder for cards without a video yet */
+.card-media--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+}
+
+.card-media-label {
+    font-size: 11px;
+    color: #999999;
+    text-align: center;
+    padding: 8px;
 }
 
 
 /* --- Body (title, venue, button) --- */
 
 .card-body {
+    order: 1;
     flex: 1;
     min-width: 0;
 
-    /* text stays on the left */
-    order: 1;
-
-    padding: 12px 10px 14px 16px;
+    padding: 14px 16px;
 
     display: flex;
     flex-direction: column;
-    gap: 4px;
-
     justify-content: center;
+    gap: 6px;
 }
 
 .featured-card h3 {
@@ -587,16 +589,18 @@ footer {
 
     .featured-grid {
         grid-template-columns: 1fr;
+        grid-auto-rows: auto;
     }
 
     .featured-card {
-        flex-direction: column;
+        height: var(--card-height);
+        flex-direction: row;
     }
 
     .card-media {
-        flex: none;
-        width: 100%;
-        height: 200px;
+        width: auto;
+        height: 100%;
+        flex: 0 0 auto;
     }
 
     .project-panel {
