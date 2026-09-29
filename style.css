@@ -237,7 +237,7 @@ a {
     position: relative;
 
     flex: 0 0 60%;
-    min-height: 130px;
+    min-height: 100px;
 
     /* push video to the right of the text */
     order: 2;
