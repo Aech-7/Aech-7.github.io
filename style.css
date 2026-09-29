@@ -236,8 +236,8 @@ a {
 .card-media {
     position: relative;
 
-    flex: 0 0 55%;
-    min-height: 180px;
+    flex: 0 0 60%;
+    min-height: 130px;
 
     /* push video to the right of the text */
     order: 2;
@@ -373,7 +373,7 @@ a {
 
 .panel-inner {
     display: grid;
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 60px;
 
     align-items: center;
