@@ -452,10 +452,10 @@
         precision highp float;
         uniform vec2 uRes; uniform float uT; uniform vec2 uMouse; uniform float uVel; uniform vec4 uR[${N}];
         out vec4 o;
-        const vec3 BLUE = vec3(0.573,0.773,0.925);
-        const vec3 CREAM = vec3(0.992,0.953,0.882);
-        const vec3 DARK = vec3(0.13,0.28,0.50);
-        const vec3 WHITE = vec3(0.94,0.98,1.0);
+        const vec3 BLUE  = vec3(0.82, 0.91, 0.97);
+        const vec3 CREAM = vec3(0.97, 0.96, 0.94);
+        const vec3 DARK  = vec3(0.72, 0.84, 0.93);
+        const vec3 WHITE = vec3(0.98, 0.99, 1.00);
         void main(){
           float a = uRes.x/uRes.y;
           vec2 uv = gl_FragCoord.xy/uRes;
@@ -515,9 +515,10 @@
             if(last){ const d=Math.hypot(x-last[0],y-last[1]); vel=Math.min(1,vel+d/120); acc+=d; if(acc>38){spawn(x,y,0.3+Math.min(d/60,0.5));acc=0;} }
             last=[x,y];
         }
-        canvas.addEventListener('pointermove', e => move(e.clientX, e.clientY));
-        canvas.addEventListener('pointerdown', e => { move(e.clientX, e.clientY); spawn(e.clientX, e.clientY, 1.2); });
-        canvas.addEventListener('pointerleave', () => { last = null; });
+        /* listen on document so events fire even when cursor is over page content */
+        document.addEventListener('pointermove', e => move(e.clientX, e.clientY));
+        document.addEventListener('pointerdown', e => { move(e.clientX, e.clientY); spawn(e.clientX, e.clientY, 1.2); });
+        document.addEventListener('pointerleave', () => { last = null; });
         setTimeout(() => spawn(innerWidth*0.5, innerHeight*0.55, 1.0), 200);
         function frame(){
             const t = now();
@@ -529,7 +530,6 @@
         }
         frame();
     })();
-    </script>
 
 </body>
 
