@@ -472,7 +472,7 @@
           vec2 dm = sp - uMouse;
           disp -= dm * exp(-dot(dm,dm)*9.) * (0.04 + 0.08*uVel);
           vec2 s2 = sp + disp;
-          vec2 q = vec2(s2.x*14.0 + sin(uT*0.4)*2.0, s2.y*14.0 + sin(uT*0.3)*0.8);
+          vec2 q = vec2(s2.x*14.0 + sin(uT*0.12)*2.0, s2.y*14.0 + sin(uT*0.09)*0.8);
           vec2 cell = floor(q);
           vec2 u = fract(q) - 0.5;
           float r = 0.26;
