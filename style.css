@@ -78,11 +78,12 @@ a {
     max-width: 1600px;
 
     margin: auto;
-    padding: 70px 40px 80px;
+    padding: 70px 40px 80px 20px;
 
     display: grid;
-    grid-template-columns: 260px 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: 240px 1fr 1fr;
+    column-gap: 80px;
+    row-gap: 24px;
 
     align-items: start;
 
