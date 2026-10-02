@@ -311,7 +311,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 2px;
+    gap: 8px;
 }
 
 .featured-card h2,
