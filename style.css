@@ -98,16 +98,14 @@ header {
     max-width: 1600px;
 
     margin: auto;
-    padding: 50px 0 50px 0;
+    padding: 24px 10px;
 
     display: grid;
     grid-template-columns: 240px 1fr 1fr;
-    column-gap: 80px;
+    column-gap: 24px;
     row-gap: 24px;
 
     align-items: start;
-
-    border-bottom: 1px solid #eeeeee;
 }
 
 
@@ -129,6 +127,13 @@ header {
     object-fit: cover;
 
     border-radius: 50%;
+}
+
+.hero-content {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 16px;
+    padding: 24px 20px;
 }
 
 .hero-content .subtitle {
@@ -400,8 +405,8 @@ header {
     margin: auto;
     padding: 60px 40px;
 
-    background: #ffffff;
-    border-bottom: 1px solid #eeeeee;
+    background: transparent;
+    border-bottom: none;
 }
 
 .panel-inner {
