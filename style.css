@@ -62,6 +62,7 @@ h3,
     display: block;
     z-index: -1;
     touch-action: none;
+    opacity: 0.5;
 }
 
 a {
