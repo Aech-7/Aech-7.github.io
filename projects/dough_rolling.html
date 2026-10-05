@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Force-Controlled Dough Rolling — Harshada Kale</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <meta
+        name="description"
+        content="Force-aware robotic dough rolling using a Franka robot, ROS2, force sensing and vision."
+    >
+</head>
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="site-header">
+
+        <nav class="nav-container">
+
+            <a href="../index.html" class="nav-logo">
+                Harshada Kale
+            </a>
+
+            <div class="nav-links">
+
+                <a href="../index.html">Home</a>
+                <a href="../projects.html">Projects</a>
+                <a href="../about.html">About</a>
+                <a href="../resume.pdf">Resume</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         PROJECT PAGE
+    ========================== -->
+
+    <main class="project-page">
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="project-hero">
+
+            <div class="project-meta">
+
+                <span>Robotics</span>
+                <span>Manipulation</span>
+                <span>Force Control</span>
+
+            </div>
+
+
+            <h1>
+                Force-Controlled<br>
+                Dough Rolling
+            </h1>
+
+
+            <p class="project-subtitle">
+
+                Developing a Franka-based robotic system that uses force
+                feedback and vision to roll dough toward a more uniform
+                thickness.
+
+            </p>
+
+
+            <div class="project-tags">
+
+                <span>ROS2</span>
+                <span>Franka</span>
+                <span>Force Control</span>
+                <span>Computer Vision</span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DEMO
+        ========================== -->
+
+        <section class="project-demo">
+
+            <div class="video-container">
+
+                <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                >
+
+                    <source
+                        src="../assets/dough-rolling/dough-rolling-demo.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+
+            <p class="media-caption">
+                Franka robot performing a dough-rolling pass.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             01 — PROBLEM
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                01 — The problem
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    The goal of this project is to make a robot roll dough to
+                    a more uniform thickness without relying only on a fixed
+                    position trajectory. This is harder than it first appears
+                    because dough is deformable and its surface is not
+                    perfectly flat. As the roller moves across the dough, the
+                    contact conditions can change continuously.
+
+                </p>
+
+
+                <p>
+
+                    A fixed Cartesian trajectory therefore does not provide
+                    enough information about what is actually happening at the
+                    contact. The robot needs to sense its interaction with the
+                    dough and use that information while executing the rolling
+                    motion.
+
+                </p>
+
+
+                <div class="problem-visual">
+
+                    <div class="problem-card">
+
+                        <div class="problem-icon">
+                            01
+                        </div>
+
+                        <strong>
+                            Unknown surface
+                        </strong>
+
+                        <span>
+                            Dough is not perfectly flat.
+                        </span>
+
+                    </div>
+
+
+                    <div class="problem-card">
+
+                        <div class="problem-icon">
+                            02
+                        </div>
+
+                        <strong>
+                            Deformable material
+                        </strong>
+
+                        <span>
+                            Contact changes as the dough is compressed.
+                        </span>
+
+                    </div>
+
+
+                    <div class="problem-card">
+
+                        <div class="problem-icon">
+                            03
+                        </div>
+
+                        <strong>
+                            Contact matters
+                        </strong>
+
+                        <span>
+                            Force provides information about the interaction.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             02 — HARDWARE
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                02 — Hardware
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    The system is built around a <strong>Franka robot arm</strong>
+                    equipped with a rolling tool and force/torque sensing. A
+                    RealSense camera provides visual information about the
+                    dough surface. ROS2 is used to connect the robot, sensing
+                    and control components into a single system.
+
+                </p>
+
+
+                <div class="hardware-image">
+
+                    <img
+                        src="../assets/dough-rolling/franka-dough-setup.jpg"
+                        alt="Franka robot rolling dough"
+                    >
+
+                    <p class="media-caption">
+                        Franka arm, rolling tool and dough setup.
+                    </p>
+
+                </div>
+
+
+                <div class="hardware-grid">
+
+                    <div class="hardware-item">
+
+                        <strong>
+                            Franka
+                        </strong>
+
+                        <span>
+                            Cartesian robot motion
+                        </span>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <strong>
+                            Force / Torque
+                        </strong>
+
+                        <span>
+                            Contact interaction feedback
+                        </span>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <strong>
+                            RealSense
+                        </strong>
+
+                        <span>
+                            Visual surface information
+                        </span>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <strong>
+                            Rolling Tool
+                        </strong>
+
+                        <span>
+                            Dough deformation
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             03 — SYSTEM ARCHITECTURE
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                03 — System architecture
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    I structured the system so that the robot is not driven by
+                    one monolithic controller. The sensing layer provides
+                    information about the dough and the current interaction,
+                    while the control layer uses these measurements to decide
+                    how the robot should execute each rolling pass.
+
+                </p>
+
+
+                <div class="system-diagram">
+
+
+                    <div class="diagram-row">
+
+                        <div class="diagram-node sensor">
+
+                            <strong>
+                                RealSense Camera
+                            </strong>
+
+                            <span>
+                                Dough surface
+                            </span>
+
+                        </div>
+
+
+                        <div class="diagram-node sensor">
+
+                            <strong>
+                                Force / Torque
+                            </strong>
+
+                            <span>
+                                Contact force
+                            </span>
+
+                        </div>
+
+
+                        <div class="diagram-node sensor">
+
+                            <strong>
+                                Robot State
+                            </strong>
+
+                            <span>
+                                Position + motion
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-node diagram-wide">
+
+                        <strong>
+                            Surface / Contact Estimation
+                        </strong>
+
+                        <span>
+                            Estimate the current interaction state
+                        </span>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-split">
+
+
+                        <div class="diagram-node">
+
+                            <strong>
+                                Pass Execution
+                            </strong>
+
+                            <span>
+                                Rolling trajectory
+                            </span>
+
+                        </div>
+
+
+                        <div class="diagram-node">
+
+                            <strong>
+                                Virtual Wall
+                            </strong>
+
+                            <span>
+                                Potential-field constraint
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-node diagram-highlight">
+
+                        <strong>
+                            Robot Controller
+                        </strong>
+
+                        <span>
+                            Force + motion commands
+                        </span>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-node diagram-wide">
+
+                        <strong>
+                            Franka + Rolling Tool
+                        </strong>
+
+                        <span>
+                            Physical interaction with dough
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             04 — FORCE CONTROL
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                04 — Force-aware control
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    The main control idea is to separate the motion that defines
+                    the rolling pass from the interaction force that determines
+                    how the roller behaves against the dough. The robot moves
+                    along the rolling direction while the force signal provides
+                    feedback about whether the roller is actually in contact
+                    and how strongly it is interacting with the material.
+
+                </p>
+
+
+                <p>
+
+                    The force signal is filtered before being used by the
+                    controller, and the system keeps track of the rolling
+                    position and contact state. This makes it possible to
+                    distinguish the actual rolling region from approach and
+                    retreat motions and to analyse the force experienced during
+                    each pass.
+
+                </p>
+
+
+                <div class="force-loop">
+
+
+                    <div class="force-block">
+
+                        <strong>
+                            Desired Interaction
+                        </strong>
+
+                        <span>
+                            Force / motion target
+                        </span>
+
+                    </div>
+
+
+                    <div class="force-arrow">
+                        →
+                    </div>
+
+
+                    <div class="force-block">
+
+                        <strong>
+                            Controller
+                        </strong>
+
+                        <span>
+                            Force-aware correction
+                        </span>
+
+                    </div>
+
+
+                    <div class="force-arrow">
+                        →
+                    </div>
+
+
+                    <div class="force-block force-highlight">
+
+                        <strong>
+                            Franka
+                        </strong>
+
+                        <span>
+                            Rolling motion
+                        </span>
+
+                    </div>
+
+
+                    <div class="force-arrow">
+                        →
+                    </div>
+
+
+                    <div class="force-block">
+
+                        <strong>
+                            Dough
+                        </strong>
+
+                        <span>
+                            Physical response
+                        </span>
+
+                    </div>
+
+
+                    <div class="force-feedback-arrow">
+                        ↺
+                    </div>
+
+                </div>
+
+
+                <div class="force-plot">
+
+                    <img
+                        src="../assets/dough-rolling/force-position-plot.png"
+                        alt="Force and rolling position over time"
+                    >
+
+                    <p class="media-caption">
+                        Force and rolling-position measurements during a pass.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             05 — CONTACT STATE
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                05 — Contact detection
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    Contact state is useful because not every part of the robot
+                    trajectory represents rolling. During approach and retreat,
+                    the roller should not be treated as being in contact with
+                    the dough. During the rolling region, however, the measured
+                    force becomes part of the control and analysis pipeline.
+
+                </p>
+
+
+                <div class="contact-timeline">
+
+                    <div class="timeline-segment approach">
+
+                        <strong>
+                            Approach
+                        </strong>
+
+                        <span>
+                            No contact
+                        </span>
+
+                    </div>
+
+
+                    <div class="timeline-segment rolling">
+
+                        <strong>
+                            Rolling
+                        </strong>
+
+                        <span>
+                            Contact
+                        </span>
+
+                    </div>
+
+
+                    <div class="timeline-segment retreat">
+
+                        <strong>
+                            Retreat
+                        </strong>
+
+                        <span>
+                            No contact
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="state-data">
+
+                    <div>
+
+                        <strong>
+                            Pass number
+                        </strong>
+
+                        <span>
+                            Identifies the current rolling pass.
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Contact state
+                        </strong>
+
+                        <span>
+                            Indicates whether the roller is interacting
+                            with the dough.
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Rolling position
+                        </strong>
+
+                        <span>
+                            Tracks the robot position during the pass.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             06 — SURFACE ESTIMATION
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                06 — Surface estimation
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    Force alone does not describe the final shape of the dough,
+                    so the vision system is being used to obtain information
+                    about the dough surface. The surface can be represented as
+                    a height map along the rolling direction, providing a way
+                    to compare the thickness across the dough rather than
+                    evaluating a pass only from the force signal.
+
+                </p>
+
+
+                <div class="surface-visual">
+
+
+                    <div class="surface-image">
+
+                        <img
+                            src="../assets/dough-rolling/dough-segmentation.png"
+                            alt="Dough segmentation from camera"
+                        >
+
+                        <span>
+                            Camera observation
+                        </span>
+
+                    </div>
+
+
+                    <div class="surface-arrow">
+                        →
+                    </div>
+
+
+                    <div class="surface-image">
+
+                        <img
+                            src="../assets/dough-rolling/dough-height-map.png"
+                            alt="Dough surface height map"
+                        >
+
+                        <span>
+                            Estimated surface
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             07 — VIRTUAL WALL
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                07 — Virtual wall
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    Another part of the control architecture is a
+                    <strong>virtual wall / potential-field constraint</strong>.
+                    Instead of simply imposing a hard position limit, the idea
+                    is to create a soft constraint that generates a corrective
+                    command as the roller approaches an estimated surface
+                    boundary.
+
+                </p>
+
+
+                <p>
+
+                    This allows the force-control and position-limiting
+                    behaviors to work together. The surface estimate can be
+                    shared between the pass-execution loop and the real-time
+                    wall logic, keeping the safety constraint separate from
+                    the main rolling trajectory.
+
+                </p>
+
+
+                <div class="wall-diagram">
+
+                    <div class="wall-space">
+
+                        <div class="roller">
+
+                            Roller
+
+                        </div>
+
+                        <div class="wall-line">
+
+                            <span>
+                                Virtual wall
+                            </span>
+
+                        </div>
+
+                        <div class="dough-area">
+
+                            Dough surface
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="wall-explanation">
+
+                        <span>
+                            Far from wall
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                        <span>
+                            Approaching limit
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                        <span>
+                            Corrective force
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             08 — PASS PIPELINE
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                08 — Rolling pass
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    Each rolling pass follows a defined sequence rather than
+                    treating the complete robot motion as one continuous
+                    trajectory. The robot first approaches the dough, moves
+                    through the rolling region while monitoring contact and
+                    force, and then retreats to a safe position.
+
+                </p>
+
+
+                <div class="pass-pipeline">
+
+
+                    <div class="pass-step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <strong>
+                            Safe approach
+                        </strong>
+
+                        <span>
+                            Move toward the start of the pass.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pass-arrow">
+                        →
+                    </div>
+
+
+                    <div class="pass-step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <strong>
+                            Establish contact
+                        </strong>
+
+                        <span>
+                            Detect interaction with the dough.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pass-arrow">
+                        →
+                    </div>
+
+
+                    <div class="pass-step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <strong>
+                            Roll
+                        </strong>
+
+                        <span>
+                            Execute the pass with force feedback.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pass-arrow">
+                        →
+                    </div>
+
+
+                    <div class="pass-step">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <strong>
+                            Retreat
+                        </strong>
+
+                        <span>
+                            Leave the rolling region safely.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             09 — CURRENT STATUS
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                09 — Current status
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    The current work is focused on making the basic
+                    sensing-and-control pipeline reliable on the physical
+                    robot. The system has the robot-side rolling setup, ROS2
+                    infrastructure, force/torque sensing, contact-state
+                    handling and the structure for using camera-based surface
+                    information in the controller.
+
+                </p>
+
+
+                <p>
+
+                    The next stage is to make the surface estimation accurate
+                    enough for closed-loop use and then use the resulting
+                    measurements to evaluate how the dough thickness changes
+                    from pass to pass.
+
+                </p>
+
+
+                <div class="status-grid">
+
+
+                    <div class="status-card implemented">
+
+                        <span class="status-label">
+                            Implemented
+                        </span>
+
+                        <strong>
+                            Robot rolling pipeline
+                        </strong>
+
+                        <p>
+                            Franka + ROS2 + rolling tool
+                        </p>
+
+                    </div>
+
+
+                    <div class="status-card implemented">
+
+                        <span class="status-label">
+                            Implemented
+                        </span>
+
+                        <strong>
+                            Force sensing
+                        </strong>
+
+                        <p>
+                            Force filtering and contact-state handling
+                        </p>
+
+                    </div>
+
+
+                    <div class="status-card implemented">
+
+                        <span class="status-label">
+                            In progress
+                        </span>
+
+                        <strong>
+                            Surface estimation
+                        </strong>
+
+                        <p>
+                            Camera-based dough geometry
+                        </p>
+
+                    </div>
+
+
+                    <div class="status-card planned">
+
+                        <span class="status-label">
+                            Planned
+                        </span>
+
+                        <strong>
+                            Learning force profiles
+                        </strong>
+
+                        <p>
+                            Data-driven optimization of rolling behavior
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             10 — WHAT I LEARNED
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">
+                10 — What I learned
+            </div>
+
+
+            <div class="section-content">
+
+                <p>
+
+                    Working on this project has made the difference between
+                    position control and physical interaction much clearer to
+                    me. A position trajectory can tell the robot where to move,
+                    but it does not directly tell it what is happening at the
+                    contact. For a deformable material like dough, that
+                    interaction becomes an important part of the control
+                    problem.
+
+                </p>
+
+
+                <p>
+
+                    It has also made me think more carefully about how sensing
+                    and control should be separated. Rather than making the
+                    controller responsible for every part of the system, the
+                    surface estimator, pass-execution logic and virtual-wall
+                    layer can each have a clear role. This structure should
+                    make it easier to experiment with different control
+                    strategies as the project develops.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TECH STACK
+        ========================== -->
+
+        <section class="project-section project-tech">
+
+            <div class="section-label">
+                11 — Tech stack
+            </div>
+
+
+            <div class="tech-list">
+
+                <span>ROS2</span>
+                <span>Franka</span>
+                <span>Python</span>
+                <span>Force / Torque Sensing</span>
+                <span>RealSense</span>
+                <span>Computer Vision</span>
+                <span>Force Control</span>
+                <span>Potential Fields</span>
+                <span>Robot Manipulation</span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             NAVIGATION
+        ========================== -->
+
+        <section class="project-navigation">
+
+            <a
+                href="../projects.html"
+                class="back-link"
+            >
+                ← Back to projects
+            </a>
+
+
+            <a
+                href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View source on GitHub ↗
+            </a>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         PAGE-SPECIFIC CSS
+    ========================== -->
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================== */
+
+        .project-page {
+
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 30px 120px;
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .project-hero {
+
+            max-width: 850px;
+            margin-bottom: 50px;
+
+        }
+
+
+        .project-meta {
+
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+
+        }
+
+
+        .project-meta span {
+
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.55;
+
+        }
+
+
+        .project-hero h1 {
+
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.92;
+            margin: 0 0 25px;
+
+        }
+
+
+        .project-subtitle {
+
+            max-width: 720px;
+            font-size: 1.25rem;
+            line-height: 1.65;
+            opacity: 0.7;
+
+        }
+
+
+        .project-tags,
+        .tech-list {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+
+        }
+
+
+        .project-tags span,
+        .tech-list span {
+
+            padding: 7px 12px;
+
+            border: 1px solid currentColor;
+            border-radius: 100px;
+
+            font-size: 0.78rem;
+            opacity: 0.7;
+
+        }
+
+
+        /* =========================
+           DEMO
+        ========================== */
+
+        .project-demo {
+
+            margin-bottom: 100px;
+
+        }
+
+
+        .video-container {
+
+            width: 100%;
+            overflow: hidden;
+            border-radius: 14px;
+
+        }
+
+
+        .video-container video {
+
+            width: 100%;
+            display: block;
+
+        }
+
+
+        .media-caption {
+
+            font-size: 0.8rem;
+            line-height: 1.5;
+            opacity: 0.55;
+            margin-top: 10px;
+
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        .project-section {
+
+            display: grid;
+
+            grid-template-columns: 220px 1fr;
+
+            gap: 50px;
+
+            padding: 80px 0;
+
+            border-top: 1px solid rgba(0,0,0,0.12);
+
+        }
+
+
+        .section-label {
+
+            font-size: 0.78rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+
+            opacity: 0.55;
+
+        }
+
+
+        .section-content {
+
+            max-width: 760px;
+
+        }
+
+
+        .section-content p {
+
+            font-size: 1.05rem;
+
+            line-height: 1.85;
+
+            margin: 0 0 25px;
+
+        }
+
+
+        /* =========================
+           PROBLEM VISUAL
+        ========================== */
+
+        .problem-visual {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 14px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .problem-card {
+
+            padding: 25px 20px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+        }
+
+
+        .problem-icon {
+
+            font-size: 0.7rem;
+
+            opacity: 0.45;
+
+        }
+
+
+        .problem-card strong {
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .problem-card span {
+
+            font-size: 0.75rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           HARDWARE
+        ========================== */
+
+        .hardware-image {
+
+            margin-top: 40px;
+
+        }
+
+
+        .hardware-image img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 12px;
+
+        }
+
+
+        .hardware-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .hardware-item {
+
+            padding: 20px;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .hardware-item strong {
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .hardware-item span {
+
+            font-size: 0.74rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           SYSTEM DIAGRAM
+        ========================== */
+
+        .system-diagram {
+
+            margin: 50px auto;
+
+            max-width: 720px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+
+        .diagram-row {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .diagram-split {
+
+            width: 70%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .diagram-node {
+
+            padding: 19px 14px;
+
+            border: 1px solid rgba(0,0,0,0.17);
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .diagram-node strong {
+
+            font-size: 0.86rem;
+
+        }
+
+
+        .diagram-node span {
+
+            font-size: 0.72rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .diagram-wide {
+
+            width: 60%;
+
+        }
+
+
+        .diagram-highlight {
+
+            background: rgba(108,159,186,0.12);
+
+            border-color: #6C9FBA;
+
+        }
+
+
+        .diagram-arrow {
+
+            padding: 10px;
+
+            opacity: 0.4;
+
+        }
+
+
+        /* =========================
+           FORCE LOOP
+        ========================== */
+
+        .force-loop {
+
+            position: relative;
+
+            margin: 50px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+        }
+
+
+        .force-block {
+
+            padding: 20px 16px;
+
+            border: 1px solid rgba(0,0,0,0.16);
+
+            border-radius: 10px;
+
+            min-width: 125px;
+
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .force-block strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .force-block span {
+
+            font-size: 0.7rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .force-highlight {
+
+            background: rgba(108,159,186,0.12);
+
+            border-color: #6C9FBA;
+
+        }
+
+
+        .force-arrow {
+
+            opacity: 0.4;
+
+        }
+
+
+        .force-feedback-arrow {
+
+            position: absolute;
+
+            bottom: -35px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            opacity: 0.4;
+
+        }
+
+
+        .force-plot {
+
+            margin-top: 70px;
+
+        }
+
+
+        .force-plot img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* =========================
+           CONTACT TIMELINE
+        ========================== */
+
+        .contact-timeline {
+
+            display: grid;
+
+            grid-template-columns: 1fr 2fr 1fr;
+
+            margin: 45px 0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+        .timeline-segment {
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .timeline-segment strong {
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .timeline-segment span {
+
+            font-size: 0.72rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .timeline-segment.rolling {
+
+            background: rgba(108,159,186,0.12);
+
+            border-color: #6C9FBA;
+
+        }
+
+
+        .state-data {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .state-data > div {
+
+            padding: 20px;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .state-data strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .state-data span {
+
+            font-size: 0.7rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           SURFACE VISUAL
+        ========================== */
+
+        .surface-visual {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .surface-image {
+
+            flex: 1;
+
+        }
+
+
+        .surface-image img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 10px;
+
+        }
+
+
+        .surface-image span {
+
+            display: block;
+
+            margin-top: 9px;
+
+            font-size: 0.75rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .surface-arrow {
+
+            opacity: 0.4;
+
+            font-size: 1.4rem;
+
+        }
+
+
+        /* =========================
+           VIRTUAL WALL
+        ========================== */
+
+        .wall-diagram {
+
+            margin-top: 50px;
+
+        }
+
+
+        .wall-space {
+
+            position: relative;
+
+            height: 280px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    transparent 58%,
+                    rgba(108,159,186,0.08) 58%,
+                    rgba(108,159,186,0.15) 100%
+                );
+
+        }
+
+
+        .roller {
+
+            position: absolute;
+
+            top: 55px;
+
+            left: 25%;
+
+            width: 80px;
+
+            height: 80px;
+
+            border: 2px solid currentColor;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 0.72rem;
+
+        }
+
+
+        .wall-line {
+
+            position: absolute;
+
+            top: 35px;
+
+            right: 25%;
+
+            height: 170px;
+
+            border-left: 2px dashed #6C9FBA;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 12px;
+
+        }
+
+
+        .wall-line span {
+
+            font-size: 0.72rem;
+
+            opacity: 0.6;
+
+        }
+
+
+        .dough-area {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 15%;
+
+            right: 15%;
+
+            text-align: center;
+
+            font-size: 0.75rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .wall-explanation {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 15px;
+
+            font-size: 0.72rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           PASS PIPELINE
+        ========================== */
+
+        .pass-pipeline {
+
+            display: flex;
+
+            align-items: stretch;
+
+            gap: 9px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .pass-step {
+
+            flex: 1;
+
+            padding: 20px 13px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .step-number {
+
+            font-size: 0.68rem;
+
+            opacity: 0.45;
+
+        }
+
+
+        .pass-step strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .pass-step span {
+
+            font-size: 0.7rem;
+
+            line-height: 1.45;
+
+            opacity: 0.55;
+
+        }
+
+
+        .pass-arrow {
+
+            display: flex;
+
+            align-items: center;
+
+            opacity: 0.4;
+
+        }
+
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 14px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .status-card {
+
+            padding: 23px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+        }
+
+
+        .status-label {
+
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 0.68rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.06em;
+
+            opacity: 0.5;
+
+        }
+
+
+        .status-card strong {
+
+            display: block;
+
+            font-size: 0.9rem;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .status-card p {
+
+            margin: 0;
+
+            font-size: 0.76rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        .status-card.implemented {
+
+            background: rgba(108,159,186,0.07);
+
+        }
+
+
+        .status-card.planned {
+
+            opacity: 0.72;
+
+        }
+
+
+        /* =========================
+           TECH STACK
+        ========================== */
+
+        .project-tech {
+
+            padding-bottom: 60px;
+
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        .project-navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding-top: 50px;
+
+            border-top: 1px solid rgba(0,0,0,0.12);
+
+        }
+
+
+        .project-navigation a {
+
+            text-decoration: none;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 750px) {
+
+            .project-page {
+
+                padding: 50px 20px 80px;
+
+            }
+
+
+            .project-section {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+                padding: 55px 0;
+
+            }
+
+
+            .problem-visual,
+            .hardware-grid,
+            .state-data,
+            .status-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .diagram-row,
+            .diagram-split {
+
+                grid-template-columns: 1fr;
+
+                width: 100%;
+
+            }
+
+
+            .diagram-wide {
+
+                width: 100%;
+
+            }
+
+
+            .force-loop {
+
+                flex-direction: column;
+
+            }
+
+
+            .force-arrow {
+
+                transform: rotate(90deg);
+
+            }
+
+
+            .force-feedback-arrow {
+
+                display: none;
+
+            }
+
+
+            .contact-timeline {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .surface-visual {
+
+                flex-direction: column;
+
+            }
+
+
+            .surface-arrow {
+
+                transform: rotate(90deg);
+
+            }
+
+
+            .pass-pipeline {
+
+                flex-direction: column;
+
+            }
+
+
+            .pass-arrow {
+
+                justify-content: center;
+
+                transform: rotate(90deg);
+
+            }
+
+
+            .wall-explanation {
+
+                flex-wrap: wrap;
+
+            }
+
+
+            .project-navigation {
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</body>
+</html>
