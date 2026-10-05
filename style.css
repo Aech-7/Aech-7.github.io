@@ -361,12 +361,16 @@ header {
     order: 2;
 
     flex: 0 0 auto;                    /* width is derived from height + aspect-ratio */
-    height: 100%;
+    height: calc(100% - 8px);
     aspect-ratio: var(--media-ratio);  /* box matches the video's shape */
     min-height: 0;
 
     overflow: hidden;
     background: #f3f3f3;
+
+    border: 3px solid #ffffff;
+    border-radius: 16px;
+    margin: 4px;
 }
 
 .card-media img,
