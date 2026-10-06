@@ -57,75 +57,77 @@
 
         <section class="project-hero">
 
-            <div class="project-meta">
+            <div class="hero-layout">
 
-                <span>Robotics</span>
-                <span>Manipulation</span>
-                <span>Force Control</span>
+                <div class="hero-text">
+
+                    <div class="project-meta">
+
+                        <span>Robotics</span>
+                        <span>Manipulation</span>
+                        <span>Force Control</span>
+
+                    </div>
+
+
+                    <h1>
+                        Force-Controlled<br>
+                        Dough Rolling
+                    </h1>
+
+
+                    <p class="project-subtitle">
+
+                        Developing a Franka-based robotic system that uses force
+                        feedback and vision to roll dough toward a more uniform
+                        thickness.
+
+                    </p>
+
+
+                    <div class="project-tags">
+
+                        <span>ROS2</span>
+                        <span>Franka</span>
+                        <span>Force Control</span>
+                        <span>Computer Vision</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-video">
+
+                    <div class="video-container">
+
+                        <video
+                            controls
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                        >
+
+                            <source
+                                src="../assets/dough-rolling/dough-rolling-demo.mp4"
+                                type="video/mp4"
+                            >
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                    <p class="media-caption">
+                        Franka robot performing a dough-rolling pass.
+                    </p>
+
+                </div>
 
             </div>
-
-
-            <h1>
-                Force-Controlled<br>
-                Dough Rolling
-            </h1>
-
-
-            <p class="project-subtitle">
-
-                Developing a Franka-based robotic system that uses force
-                feedback and vision to roll dough toward a more uniform
-                thickness.
-
-            </p>
-
-
-            <div class="project-tags">
-
-                <span>ROS2</span>
-                <span>Franka</span>
-                <span>Force Control</span>
-                <span>Computer Vision</span>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             DEMO
-        ========================== -->
-
-        <section class="project-demo">
-
-            <div class="video-container">
-
-                <video
-                    controls
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata"
-                >
-
-                    <source
-                        src="../assets/dough-rolling/dough-rolling-demo.mp4"
-                        type="video/mp4"
-                    >
-
-                    Your browser does not support the video tag.
-
-                </video>
-
-            </div>
-
-
-            <p class="media-caption">
-                Franka robot performing a dough-rolling pass.
-            </p>
 
         </section>
 
@@ -1267,6 +1269,31 @@
             max-width: 100%;
             padding: 20px 0 24px;
             margin-bottom: 20px;
+
+        }
+
+
+        .hero-layout {
+
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+
+        }
+
+
+        .hero-text {
+
+            flex: 1;
+            min-width: 0;
+
+        }
+
+
+        .hero-video {
+
+            flex: 0 0 45%;
+            max-width: 45%;
 
         }
 
