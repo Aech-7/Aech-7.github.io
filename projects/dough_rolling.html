@@ -265,6 +265,7 @@
 
         .project-hero {
 
+            position: relative;
             max-width: 100%;
             padding: 20px 0 24px;
             margin-bottom: 20px;
@@ -274,25 +275,24 @@
 
         .hero-layout {
 
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
+            display: block;
 
         }
 
 
         .hero-text {
 
-            flex: 1;
-            min-width: 0;
+            max-width: calc(100% - 280px);
 
         }
 
 
         .hero-video {
 
-            flex: 0 0 45%;
-            max-width: 45%;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            width: 240px;
 
         }
 
@@ -406,6 +406,7 @@
         .project-section {
 
             padding: 28px 0;
+            border-top: none;
 
         }
 
@@ -429,7 +430,7 @@
 
         .section-content p {
 
-            font-size: 1rem;
+            font-size: 1.25rem;
 
             line-height: 1.7;
 
