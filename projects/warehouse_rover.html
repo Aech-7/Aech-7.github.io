@@ -44,558 +44,173 @@
 
     <main class="project-page">
 
-
         <!-- =========================
-             PROJECT HEADER
+             HERO
         ========================== -->
 
         <section class="project-hero">
 
-            <div class="project-meta">
-                <span>Robotics</span>
-                <span>Autonomous Navigation</span>
-                <span>SLAM</span>
-            </div>
+            <div class="hero-layout">
 
-            <h1>Autonomous Warehouse Rover</h1>
+                <div class="hero-text">
 
-            <p class="project-subtitle">
-                Building the SLAM and localization system for an autonomous
-                warehouse robot designed to navigate storage aisles and
-                automate rack-level inventory scanning.
-            </p>
-
-            <div class="project-tags">
-                <span>ROS2</span>
-                <span>SLAM</span>
-                <span>Localization</span>
-                <span>Autonomous Navigation</span>
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             HERO IMAGE
-        ========================== -->
-
-        <section class="project-media project-hero-media">
-
-            <img
-                src="../assets/warehouse/warehouse-rover.jpg"
-                alt="Autonomous warehouse rover"
-            >
-
-        </section>
-
-
-        <!-- =========================
-             THE PROJECT
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                01 — The project
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    The goal of <strong>Eternal</strong> was to build an
-                    autonomous warehouse rover capable of navigating storage
-                    aisles and scanning racks to automate inventory tracking.
-                    The complete system combines mobile navigation, a
-                    vertically moving camera, QR-code detection and inventory
-                    logging.
-                </p>
-
-                <p>
-                    My main contribution was the
-                    <strong>SLAM and localization pipeline</strong>. This
-                    provided the rover with an estimate of its position and a
-                    representation of the surrounding warehouse environment,
-                    allowing the higher-level navigation system to plan and
-                    execute movement through the mapped space.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             SLAM PIPELINE
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                02 — SLAM pipeline
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    For mapping, I worked with ROS2 and
-                    <strong>SLAM Toolbox</strong>, using a 2D RPLIDAR as the
-                    primary source of environmental information. The lidar
-                    continuously provides range measurements around the robot,
-                    which are used to build a 2D occupancy-grid representation
-                    of the warehouse while simultaneously estimating the
-                    robot's pose.
-                </p>
-
-                <p>
-                    The rover also provides IMU and wheel-odometry measurements.
-                    These different sources of information were combined
-                    through an <strong>Extended Kalman Filter (EKF)</strong>
-                    to obtain a more stable estimate of the robot's state.
-                </p>
-
-
-                <!-- SLAM DIAGRAM -->
-
-                <div class="slam-diagram">
-
-                    <div class="sensor-row">
-
-                        <div class="diagram-node">
-                            <strong>RPLIDAR</strong>
-                            <span>2D laser scans</span>
-                        </div>
-
-                        <div class="diagram-node">
-                            <strong>IMU</strong>
-                            <span>Orientation data</span>
-                        </div>
-
-                        <div class="diagram-node">
-                            <strong>Wheel Odometry</strong>
-                            <span>Motion estimate</span>
-                        </div>
-
+                    <div class="project-meta">
+                        <span>Robotics</span>
+                        <span>Autonomous Navigation</span>
+                        <span>SLAM</span>
                     </div>
 
-                    <div class="diagram-arrow">
-                        ↓
-                    </div>
+                    <h1>
+                        Autonomous Warehouse Rover
+                    </h1>
 
-                    <div class="diagram-node diagram-wide">
-                        <strong>Sensor Fusion</strong>
-                        <span>Extended Kalman Filter</span>
-                    </div>
-
-                    <div class="diagram-arrow">
-                        ↓
-                    </div>
-
-                    <div class="diagram-node diagram-highlight">
-                        <strong>SLAM Toolbox</strong>
-                        <span>Mapping + Robot Pose</span>
-                    </div>
-
-                    <div class="diagram-arrow">
-                        ↓
-                    </div>
-
-                    <div class="diagram-row">
-
-                        <div class="diagram-node">
-                            <strong>2D Map</strong>
-                            <span>Occupancy grid</span>
-                        </div>
-
-                        <div class="diagram-node">
-                            <strong>Robot Pose</strong>
-                            <span>Localization</span>
-                        </div>
-
-                    </div>
-
-                    <div class="diagram-arrow">
-                        ↓
-                    </div>
-
-                    <div class="diagram-node diagram-wide">
-                        <strong>Nav2</strong>
-                        <span>Autonomous navigation</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             SIMULATION
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                03 — Mapping in simulation
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    Before relying on the physical rover, we tested the mapping
-                    pipeline in a simulated warehouse environment. A CAD-based
-                    warehouse model was imported into Gazebo, allowing us to
-                    evaluate the lidar data and SLAM behavior in a controlled
-                    environment.
-                </p>
-
-                <p>
-                    Once a usable map was generated, it could be saved and
-                    reused by the navigation system. This created the link
-                    between the perception layer and autonomous navigation:
-                    SLAM builds the representation of the environment and
-                    provides the robot pose that the navigation stack can use.
-                </p>
-
-
-                <div class="image-grid">
-
-                    <figure>
-
-                        <img
-                            src="../assets/warehouse/gazebo-warehouse.png"
-                            alt="Warehouse environment in Gazebo"
-                        >
-
-                        <figcaption>
-                            Warehouse environment used for simulation.
-                        </figcaption>
-
-                    </figure>
-
-
-                    <figure>
-
-                        <img
-                            src="../assets/warehouse/slam-map.png"
-                            alt="Generated SLAM map of warehouse"
-                        >
-
-                        <figcaption>
-                            Occupancy map generated using SLAM.
-                        </figcaption>
-
-                    </figure>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             LOCALIZATION
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                04 — Localization
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    A map by itself is not enough for autonomous navigation.
-                    The robot also needs to know where it currently is within
-                    that map. This made localization an important part of the
-                    system rather than treating SLAM as simply a mapping
-                    algorithm.
-                </p>
-
-                <p>
-                    The pose estimate produced by the localization pipeline was
-                    used by the navigation stack to move between predefined
-                    checkpoints. We tested path planning, checkpoint arrival,
-                    obstacle avoidance and recovery behavior while evaluating
-                    how localization errors affected the resulting motion.
-                </p>
-
-
-                <div class="localization-flow">
-
-                    <div class="flow-item">
-                        <strong>Environment</strong>
-                        <span>LiDAR observations</span>
-                    </div>
-
-                    <div class="flow-arrow">→</div>
-
-                    <div class="flow-item">
-                        <strong>SLAM</strong>
-                        <span>Map + pose</span>
-                    </div>
-
-                    <div class="flow-arrow">→</div>
-
-                    <div class="flow-item">
-                        <strong>Localization</strong>
-                        <span>Current robot position</span>
-                    </div>
-
-                    <div class="flow-arrow">→</div>
-
-                    <div class="flow-item">
-                        <strong>Nav2</strong>
-                        <span>Path planning</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PHYSICAL ROBOT
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                05 — Physical rover
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    The physical rover uses a differential-drive base with
-                    independent wheel control. The sensing setup includes a
-                    RPLIDAR, IMU and wheel odometry, while the Raspberry Pi acts
-                    as the main computing platform. The resulting localization
-                    system connects the sensor hardware to the ROS2 navigation
-                    stack running on the robot.
-                </p>
-
-                <div class="image-large">
-
-                    <img
-                        src="../assets/warehouse/rover-slam-hardware.jpg"
-                        alt="RPLIDAR and sensors mounted on warehouse rover"
-                    >
-
-                    <p class="media-caption">
-                        Sensor and computing hardware used for localization.
+                    <p class="project-subtitle">
+                        Building the SLAM and localization system for an autonomous
+                        warehouse robot designed to navigate storage aisles and
+                        automate rack-level inventory scanning.
                     </p>
 
+                    <div class="project-tags">
+                        <span>ROS2</span>
+                        <span>SLAM</span>
+                        <span>Localization</span>
+                        <span>Autonomous Navigation</span>
+                    </div>
+
                 </div>
 
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             NAVIGATION DEMO
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                06 — Navigation
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    Once the map and localization pipeline were working, the
-                    generated pose information could be used by Nav2 for
-                    autonomous navigation. The rover was tested on predefined
-                    routes and checkpoints, with the navigation stack handling
-                    path planning and obstacle avoidance.
-                </p>
-
-
-                <div class="video-container">
-
-                    <video
-                        controls
-                        playsinline
-                        preload="metadata"
-                    >
-
-                        <source
-                            src="../assets/warehouse/navigation-demo.mp4"
-                            type="video/mp4"
+                <div class="hero-video">
+                    <div class="video-container">
+                        <img
+                            src="../assets/warehouse/rover.png"
+                            alt="Autonomous warehouse rover"
+                            style="width: 100%; display: block; border-radius: 14px;"
                         >
-
-                        Your browser does not support the video tag.
-
-                    </video>
-
-                </div>
-
-                <p class="media-caption">
-                    Autonomous navigation using the generated map and
-                    localization system.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             RESULTS
-        ========================== -->
-
-        <section class="project-section">
-
-            <div class="section-label">
-                07 — Results
-            </div>
-
-            <div class="section-content">
-
-                <p>
-                    Repeated motion tests showed horizontal positioning within
-                    approximately <strong>±10 cm</strong>. The navigation
-                    system was able to use the generated map and localization
-                    estimates to move between predefined checkpoints while
-                    handling obstacles and recovery behavior.
-                </p>
-
-                <p>
-                    The SLAM system ultimately became the layer connecting the
-                    physical sensors to the autonomous navigation stack. Once
-                    the rover knew where it was and had a representation of its
-                    surroundings, the rest of the warehouse workflow could be
-                    built on top of that localization system.
-                </p>
-
-
-                <div class="result-highlight">
-
-                    <div>
-                        <strong>±10 cm</strong>
-                        <span>
-                            Horizontal positioning accuracy
-                        </span>
                     </div>
-
-                    <div>
-                        <strong>2D</strong>
-                        <span>
-                            LiDAR-based occupancy mapping
-                        </span>
-                    </div>
-
-                    <div>
-                        <strong>ROS2</strong>
-                        <span>
-                            SLAM and navigation framework
-                        </span>
-                    </div>
-
                 </div>
 
             </div>
 
         </section>
 
+        <!-- =========================
+             CONTENT LAYOUT
+        ========================== -->
+        <div class="content-layout" style="display: flex; gap: 40px; align-items: flex-start; margin-top: 40px;">
+            <div class="content-text" style="flex: 1; min-width: 0;">
 
         <!-- =========================
-             WHAT I LEARNED
+             01 — CHALLENGE
         ========================== -->
 
         <section class="project-section">
 
-            <div class="section-label">
-                08 — What I learned
-            </div>
+            <div class="section-label">The Challenge</div>
 
             <div class="section-content">
 
                 <p>
-                    Working on the SLAM portion of this project gave me a much
-                    better understanding of what is involved in taking a mobile
-                    robot from receiving lidar measurements to actually
-                    estimating where it is in an environment. I had to think
-                    about sensor data, coordinate frames, odometry, map quality
-                    and how localization errors propagate into the navigation
-                    system.
+                    As part of <strong>Inter IIT Tech Meet 14.0</strong>, Eternal presented the challenge of building an autonomous warehouse rover capable of navigating storage aisles and supporting automated inventory scanning. Reliable navigation required the rover to understand its surroundings while continuously estimating its own position.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+             02 — MY CONTRIBUTION
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">My Contribution</div>
+
+            <div class="section-content">
+
+                <p>
+                    I worked on the <strong>SLAM and localization pipeline</strong>, integrating RPLIDAR, IMU, and wheel odometry with ROS2 to generate a 2D representation of the warehouse and estimate the rover's pose. The resulting map and localization estimates were integrated with <strong>Nav2</strong> for autonomous navigation, achieving approximately <strong>±10 cm horizontal positioning accuracy</strong> during repeated motion tests.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+             03 — HOW THE ROVER WORKED
+        ========================== -->
+
+        <section class="project-section">
+
+            <div class="section-label">How the Rover Worked</div>
+
+            <div class="section-content">
+
+                <p>
+                    The rover used a <strong>differential-drive base</strong> equipped with a RPLIDAR, IMU, and wheel odometry, with a Raspberry Pi providing onboard computation. The complete system also included a vertically moving camera for QR-code-based inventory detection.
                 </p>
 
                 <p>
-                    The most useful part for me was seeing SLAM as part of a
-                    larger robotic system rather than as an isolated algorithm.
-                    The map and pose estimate I worked on ultimately had to be
-                    useful to Nav2 and to the physical robot, which made the
-                    connection between perception, localization and motion much
-                    clearer.
+                    For mapping, I used <strong>SLAM Toolbox</strong> with the RPLIDAR to construct a 2D occupancy map. IMU and wheel-odometry measurements were fused using an <strong>Extended Kalman Filter (EKF)</strong> to obtain a more stable estimate of the rover's state.
+                </p>
+
+                <p style="font-family: monospace; font-size: 0.9em; background: #f5f5f5; padding: 10px; border-radius: 6px; letter-spacing: -0.02em;">
+                    RPLIDAR + IMU + Wheel Odometry → EKF → SLAM Toolbox → Map + Pose → Nav2
                 </p>
 
             </div>
 
         </section>
 
-
         <!-- =========================
-             TECH STACK
+             04 — FROM SIMULATION
         ========================== -->
 
-        <section class="project-section project-tech">
+        <section class="project-section">
 
-            <div class="section-label">
-                09 — Tech stack
-            </div>
+            <div class="section-label">From Simulation to the Physical Rover</div>
 
-            <div class="tech-list">
+            <div class="section-content">
 
-                <span>ROS2</span>
-                <span>SLAM Toolbox</span>
-                <span>LiDAR</span>
-                <span>EKF</span>
-                <span>Robot Localization</span>
-                <span>Nav2</span>
-                <span>Gazebo</span>
-                <span>Raspberry Pi</span>
-                <span>IMU</span>
-                <span>Wheel Odometry</span>
+                <p>
+                    I first tested the mapping pipeline in a <strong>Gazebo warehouse environment</strong> using a CAD-based model. This allowed the lidar data, map generation, and localization behavior to be evaluated before deploying the system on the physical rover.
+                </p>
+
+                <p>
+                    Once the map and localization pipeline were working, the generated map and pose information were used by <strong>Nav2</strong> for path planning. The rover was tested on predefined routes and checkpoints, including obstacle avoidance and recovery behavior.
+                </p>
 
             </div>
 
         </section>
 
-
         <!-- =========================
-             NAVIGATION
+             05 — RESULTS
         ========================== -->
 
-        <section class="project-navigation">
+        <section class="project-section">
 
-            <a
-                href="../projects.html"
-                class="back-link"
-            >
-                ← Back to projects
-            </a>
+            <div class="section-label">Results</div>
 
-            <a
-                href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY"
-                class="project-link"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                View source on GitHub ↗
-            </a>
+            <div class="section-content">
+
+                <p>
+                    Repeated motion tests achieved approximately <strong>±10 cm horizontal positioning accuracy</strong>. The rover was able to use the generated map and localization estimates to navigate between predefined checkpoints while handling obstacles and recovery behavior.
+                </p>
+
+            </div>
 
         </section>
+
+            </div> <!-- /content-text -->
+            <div class="content-video" style="flex: 0 0 45%; position: sticky; top: 30vh; margin-top: 80px;">
+                <video controls autoplay muted loop playsinline preload="metadata" style="width: 100%; display: block; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <source src="../assets/warehouse/navigation.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div> <!-- /content-layout -->
 
     </main>
-
 
     <!-- =========================
          PAGE-SPECIFIC CSS
@@ -603,300 +218,1043 @@
 
     <style>
 
+        /* =========================
+           GENERAL
+        ========================== */
+
         .project-page {
-            max-width: 1100px;
+
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 80px 30px 120px;
+            padding: 24px 40px 60px;
+
         }
 
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================== */
 
         .project-hero {
-            max-width: 850px;
-            margin-bottom: 50px;
+
+            position: relative;
+            max-width: 100%;
+            padding: 20px 0 24px;
+            margin-bottom: 20px;
+
         }
 
+
+        .hero-layout {
+
+            display: block;
+
+        }
+
+
+        .hero-text {
+
+            max-width: calc(100% - 280px);
+
+        }
+
+
+        .hero-video {
+
+            position: absolute;
+            top: 20px;
+            right: 0;
+            width: 240px;
+
+        }
+
+
         .project-meta {
+
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+
         }
 
+
         .project-meta span {
-            font-size: 0.78rem;
+
+            font-size: 0.72rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
             opacity: 0.55;
+
         }
+
 
         .project-hero h1 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            line-height: 0.95;
-            margin: 0 0 25px;
+
+            font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #242424;
+            margin: 0 0 16px;
+
         }
 
+
         .project-subtitle {
-            max-width: 720px;
-            font-size: 1.25rem;
-            line-height: 1.65;
+
+            max-width: 100%;
+            font-size: 1rem;
+            line-height: 1.55;
             opacity: 0.7;
+
         }
+
 
         .project-tags,
         .tech-list {
+
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 25px;
+            gap: 6px;
+            margin-top: 14px;
+
         }
+
 
         .project-tags span,
         .tech-list span {
-            padding: 7px 12px;
+
+            padding: 4px 10px;
+
             border: 1px solid currentColor;
             border-radius: 100px;
-            font-size: 0.78rem;
+
+            font-size: 0.72rem;
             opacity: 0.7;
+
         }
 
 
-        /* HERO IMAGE */
+        /* =========================
+           DEMO
+        ========================== */
 
-        .project-hero-media {
-            margin-bottom: 100px;
+        .project-demo {
+
+            margin-bottom: 36px;
+
         }
 
-        .project-hero-media img {
+
+        .video-container {
+
+            width: 100%;
+            overflow: hidden;
+            border-radius: 14px;
+
+        }
+
+
+        .video-container video {
+
             width: 100%;
             display: block;
-            border-radius: 12px;
+
         }
 
 
-        /* SECTIONS */
+        .media-caption {
+
+            font-size: 0.78rem;
+            line-height: 1.5;
+            opacity: 0.55;
+            margin-top: 8px;
+
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================== */
 
         .project-section {
 
-            padding: 60px 0;
+            padding: 8px 0;
+            border-top: none;
 
         }
+
 
         .section-label {
 
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
             letter-spacing: -0.01em;
+            color: #242424;
 
         }
+
 
         .section-content {
-            max-width: 760px;
+
+            max-width: 100%;
+
         }
+
 
         .section-content p {
-            font-size: 1.15rem;
-            line-height: 1.85;
-            margin: 0 0 25px;
+
+            font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+            font-size: 21px;
+            line-height: 1.58;
+            color: #242424;
+            margin: 0 0 0px;
+
+        }
+        .section-content strong,
+        .section-content b {
+            color: #991B1B;
+            font-weight: 700;
         }
 
 
-        /* VIDEO */
 
-        .video-container {
-            width: 100%;
-            overflow: hidden;
-            border-radius: 12px;
-            margin-top: 35px;
-        }
+        /* =========================
+           PROBLEM VISUAL
+        ========================== */
 
-        .video-container video {
-            width: 100%;
-            display: block;
-        }
+        .problem-visual {
 
-        .media-caption,
-        figcaption {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            opacity: 0.55;
-            margin-top: 10px;
-        }
-
-
-        /* SLAM DIAGRAM */
-
-        .slam-diagram {
-            max-width: 680px;
-            margin: 50px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sensor-row,
-        .diagram-row {
-            width: 100%;
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+
+            gap: 14px;
+
+            margin-top: 45px;
+
         }
 
-        .diagram-row {
-            grid-template-columns: repeat(2, 1fr);
-            max-width: 450px;
+
+        .problem-card {
+
+            padding: 25px 20px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
         }
+
+
+        .problem-icon {
+
+            font-size: 0.7rem;
+
+            opacity: 0.45;
+
+        }
+
+
+        .problem-card strong {
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .problem-card span {
+
+            font-size: 0.75rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           HARDWARE
+        ========================== */
+
+        .hardware-image {
+
+            margin-top: 40px;
+
+        }
+
+
+        .hardware-image img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 12px;
+
+        }
+
+
+        .hardware-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .hardware-item {
+
+            padding: 20px;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .hardware-item strong {
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .hardware-item span {
+
+            font-size: 0.74rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           SYSTEM DIAGRAM
+        ========================== */
+
+        .system-diagram {
+
+            margin: 50px auto;
+
+            max-width: 720px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+
+        .diagram-row {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .diagram-split {
+
+            width: 70%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
 
         .diagram-node {
-            padding: 18px 15px;
-            border: 1px solid rgba(0,0,0,0.18);
+
+            padding: 19px 14px;
+
+            border: 1px solid rgba(0,0,0,0.17);
+
             border-radius: 10px;
+
             text-align: center;
 
             display: flex;
+
             flex-direction: column;
-            gap: 5px;
+
+            gap: 6px;
+
         }
+
 
         .diagram-node strong {
-            font-size: 0.9rem;
+
+            font-size: 0.86rem;
+
         }
+
 
         .diagram-node span {
-            font-size: 0.75rem;
+
+            font-size: 0.72rem;
+
             opacity: 0.55;
+
         }
+
 
         .diagram-wide {
+
             width: 60%;
+
         }
+
 
         .diagram-highlight {
+
             background: rgba(108,159,186,0.12);
+
             border-color: #6C9FBA;
+
         }
+
 
         .diagram-arrow {
-            padding: 9px;
-            opacity: 0.45;
-        }
 
+            padding: 10px;
 
-        /* IMAGES */
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .image-large {
-            margin-top: 40px;
-        }
-
-        .image-large img,
-        figure img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-        }
-
-        figure {
-            margin: 0;
-        }
-
-
-        /* LOCALIZATION FLOW */
-
-        .localization-flow {
-            margin: 45px 0;
-            display: flex;
-            align-items: stretch;
-            gap: 10px;
-        }
-
-        .flow-item {
-            flex: 1;
-            padding: 20px 12px;
-            border: 1px solid rgba(0,0,0,0.16);
-            border-radius: 10px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            gap: 7px;
-        }
-
-        .flow-item strong {
-            font-size: 0.85rem;
-        }
-
-        .flow-item span {
-            font-size: 0.7rem;
-            opacity: 0.55;
-        }
-
-        .flow-arrow {
-            display: flex;
-            align-items: center;
             opacity: 0.4;
+
         }
 
 
-        /* RESULTS */
+        /* =========================
+           FORCE LOOP
+        ========================== */
 
-        .result-highlight {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 40px;
+        .force-loop {
+
+            position: relative;
+
+            margin: 50px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
         }
 
-        .result-highlight div {
-            padding: 25px;
-            border: 1px solid rgba(0,0,0,0.15);
+
+        .force-block {
+
+            padding: 20px 16px;
+
+            border: 1px solid rgba(0,0,0,0.16);
+
             border-radius: 10px;
+
+            min-width: 125px;
+
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
         }
 
-        .result-highlight strong {
+
+        .force-block strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .force-block span {
+
+            font-size: 0.7rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .force-highlight {
+
+            background: rgba(108,159,186,0.12);
+
+            border-color: #6C9FBA;
+
+        }
+
+
+        .force-arrow {
+
+            opacity: 0.4;
+
+        }
+
+
+        .force-feedback-arrow {
+
+            position: absolute;
+
+            bottom: -35px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            opacity: 0.4;
+
+        }
+
+
+        .force-plot {
+
+            margin-top: 70px;
+
+        }
+
+
+        .force-plot img {
+
+            width: 100%;
+
             display: block;
-            font-size: 2rem;
-            margin-bottom: 8px;
+
+            border-radius: 10px;
+
         }
 
-        .result-highlight span {
-            font-size: 0.78rem;
+
+        /* =========================
+           CONTACT TIMELINE
+        ========================== */
+
+        .contact-timeline {
+
+            display: grid;
+
+            grid-template-columns: 1fr 2fr 1fr;
+
+            margin: 45px 0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+        .timeline-segment {
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .timeline-segment strong {
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .timeline-segment span {
+
+            font-size: 0.72rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .timeline-segment.rolling {
+
+            background: rgba(108,159,186,0.12);
+
+            border-color: #6C9FBA;
+
+        }
+
+
+        .state-data {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .state-data > div {
+
+            padding: 20px;
+
+            border: 1px solid rgba(0,0,0,0.14);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .state-data strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .state-data span {
+
+            font-size: 0.7rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           SURFACE VISUAL
+        ========================== */
+
+        .surface-visual {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .surface-image {
+
+            flex: 1;
+
+        }
+
+
+        .surface-image img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 10px;
+
+        }
+
+
+        .surface-image span {
+
+            display: block;
+
+            margin-top: 9px;
+
+            font-size: 0.75rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .surface-arrow {
+
+            opacity: 0.4;
+
+            font-size: 1.4rem;
+
+        }
+
+
+        /* =========================
+           VIRTUAL WALL
+        ========================== */
+
+        .wall-diagram {
+
+            margin-top: 50px;
+
+        }
+
+
+        .wall-space {
+
+            position: relative;
+
+            height: 280px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    transparent 58%,
+                    rgba(108,159,186,0.08) 58%,
+                    rgba(108,159,186,0.15) 100%
+                );
+
+        }
+
+
+        .roller {
+
+            position: absolute;
+
+            top: 55px;
+
+            left: 25%;
+
+            width: 80px;
+
+            height: 80px;
+
+            border: 2px solid currentColor;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 0.72rem;
+
+        }
+
+
+        .wall-line {
+
+            position: absolute;
+
+            top: 35px;
+
+            right: 25%;
+
+            height: 170px;
+
+            border-left: 2px dashed #6C9FBA;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 12px;
+
+        }
+
+
+        .wall-line span {
+
+            font-size: 0.72rem;
+
             opacity: 0.6;
+
         }
 
 
-        /* TECH STACK */
+        .dough-area {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 15%;
+
+            right: 15%;
+
+            text-align: center;
+
+            font-size: 0.75rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        .wall-explanation {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 15px;
+
+            font-size: 0.72rem;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           PASS PIPELINE
+        ========================== */
+
+        .pass-pipeline {
+
+            display: flex;
+
+            align-items: stretch;
+
+            gap: 9px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .pass-step {
+
+            flex: 1;
+
+            padding: 20px 13px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .step-number {
+
+            font-size: 0.68rem;
+
+            opacity: 0.45;
+
+        }
+
+
+        .pass-step strong {
+
+            font-size: 0.82rem;
+
+        }
+
+
+        .pass-step span {
+
+            font-size: 0.7rem;
+
+            line-height: 1.45;
+
+            opacity: 0.55;
+
+        }
+
+
+        .pass-arrow {
+
+            display: flex;
+
+            align-items: center;
+
+            opacity: 0.4;
+
+        }
+
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 14px;
+
+            margin-top: 45px;
+
+        }
+
+
+        .status-card {
+
+            padding: 23px;
+
+            border: 1px solid rgba(0,0,0,0.15);
+
+            border-radius: 10px;
+
+        }
+
+
+        .status-label {
+
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 0.68rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.06em;
+
+            opacity: 0.5;
+
+        }
+
+
+        .status-card strong {
+
+            display: block;
+
+            font-size: 0.9rem;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .status-card p {
+
+            margin: 0;
+
+            font-size: 0.76rem;
+
+            line-height: 1.5;
+
+            opacity: 0.55;
+
+        }
+
+
+        .status-card.implemented {
+
+            background: rgba(108,159,186,0.07);
+
+        }
+
+
+        .status-card.planned {
+
+            opacity: 0.72;
+
+        }
+
+
+        /* =========================
+           TECH STACK
+        ========================== */
 
         .project-tech {
+
             padding-bottom: 60px;
+
         }
 
 
-        /* FOOTER NAVIGATION */
+        /* =========================
+           NAVIGATION
+        ========================== */
 
         .project-navigation {
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 20px;
+
             padding-top: 50px;
+
             border-top: 1px solid rgba(0,0,0,0.12);
+
         }
+
 
         .project-navigation a {
+
             text-decoration: none;
+
         }
 
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 750px) {
 
@@ -904,43 +1262,123 @@
                 padding: 50px 20px 80px;
             }
 
-            .project-section {
-
-            padding: 60px 0;
-
-        }
-
-            .sensor-row,
-            .diagram-row,
-            .image-grid {
-                grid-template-columns: 1fr;
+            .content-layout {
+                flex-direction: column;
             }
+
+            .content-video {
+                width: 100%;
+                margin-top: 20px !important;
+                position: static !important;
+            }
+
+            .project-section {
+                padding: 60px 0;
+            }
+
+
+            .problem-visual,
+            .hardware-grid,
+            .state-data,
+            .status-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .diagram-row,
+            .diagram-split {
+
+                grid-template-columns: 1fr;
+
+                width: 100%;
+
+            }
+
 
             .diagram-wide {
+
                 width: 100%;
+
             }
 
-            .localization-flow {
+
+            .force-loop {
+
                 flex-direction: column;
+
             }
 
-            .flow-arrow {
-                justify-content: center;
+
+            .force-arrow {
+
                 transform: rotate(90deg);
-                padding: 3px;
+
             }
 
-            .result-highlight {
-                grid-template-columns: 1fr;
+
+            .force-feedback-arrow {
+
+                display: none;
+
             }
+
+
+            .contact-timeline {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .surface-visual {
+
+                flex-direction: column;
+
+            }
+
+
+            .surface-arrow {
+
+                transform: rotate(90deg);
+
+            }
+
+
+            .pass-pipeline {
+
+                flex-direction: column;
+
+            }
+
+
+            .pass-arrow {
+
+                justify-content: center;
+
+                transform: rotate(90deg);
+
+            }
+
+
+            .wall-explanation {
+
+                flex-wrap: wrap;
+
+            }
+
 
             .project-navigation {
+
                 flex-direction: column;
+
             }
 
         }
 
     </style>
+
 
 </body>
 </html>
