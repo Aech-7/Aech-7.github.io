@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Activity Recognition with Decision Trees — Harshada Kale</title>
+    <meta name="description" content="A from-scratch decision tree and its use for recognising activities from smartphone accelerometer data.">
+    <meta name="theme-color" content="#F7F4EC">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <a href="../index.html" class="logo">Harshada Kale</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#projects">Projects</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="article-page">
+        <div class="article">
+            <header class="article-header">
+                <p class="article-category">Machine Learning · Time Series · Signal Processing</p>
+                <h1>Human Activity Recognition with Decision Trees</h1>
+                <p class="article-subtitle">Building a decision tree from scratch, then using decision trees to recognise six everyday activities from smartphone accelerometer data.</p>
+                <div class="article-meta"><span>Harshada Kale</span><span>·</span><span>Machine Learning course assignment</span></div>
+                <ul class="chips"><li>Python</li><li>NumPy</li><li>scikit-learn</li><li>TSFEL</li><li>PCA</li><li>Decision trees</li></ul>
+                
+            </header>
+            <article class="article-content">
+
+                <h2>Overview</h2>
+                <p>
+                    This project has two parts. In the first, I implemented a <strong>decision tree
+                    from scratch</strong> in Python and tested it on classification and regression
+                    problems. In the second, I used decision trees to solve a real problem:
+                    <strong>Human Activity Recognition (HAR)</strong>, where a model decides what a person
+                    is doing from the signals of an accelerometer.
+                </p>
+                <ol class="flow"><li><span>01</span><strong>Decision tree</strong><em>Built from scratch</em></li><li><span>02</span><strong>Explore data</strong><em>Waveforms · PCA · correlation</em></li><li class="hl"><span>03</span><strong>Train models</strong><em>Three feature sets</em></li><li><span>04</span><strong>Depth study</strong><em>Depth 2 to 8</em></li><li><span>05</span><strong>Real-world test</strong><em>My own recordings</em></li></ol>
+
+                <h2>Part 1: A decision tree from scratch</h2>
+                <p>
+                    The tree handles four cases: discrete or real-valued features, and discrete or
+                    real-valued outputs. The model itself only takes real inputs, so discrete attributes
+                    are one-hot encoded first.
+                </p>
+                <ul>
+                    <li><strong>Classification</strong> splits are chosen by information gain, using either entropy or the Gini index.</li>
+                    <li><strong>Regression</strong> splits are chosen by information gain using mean squared error.</li>
+                    <li>The tree can be plotted, and the metrics (accuracy, per-class precision and recall) are also written by hand.</li>
+                </ul>
+                <p>
+                    I tested it on a synthetic two-feature classification dataset with a 70/30 train–test
+                    split, and chose the tree depth with <strong>nested 5-fold cross-validation</strong>:
+                    the inner loop picks the depth, and the outer loop estimates how well that choice
+                    generalises. The regression case was tried on the UCI auto-mpg (fuel efficiency)
+                    data and compared with scikit-learn's tree. Finally, I timed training and prediction
+                    while varying the number of samples and binary features, and compared the curves with the
+                    theoretical complexity of building and querying a tree.
+                </p>
+
+                <h2>Part 2: Recognising human activity</h2>
+                <h3>The dataset</h3>
+                <p>
+                    The data is the public <strong>UCI-HAR</strong> dataset: accelerometer recordings of
+                    volunteers performing six activities with a smartphone on the body. Three are
+                    <em>static</em> (laying, sitting, standing) and three are <em>dynamic</em> (walking,
+                    walking upstairs, walking downstairs). I used the raw inertial signals, sampled at
+                    50 Hz, and kept the first 10 seconds of every recording, which is 500 samples per axis. The
+                    samples were then split into training, validation and test sets.
+                </p>
+
+                <h3>Looking at the signals</h3>
+                <p>
+                    Before training anything I plotted one waveform for each activity. The three walking
+                    activities show clear periodic motion, while laying, sitting and standing are almost flat and differ
+                    mainly in the gravity component on each axis, which is why they are hard to tell apart
+                    by eye.
+                </p>
+                <p>
+                    To check whether the static and dynamic groups even need a learned model, I looked at the
+                    total acceleration, acc<sub>x</sub>² + acc<sub>y</sub>² + acc<sub>z</sub>². This
+                    quantity varies strongly during movement and stays nearly constant when the person is still.
+                    Separating static from dynamic is therefore easy, and the difficult part is telling the
+                    activities <em>within</em> each group apart.
+                </p>
+                <figure><img src="../images/projects/har/waveforms.png" alt="Accelerometer waveform for each of the six activities" loading="lazy"><figcaption>One sample waveform per activity class.</figcaption></figure>
+
+                <h3>Three ways to represent the same data</h3>
+                <p>
+                    The main experiment compares three representations of a recording, each fed to the
+                    same kind of model:
+                </p>
+                <ul class="stack"><li><strong>Raw accelerometer data</strong><span>500 samples × 3 axes, used directly</span></li><li class="hl"><strong>TSFEL features</strong><span>Statistical, temporal and spectral features computed automatically from the signal</span></li><li><strong>Dataset features</strong><span>The hand-engineered features provided with UCI-HAR</span></li></ul>
+                <p>
+                    For each representation I used PCA to compress it to two dimensions and plotted the
+                    activities. PCA on the total acceleration alone mixes the classes heavily, whereas the
+                    feature-based projections form far cleaner clusters, so engineered features give the more
+                    informative picture of the data.
+                </p>
+                <figure><img src="../images/projects/har/pca.png" alt="PCA projections of the three feature sets" loading="lazy"><figcaption>Two-component PCA of total acceleration, TSFEL features and the dataset's own features.</figcaption></figure>
+                <p>
+                    I also computed the correlation matrix of the TSFEL and dataset features. Many features
+                    are strongly correlated with one another, so a large share of them are redundant and
+                    could be dropped with little loss of information.
+                </p>
+
+                <h3>Training decision trees</h3>
+                <p>
+                    I trained one scikit-learn decision tree on each representation and evaluated all
+                    three with accuracy, precision, recall and a confusion matrix. The confusion matrices
+                    are the most useful output here, because they show <em>which</em> activities the model
+                    mixes up and not only how often it is wrong.
+                </p>
+                <figure><img src="../images/projects/har/confusion-matrices.png" alt="Confusion matrices for the three models" loading="lazy"><figcaption>Confusion matrices on the test set for raw, TSFEL and dataset features.</figcaption></figure>
+
+                <h3>Model complexity</h3>
+                <p>
+                    A deeper tree can fit more detail, but it can also memorise the training data. To see
+                    this trade-off I trained trees of depth 2 to 8 on all three representations and plotted
+                    test accuracy against depth.
+                </p>
+                <figure><img src="../images/projects/har/accuracy-vs-depth.png" alt="Test accuracy versus tree depth" loading="lazy"><figcaption>Test accuracy against tree depth for the three feature sets.</figcaption></figure>
+                <p>
+                    I then looked at where the models do badly. Because the static activities have
+                    near-identical motion, sitting and standing are the natural candidates for confusion,
+                    and the error analysis follows the confusion matrices above.
+                </p>
+
+                <h2>Data collection in the wild</h2>
+                <p>
+                    A model that works on a clean benchmark is not necessarily useful, so I recorded my own data.
+                    Using a phone app (Physics Toolbox Suite), I recorded 3–5 samples of each activity, collecting at
+                    least 15 seconds each and trimming the edges to leave 10 seconds (500 samples at 50 Hz).
+                    I filmed the recordings as well. To keep the data comparable, the phone stayed in the same
+                    position and orientation for every activity, since changing the alignment changes the signal
+                    and hurts the model.
+                </p>
+                <p>
+                    I then ran two tests: first, the decision tree trained on UCI-HAR applied directly to my
+                    recordings, picking the dataset version closest to how my data was captured; second, my
+                    own data with the preprocessing and featurisation I judged appropriate. Comparing the two shows
+                    how far a model trained on one set of people and devices carries over to a new
+                    phone, a new person and a new way of holding the device.
+                </p>
+
+                <h2>What I took from it</h2>
+                <ul>
+                    <li><strong>Features matter.</strong> The same model behaves very differently on raw signals than on engineered features.</li>
+                    <li><strong>Static and dynamic activities are different problems.</strong> Motion energy separates them, but the activities inside a group need finer cues.</li>
+                    <li><strong>Complexity has a cost.</strong> Depth helps until the tree starts fitting noise, which is why the depth is chosen with validation.</li>
+                    <li><strong>Real data is messier.</strong> Device placement and orientation change the signal, so a benchmark score is only a starting point.</li>
+                </ul>
+
+                <h2>Tech stack</h2>
+                <ul class="chips"><li>Python</li><li>NumPy</li><li>pandas</li><li>scikit-learn</li><li>TSFEL</li><li>Matplotlib</li><li>PCA</li><li>Nested cross-validation</li></ul>
+
+                <div class="page-end">
+                    <a href="../index.html#projects">← Back to projects</a>
+                    
+                </div>
+
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Harshada Kale</p>
+    </footer>
+
+</body>
+</html>

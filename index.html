@@ -1,446 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Harshada Kale</title>
+    <title>Harshada Kale — Robotics, Computer Vision &amp; Machine Learning</title>
+    <meta name="description" content="Portfolio of Harshada Kale, B.Tech student at IIT Gandhinagar working on robotics, computer vision, machine learning and intelligent systems.">
+    <meta name="theme-color" content="#F7F4EC">
 
+    <!-- set the theme before first paint (no flash) -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="ripple.js" defer></script>
 </head>
 
 <body>
 
     <!-- Ripple background -->
-    <canvas id="c"></canvas>
+    <canvas id="c" aria-hidden="true"></canvas>
 
     <!-- Navigation -->
-    <header>
-        <nav class="navbar">
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
 
-            <div class="logo">
-                Harshada Kale
-            </div>
+            <a href="index.html" class="logo">Harshada Kale</a>
 
-            <div class="nav-links">
-                <a href="#projects">Projects</a>
-                <a href="#articles">Articles</a>
-                <a href="#contact">Contact</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#projects">Projects</a>
+                    <a href="#repository">Repository</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </button>
             </div>
 
         </nav>
     </header>
 
 
-    <!-- Hero Section -->
-<section class="intro-section">
+    <main>
 
-    <div class="about-block">
+    <section class="intro-section">
 
-        <div class="hero-image">
-            <img
-                src="images/profile2.jpeg"
-                alt="Harshada Kale"
-            >
-        </div>
+        <!-- About -->
+        <aside class="about-block">
 
-        <div class="hero-content">
+            <div class="hero-image">
+                <img src="images/profile2.jpeg" alt="Portrait of Harshada Kale">
+            </div>
 
-            <p class="subtitle">
-                Robotics · Computer Vision · Machine Learning
-            </p>
+            <div class="hero-content">
 
-            <h1>
-                Harshada Kale
-            </h1>
+                <p class="subtitle">Robotics · Computer Vision · Machine Learning</p>
 
-            <p class="intro">
-                B.Tech student at IIT Gandhinagar interested in
-                robotics, computer vision, machine learning and
-                intelligent systems.
-            </p>
+                <h1>Harshada Kale</h1>
 
-            <div class="divider"></div>
+                <p class="intro">
+                    B.Tech student at IIT Gandhinagar interested in
+                    robotics, computer vision, machine learning and
+                    intelligent systems.
+                </p>
 
-            <div class="social-links" aria-label="Social links">
+                <div class="divider"></div>
 
-                <a href="https://github.com/Aech-7" target="_blank" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1 .1 2.1-.7 2.6-1.3.1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.4-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.3a11.4 11.4 0 0 1 6 0c2.2-1.6 3.2-1.3 3.2-1.3.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
-                    <span>GitHub</span>
-                </a>
+                <div class="social-links" aria-label="Social links">
 
-                <a href="https://www.linkedin.com/in/harshada-kale-98214b217/" target="_blank" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.9 8.6A1.8 1.8 0 1 1 6.9 5a1.8 1.8 0 0 1 0 3.6ZM5.4 10h3v9h-3v-9Zm5.4 0h2.9v1.2h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7v6.7h-3v-6.2c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2v6.3h-3v-9Z"/></svg>
-                    <span>LinkedIn</span>
-                </a>
+                    <a href="https://github.com/Aech-7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1 .1 2.1-.7 2.6-1.3.1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.4-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.3a11.4 11.4 0 0 1 6 0c2.2-1.6 3.2-1.3 3.2-1.3.7 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+                        <span>GitHub</span>
+                    </a>
 
-                <a href="mailto:harshada.kale@iitgn.ac.in" aria-label="Email">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.3.7L12 12.8l6.7-5.6H5.3Zm12.7 1.9-6.4 5.3a1 1 0 0 1-1.2 0L5.9 9.1v8.4c0 .3.2.5.5.5h11.2c.3 0 .5-.2.5-.5v-8.4Z"/></svg>
-                    <span>Email</span>
+                    <a href="https://www.linkedin.com/in/harshada-kale-98214b217/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.9 8.6A1.8 1.8 0 1 1 6.9 5a1.8 1.8 0 0 1 0 3.6ZM5.4 10h3v9h-3v-9Zm5.4 0h2.9v1.2h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7v6.7h-3v-6.2c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2v6.3h-3v-9Z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <a href="mailto:harshada.kale@iitgn.ac.in" aria-label="Email">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.3.7L12 12.8l6.7-5.6H5.3Zm12.7 1.9-6.4 5.3a1 1 0 0 1-1.2 0L5.9 9.1v8.4c0 .3.2.5.5.5h11.2c.3 0 .5-.2.5-.5v-8.4Z"/></svg>
+                        <span>Email</span>
+                    </a>
+
+                </div>
+
+                <a class="resume-button" href="assets/Harshada_Kale_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    View Resume
                 </a>
 
             </div>
 
-            <a
-                class="resume-button"
-                href="assets/Harshada_Kale_Resume.pdf"
-                target="_blank"
-            >
-                View Resume
-            </a>
-
-        </div>
-
-    </div>
+        </aside>
 
 
-    <div class="featured-block">
+        <!-- Projects -->
+        <div class="featured-block" id="projects">
 
-        <p class="section-kicker">
-            Selected Work
-        </p>
+            <p class="section-kicker">Selected Work</p>
+            <h2 class="section-title">Featured Projects</h2>
 
-        <h2>
-            Featured Projects
-        </h2>
+            <div class="featured-grid">
 
-        <div class="featured-grid">
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>Dough Rolling Robot</h3>
+                        <p class="card-desc">
+                            Working on a Franka robot system for rolling dough to a consistent thickness.
+                            The system uses force sensing for controlling the rolling interaction and a camera
+                            to observe the dough surface, with ROS2 handling the robot-side software.
+                        </p>
+                        <ul class="chips">
+                            <li>Franka</li><li>ROS2</li><li>Force Control</li><li>Computer Vision</li>
+                        </ul>
+                        <a class="card-button" href="projects/dough_rolling.html">View Project</a>
+                    </div>
+                    <div class="card-media">
+                        <video src="videos/dough_rolling_web.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Dough rolling robot demo"></video>
+                    </div>
+                </article>
 
-            <article class="featured-card">
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>Warehouse Robot</h3>
+                        <p class="card-desc">
+                            Built a mobile robot for autonomous warehouse mapping and inventory tracking.
+                            The rover uses LiDAR and IMU data to build a map and navigate through the warehouse,
+                            while a camera detects and reads QR codes on racks and stores the inventory information.
+                        </p>
+                        <ul class="chips">
+                            <li>ROS2</li><li>SLAM</li><li>Gazebo</li><li>Autonomous Navigation</li><li>Computer Vision</li>
+                        </ul>
+                        <a class="card-button" href="projects/warehouse_rover.html">View Project</a>
+                    </div>
+                    <div class="card-media">
+                        <video src="videos/warehouse_robot.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Warehouse robot demo"></video>
+                    </div>
+                </article>
 
-            <div class="card-media">
-                  <video src="videos/dough_rolling_web.mp4" autoplay muted loop playsinline></video>
-                  
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>Humanoid Supervisor Robot</h3>
+                        <p class="card-desc">
+                            Built a humanoid robot that can listen to spoken commands and use a locally
+                            running LLaMA model to decide which robot actions to perform.
+                            An agentic tool-calling system connects the language model to servo-controlled head,
+                            eye, and jaw movements.
+                        </p>
+                        <ul class="chips">
+                            <li>LLaMA 3.1</li><li>Tool Calling</li><li>Speech Processing</li><li>Servo Control</li><li>Rubik Pi</li>
+                        </ul>
+                        <a class="card-button" href="projects/humanoid_supervisor.html">View Project</a>
+                    </div>
+                    <div class="card-media">
+                        <video src="videos/humanoid_web.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Humanoid supervisor robot demo"></video>
+                    </div>
+                </article>
+
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>Quadcopter Modelling &amp; Control</h3>
+                        <p class="card-desc">
+                            Built a six-DOF mathematical model of a quadcopter, including its dynamics,
+                            motor behavior, and aerodynamic effects. Used it to simulate attitude-rate
+                            and altitude control in MATLAB/Simulink.
+                        </p>
+                        <ul class="chips">
+                            <li>MATLAB/Simulink</li><li>Quadrotor Dynamics</li><li>PID Control</li><li>Euler–Lagrange</li>
+                        </ul>
+                        <a class="card-button" href="projects/quadcopter_control.html">View Project</a>
+                    </div>
+                    <div class="card-media">
+                        <video src="videos/quadcopter_zoom2.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Quadcopter simulation"></video>
+                    </div>
+                </article>
+
             </div>
-        
-            <div class="card-body">
-                <h2>Dough Rolling Robot</h2>
-               
-                <p class="card-desc">
-                        Working on a Franka robot system for rolling dough to a consistent thickness. 
-                        The system uses force sensing for controlling the rolling interaction and a camera 
-                        to observe the dough surface, with ROS2 handling the robot-side software.
-                    </p>
-                <p class="card-venue">Franka · ROS2 · Force Control · Computer Vision</p>
-                <a class="card-button" href="file:///home/aech/Prozz/Aech-7.github.io/projects/dough_rolling.html">
-                    View Project
-                </a>
+
+
+            <!-- Repository -->
+            <h2 class="section-title spaced" id="repository">Project repository</h2>
+
+            <div class="portfolio-grid">
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Robotics</span><em>Mechanism design</em></div>
+                    <div class="portfolio-body">
+                        <h3>Team RUDRA — DD-Robocon</h3>
+                        <p>Designed robotic mechanisms for game-object handling, robot lifting, weapon assembly, and autonomous navigation as part of Team RUDRA for National DD-Robocon.</p>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media">
+                        <video src="assets/VR/vr1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="VR rehabilitation glove demo"></video>
+                    </div>
+                    <div class="portfolio-body">
+                        <h3>VR-Based Hand Rehabilitation Glove</h3>
+                        <p>Developed a wearable glove using flex sensors to track finger motion in real time and translate it into gamified VR exercises for hand rehabilitation.</p>
+                        <a class="card-button" href="projects/vr_glove.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media">
+                        <video src="assets/wire_tracing/trace1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Wire-tracing robot demo"></video>
+                    </div>
+                    <div class="portfolio-body">
+                        <h3>Wire-Tracing Robot</h3>
+                        <p>Taught a robot to trace a 3D wire path through gravity-compensated demonstration, trajectory processing, DLS inverse kinematics, and velocity-controlled replay.</p>
+                        <a class="card-button" href="projects/wire_tracing.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media">
+                        <video src="assets/peg_sorting/peg1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Peg sorting demo"></video>
+                    </div>
+                    <div class="portfolio-body">
+                        <h3>Peg Sorting &amp; Mobile Peg Insertion</h3>
+                        <p>Built robotic manipulation pipelines for identifying and sorting pegs using color and shape perception, kinematics, path planning, and trajectory generation, and extended the task to precise peg insertion using mobile manipulation and workspace analysis.</p>
+                        <a class="card-button" href="projects/peg_sorting_mobile_insertion.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Manipulation</span><em>MuJoCo → hardware</em></div>
+                    <div class="portfolio-body">
+                        <h3>Robot Pick-and-Place — Simulation to Hardware</h3>
+                        <p>Developed a pick-and-place workflow that progressed from randomized MuJoCo simulation and inverse-kinematics comparison to physical robot execution and Cartesian control.</p>
+                        <a class="card-button" href="projects/robot_pick_and_place_simulation_to_hardware.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Marine robotics</span><em>Numerical modelling</em></div>
+                    <div class="portfolio-body">
+                        <h3>Towfish Cable Dynamics</h3>
+                        <p>Developed a lumped-mass model of a towed underwater cable and compared numerical approaches for predicting its steady-state and dynamic configuration under hydrodynamic forces.</p>
+                        <a class="card-button" href="projects/towfish_cable.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>Text &amp; speech</em></div>
+                    <div class="portfolio-body">
+                        <h3>Multimodal Sentiment Analysis</h3>
+                        <p>Built a cost-efficient labeling pipeline combining human annotation, weak supervision, active learning, and LLM-based labeling for text and speech sentiment data.</p>
+                        <a class="card-button" href="projects/multimodal_sentiment_analysis.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Computer vision</span><em>Linear algebra</em></div>
+                    <div class="portfolio-body">
+                        <h3>SVD-Based Image Watermarking</h3>
+                        <p>Implemented SVD-based QR watermark embedding and recovery, then evaluated the trade-off between image quality and robustness under noise and JPEG compression.</p>
+                        <a class="card-button" href="projects/svd-watermarking.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Computer vision</span><em>From scratch</em></div>
+                    <div class="portfolio-body">
+                        <h3>Classical Computer Vision from Scratch</h3>
+                        <p>Implemented image-processing and feature-detection methods from scratch, then built template- and feature-based object detectors robust to scale, rotation, noise, and occlusion.</p>
+                        <a class="card-button" href="projects/classical_computer_vision.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>Accelerometer data</em></div>
+                    <div class="portfolio-body">
+                        <h3>Human Activity Recognition with Decision Trees</h3>
+                        <p>Implemented a Decision Tree classifier from scratch and used accelerometer data, feature engineering, PCA, and nested cross-validation to study activity recognition and the trade-off between model complexity and performance.</p>
+                        <a class="card-button" href="projects/har_decision_trees.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>MLP</em></div>
+                    <div class="portfolio-body">
+                        <h3>Next word prediction with MLP</h3>
+                        <p>Implemented a Multi-Layer Perceptron for next word prediction, utilizing various preprocessing techniques and hyperparameter tuning to optimize performance.</p>
+                        <a class="card-button" href="projects/next_word_prediction.html">View project</a>
+                    </div>
+                </article>
+
             </div>
-        
-        </article>
-
-
-            <article class="featured-card">
-                <div class="card-media">
-                  <video src="videos/warehouse_robot.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="card-body">
-                    <h2>Warehouse Robot</h2>
-                    <p class="card-desc">
-                        Built a mobile robot for autonomous warehouse mapping and inventory tracking. 
-                        The rover uses LiDAR and IMU data to build a map and navigate through the warehouse, 
-                        while a camera detects and reads QR codes on racks and stores the inventory information.
-                    </p>
-                    <p class="card-venue">ROS2 · SLAM · Gazebo · Autonomous Navigation · Computer Vision</p>
-                    <a class="card-button" href="file:///home/aech/Prozz/Aech-7.github.io/projects/warehouse_rover.html">View Project</a>
-                </div>
-
-            </article>
-
-            <article class="featured-card">
-
-            <div class="card-media">
-                  <video src="videos/humanoid_web.mp4" autoplay muted loop playsinline></video>
-            </div>
-        
-            <div class="card-body">
-                <h2>Humanoid Supervisor Robot</h2>
-                <p class="card-desc">
-                        Built a humanoid robot that can listen to spoken commands and use a locally 
-                        running LLaMA model to decide which robot actions to perform. 
-                        An agentic tool-calling system connects the language model to servo-controlled head, 
-                        eye, and jaw movements.
-                    </p>
-                <p class="card-venue">LLaMA 3.1 · Tool Calling · Speech Processing · Servo Control. Rubik Pi </p>
-        
-                <a class="card-button" href="file:///home/aech/Prozz/Aech-7.github.io/projects/humanoid_supervisor.html">
-                    View Project
-                </a>
-            </div>
-        
-        </article>
-
-
-            <article class="featured-card">
-
-                 <div class="card-media">
-                    <video src="videos/quadcopter_zoom2.mp4" autoplay muted loop playsinline></video>
-                 </div>
-
-                <div class="card-body">
-                    <h2>Quadcopter Modelling & Control</h2>
-                    <p class="card-desc">
-                        Built a six-DOF mathematical model of a quadcopter, including its dynamics,
-                        motor behavior, and aerodynamic effects. Used it to simulate attitude-rate
-                        and altitude control in MATLAB/Simulink.
-                    </p>
-                    <p class="card-venue">MATLAB/Simulink · Quadrotor Dynamics · PID Control · Euler–Lagrange</p>
-                    <a class="card-button" href="file:///home/aech/Prozz/Aech-7.github.io/projects/quadcopter_control.html">View Project</a>
-                </div>
-
-            </article>
-
-        </div>
-
-        <h2 style="margin-top: 80px; font-size: 24px; color: #16181d; font-weight: 700;">Project repository</h2>
-        <div class="portfolio-grid">
-            
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Team RUDRA — DD-Robocon</h3>
-                    <p>Designed robotic mechanisms for game-object handling, robot lifting, weapon assembly, and autonomous navigation as part of Team RUDRA for National DD-Robocon.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <video src="assets/VR/vr1.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-                </div>
-                <div class="portfolio-body">
-                    <h3>VR-Based Hand Rehabilitation Glove</h3>
-                    <p>Developed a wearable glove using flex sensors to track finger motion in real time and translate it into gamified VR exercises for hand rehabilitation.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <video src="assets/wire_tracing/trace1.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Wire-Tracing Robot</h3>
-                    <p>Taught a robot to trace a 3D wire path through gravity-compensated demonstration, trajectory processing, DLS inverse kinematics, and velocity-controlled replay.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <video src="assets/peg_sorting/peg1.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Peg Sorting & Mobile Peg Insertion</h3>
-                    <p>Built robotic manipulation pipelines for identifying and sorting pegs using color and shape perception, kinematics, path planning, and trajectory generation, and extended the task to precise peg insertion using mobile manipulation and workspace analysis.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Robot Pick-and-Place — Simulation to Hardware</h3>
-                    <p>Developed a pick-and-place workflow that progressed from randomized MuJoCo simulation and inverse-kinematics comparison to physical robot execution and Cartesian control.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Towfish Cable Dynamics</h3>
-                    <p>Developed a lumped-mass model of a towed underwater cable and compared numerical approaches for predicting its steady-state and dynamic configuration under hydrodynamic forces.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Multimodal Sentiment Analysis</h3>
-                    <p>Built a cost-efficient labeling pipeline combining human annotation, weak supervision, active learning, and LLM-based labeling for text and speech sentiment data.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>SVD-Based Image Watermarking</h3>
-                    <p>Implemented SVD-based QR watermark embedding and recovery, then evaluated the trade-off between image quality and robustness under noise and JPEG compression.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Classical Computer Vision from Scratch</h3>
-                    <p>Implemented image-processing and feature-detection methods from scratch, then built template- and feature-based object detectors robust to scale, rotation, noise, and occlusion.</p>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-media">
-                    <span>Photo Placeholder</span>
-                </div>
-                <div class="portfolio-body">
-                    <h3>Human Activity Recognition with Decision Trees</h3>
-                    <p>Implemented a Decision Tree classifier from scratch and used accelerometer data, feature engineering, PCA, and nested cross-validation to study activity recognition and the trade-off between model complexity and performance.</p>
-                </div>
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-
-        <h2>Contact</h2>
-
-        <p>
-            I'm interested in robotics, computer vision,
-            machine learning and intelligent systems.
-        </p>
-
-        <div class="contact-links">
-
-            <a href="mailto:YOUR_EMAIL">
-                Email
-            </a>
-
-            <a
-                href="https://github.com/Aech-7"
-                target="_blank"
-            >
-                GitHub
-            </a>
-
-            <a
-                href="YOUR_LINKEDIN_URL"
-                target="_blank"
-            >
-                LinkedIn
-            </a>
 
         </div>
 
     </section>
 
 
-    <!-- Footer -->
-    <footer>
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="contact-card">
 
-        <p>
-            © 2026 Harshada Kale
-        </p>
+            <h2>Contact</h2>
 
+            <p>
+                I'm interested in robotics, computer vision,
+                machine learning and intelligent systems. Feel free to get in touch.
+            </p>
+
+            <div class="contact-links">
+                <a class="btn btn-primary" href="mailto:harshada.kale@iitgn.ac.in">Email</a>
+                <a class="btn" href="https://github.com/Aech-7" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/harshada-kale-98214b217/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+
+        </div>
+    </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <p>© 2026 Harshada Kale</p>
     </footer>
-
-    <!-- Ripple background script -->
-    <script>
-    (function(){
-        const canvas = document.getElementById('c');
-        const gl = canvas.getContext('webgl2');
-        if (!gl) return;
-        const N = 24;
-        const vs = `#version 300 es
-        in vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
-        const fs = `#version 300 es
-        precision highp float;
-        uniform vec2 uRes; uniform float uT; uniform vec2 uMouse; uniform float uVel; uniform vec4 uR[${N}];
-        out vec4 o;
-        const vec3 BLUE  = vec3(0.82, 0.91, 0.97);
-        const vec3 CREAM = vec3(0.97, 0.96, 0.94);
-        const vec3 DARK  = vec3(0.72, 0.84, 0.93);
-        const vec3 WHITE = vec3(0.98, 0.99, 1.00);
-        void main(){
-          float a = uRes.x/uRes.y;
-          vec2 uv = gl_FragCoord.xy/uRes;
-          vec2 sp = vec2((uv.x-0.5)*a, uv.y);
-          vec2 disp = vec2(0.);
-          for(int i=0;i<${N};i++){
-            vec4 r = uR[i];
-            vec2 dv = sp - r.xy; float d = length(dv);
-            float age = uT - r.z;
-            float f = d - age*0.5;
-            float w = sin(f*34.) * exp(-f*f*14.) * exp(-age*1.6) * r.w / (1.+d*2.5);
-            disp += (dv/(d+1e-4)) * w * 0.014;
-          }
-          vec2 dm = sp - uMouse;
-          disp -= dm * exp(-dot(dm,dm)*9.) * (0.04 + 0.08*uVel);
-          vec2 s2 = sp + disp;
-          vec2 q = vec2(s2.x*14.0 + sin(uT*0.12)*2.0, s2.y*14.0 + sin(uT*0.09)*0.8);
-          vec2 cell = floor(q);
-          vec2 u = fract(q) - 0.5;
-          float r = 0.26;
-          vec2 e = max(abs(u) - (0.5 - r), 0.);
-          float sd = length(e) - r;
-          float aa = max(length(fwidth(q))*0.8, 0.01);
-          float tile = 1. - smoothstep(-aa, aa, sd);
-          float tpar = mod(cell.x + cell.y, 2.);
-          vec3 tileCol = mix(BLUE, CREAM, tpar);
-          vec2 jn = floor(q + 0.5);
-          const float SEQ[8] = float[8](0.,1.,0.,0.,1.,0.,1.,1.);
-          float jpar = SEQ[int(mod(jn.x + jn.y, 8.) + 0.5) % 8];
-          vec3 gapCol = mix(DARK, WHITE, jpar);
-          vec3 col = mix(gapCol, tileCol, tile);
-          o = vec4(col, 1.);
-        }`;
-        function sh(t,s){ const x=gl.createShader(t); gl.shaderSource(x,s); gl.compileShader(x); return x; }
-        const pr = gl.createProgram();
-        gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs));
-        gl.linkProgram(pr); gl.useProgram(pr);
-        const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
-        const loc = gl.getAttribLocation(pr,'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-        const U = n => gl.getUniformLocation(pr,n);
-        const uRes=U('uRes'), uT=U('uT'), uMouse=U('uMouse'), uVel=U('uVel'), uR=U('uR');
-        const ripples = new Float32Array(N*4); for(let i=0;i<N;i++) ripples[i*4+2] = -100;
-        let ri = 0, t0 = performance.now();
-        const now = () => (performance.now()-t0)/1000;
-        function resize(){
-            const dpr = Math.min(window.devicePixelRatio||1, 2);
-            canvas.width = innerWidth*dpr; canvas.height = innerHeight*dpr;
-            gl.viewport(0,0,canvas.width,canvas.height);
-        }
-        addEventListener('resize', resize); resize();
-        const toSpace = (x,y) => [(x/innerWidth-0.5)*(innerWidth/innerHeight), 1-y/innerHeight];
-        function spawn(x,y,s){ const [sx,sy]=toSpace(x,y); ripples.set([sx,sy,now(),s], ri*4); ri=(ri+1)%N; }
-        let target=[0,0.4], mouse=[0,0.4], vel=0, last=null, acc=0;
-        function move(x,y){
-            target = toSpace(x,y);
-            if(last){ const d=Math.hypot(x-last[0],y-last[1]); vel=Math.min(1,vel+d/120); acc+=d; if(acc>38){spawn(x,y,0.3+Math.min(d/60,0.5));acc=0;} }
-            last=[x,y];
-        }
-        /* listen on document so events fire even when cursor is over page content */
-        document.addEventListener('pointermove', e => move(e.clientX, e.clientY));
-        document.addEventListener('pointerdown', e => { move(e.clientX, e.clientY); spawn(e.clientX, e.clientY, 1.2); });
-        document.addEventListener('pointerleave', () => { last = null; });
-        setTimeout(() => spawn(innerWidth*0.5, innerHeight*0.55, 1.0), 200);
-        function frame(){
-            const t = now();
-            mouse[0]+=(target[0]-mouse[0])*0.15; mouse[1]+=(target[1]-mouse[1])*0.15; vel*=0.93;
-            gl.uniform2f(uRes,canvas.width,canvas.height); gl.uniform1f(uT,t);
-            gl.uniform2f(uMouse,mouse[0],mouse[1]); gl.uniform1f(uVel,vel); gl.uniform4fv(uR,ripples);
-            gl.drawArrays(gl.TRIANGLES,0,3);
-            requestAnimationFrame(frame);
-        }
-        frame();
-    })();
-    </script>
 
 </body>
 

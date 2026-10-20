@@ -1,599 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        SVD-Based Image Watermarking | Harshada Kale
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="../style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVD-Based Image Watermarking — Harshada Kale</title>
+    <meta name="description" content="SVD-based QR watermark embedding and recovery, with a study of image quality versus robustness.">
+    <meta name="theme-color" content="#F7F4EC">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
 </head>
-
-
 <body>
 
-
-    <!-- =========================
-         Navigation
-         ========================= -->
-
-    <header class="navbar">
-
-        <a href="../index.html" class="logo">
-            Harshada Kale
-        </a>
-
-        <nav class="nav-links">
-
-            <a href="../index.html#projects">
-                Projects
-            </a>
-
-            <a href="../index.html#articles">
-                Articles
-            </a>
-
-            <a href="../index.html#contact">
-                Contact
-            </a>
-
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <a href="../index.html" class="logo">Harshada Kale</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#projects">Projects</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </button>
+            </div>
         </nav>
-
     </header>
 
-
-    <!-- =========================
-         Article
-         ========================= -->
-
     <main class="article-page">
+        <div class="article">
+            <header class="article-header">
+                <p class="article-category">Computer Vision · Linear Algebra</p>
+                <h1>SVD-Based Image Watermarking and Robustness Analysis</h1>
+                <p class="article-subtitle">Exploring Singular Value Decomposition for image watermarking and studying the trade-off between image quality and watermark robustness.</p>
+                <div class="article-meta"><span>Harshada Kale</span><span>·</span><span>Computer Vision Project</span></div>
+                <ul class="chips"><li>Python</li><li>NumPy</li><li>OpenCV</li><li>SVD</li><li>QR decoding</li></ul>
+                <div class="article-actions"><a class="btn btn-primary" href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis" target="_blank" rel="noopener noreferrer">View project on GitHub ↗</a></div>
+            </header>
+            <article class="article-content">
 
+                <h2>Introduction</h2>
+                <p>
+                    Digital watermarking is a technique for embedding
+                    information into an image while keeping the visual
+                    appearance of the original image largely unchanged.
+                </p>
+                <p>
+                    In this project, I implemented an image watermarking
+                    pipeline based on Singular Value Decomposition (SVD).
+                    A QR-code watermark is embedded into RGB cover images
+                    and later recovered from the watermarked image.
+                </p>
+                <p>
+                    The main goal was to study the trade-off between
+                    watermark strength, image quality, and robustness
+                    against image degradation.
+                </p>
 
-        <!-- Article Header -->
+                <h2>Why SVD?</h2>
+                <p>
+                    Singular Value Decomposition represents a matrix as
+                    the product of three matrices:
+                </p>
+                <div class="eq">A = UΣV<sup>T</sup></div>
+                <p>
+                    The singular values contain information about the
+                    magnitude of different components of the image.
+                    This makes them useful for embedding additional
+                    information without directly modifying individual
+                    image pixels.
+                </p>
 
-        <header class="article-header">
+                <h2>The watermarking pipeline</h2>
+                <p>
+                    The overall process consists of decomposing the cover
+                    image and watermark, modifying the singular values,
+                    reconstructing the watermarked image, and finally
+                    attempting to recover the embedded watermark.
+                </p>
+                <ol class="flow"><li><span>01</span><strong>Cover image</strong></li><li><span>02</span><strong>SVD</strong></li><li class="hl"><span>03</span><strong>Embedding</strong></li><li><span>04</span><strong>Reconstruction</strong></li></ol>
+                <ol class="flow"><li><span>05</span><strong>Degradation</strong><em>Noise · JPEG</em></li><li class="hl"><span>06</span><strong>Recovery</strong></li><li><span>07</span><strong>QR check</strong><em>Can it still be decoded?</em></li></ol>
+                <p style="text-align:center;font-family:var(--font-body);font-size:13px;color:var(--text-faint);margin-top:-8px">Overview of the watermarking and recovery pipeline.</p>
 
-            <p class="article-category">
-                COMPUTER VISION · LINEAR ALGEBRA
-            </p>
+                <h2>Embedding the watermark</h2>
+                <p>Let the cover image be represented by C. Its singular value decomposition is:</p>
+                <div class="eq">C = U<sub>C</sub>Σ<sub>C</sub>V<sub>C</sub><sup>T</sup></div>
+                <p>The QR-code watermark Q is similarly decomposed:</p>
+                <div class="eq">Q = U<sub>Q</sub>Σ<sub>Q</sub>V<sub>Q</sub><sup>T</sup></div>
+                <p>The watermark is embedded by modifying the singular values of the cover image:</p>
+                <div class="eq">Σ̃ = Σ<sub>C</sub> + αΣ<sub>Q</sub></div>
+                <p>
+                    Here, α controls the watermark strength. Increasing α
+                    makes the watermark stronger, but can also increase
+                    distortion in the cover image.
+                </p>
+                <p>
+                    The watermarked image is then reconstructed using
+                    the original singular vectors:
+                </p>
+                <div class="eq">C<sub>α</sub> = U<sub>C</sub>Σ̃V<sub>C</sub><sup>T</sup></div>
+                <p>The same process is applied independently to the three RGB channels.</p>
 
-            <h1>
-                SVD-Based Image Watermarking
-                and Robustness Analysis
-            </h1>
+                <h2>Implementing SVD from eigendecomposition</h2>
+                <p>
+                    One part of the project involved implementing SVD
+                    without directly relying on a library SVD routine.
+                </p>
+                <p>For a matrix M, the Gram matrix can be constructed as:</p>
+                <div class="eq">G = MM<sup>T</sup></div>
+                <p>The eigenvalues of this matrix are related to the singular values of M:</p>
+                <div class="eq">σ<sub>i</sub> = √λ<sub>i</sub></div>
+                <p>
+                    The resulting eigenvectors and singular values can
+                    then be used to construct the SVD components and
+                    reconstruct the original matrix.
+                </p>
 
-            <p class="article-subtitle">
-                Exploring Singular Value Decomposition for image
-                watermarking and studying the trade-off between
-                image quality and watermark robustness.
-            </p>
+                <h2>Recovering the watermark</h2>
+                <p>
+                    After obtaining a watermarked image, the embedded
+                    watermark component can be estimated from the
+                    difference between the original and modified
+                    singular values.
+                </p>
+                <div class="eq">Σ′<sub>Q</sub> = (Σ′ − Σ<sub>C</sub>) / α</div>
+                <p>
+                    The estimated watermark singular values are combined
+                    with the watermark singular vectors to reconstruct
+                    the recovered QR image.
+                </p>
+                <p>
+                    Recovery is evaluated using both numerical similarity
+                    and whether the recovered QR code can actually be
+                    decoded.
+                </p>
 
-            <div class="article-meta">
-
-                <span>
-                    Harshada Kale
-                </span>
-
-                <span>·</span>
-
-                <span>
-                    Computer Vision Project
-                </span>
-
-            </div>
-
-            <a
-                href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-github"
-            >
-                View project on GitHub →
-            </a>
-
-        </header>
-
-
-        <!-- Article Body -->
-
-        <article class="article-content">
-
-
-            <h2>
-                Introduction
-            </h2>
-
-            <p>
-                Digital watermarking is a technique for embedding
-                information into an image while keeping the visual
-                appearance of the original image largely unchanged.
-            </p>
-
-            <p>
-                In this project, I implemented an image watermarking
-                pipeline based on Singular Value Decomposition (SVD).
-                A QR-code watermark is embedded into RGB cover images
-                and later recovered from the watermarked image.
-            </p>
-
-            <p>
-                The main goal was to study the trade-off between
-                watermark strength, image quality, and robustness
-                against image degradation.
-            </p>
-
-
-            <h2>
-                Why SVD?
-            </h2>
-
-            <p>
-                Singular Value Decomposition represents a matrix as
-                the product of three matrices:
-            </p>
-
-            <div class="article-equation">
-                A = UΣV<sup>T</sup>
-            </div>
-
-            <p>
-                The singular values contain information about the
-                magnitude of different components of the image.
-                This makes them useful for embedding additional
-                information without directly modifying individual
-                image pixels.
-            </p>
-
-
-            <h2>
-                The Watermarking Pipeline
-            </h2>
-
-            <p>
-                The overall process consists of decomposing the cover
-                image and watermark, modifying the singular values,
-                reconstructing the watermarked image, and finally
-                attempting to recover the embedded watermark.
-            </p>
-
-
-            <div class="article-pipeline">
-
-                <div>
-                    <span>01</span>
-                    <strong>Cover Image</strong>
+                <h2>Baseline results</h2>
+                <p>
+                    Before testing robustness, the basic embedding and
+                    recovery pipeline was evaluated on the cover images.
+                </p>
+                <div class="figure-grid wide">
+                    <figure><img src="../images/projects/svd/baseline/Recovered_img.png" alt="Recovered watermark" loading="lazy"><figcaption>Example of the recovered watermark.</figcaption></figure>
+                    <figure><img src="../images/projects/svd/baseline/psnr_comparison.png" alt="PSNR comparison" loading="lazy"><figcaption>PSNR comparison for the watermarking experiment.</figcaption></figure>
                 </div>
 
-                <div class="pipeline-arrow">
-                    →
+                <h2>Choosing the watermark strength</h2>
+                <p>The watermark strength α was varied to study how it affects image quality and watermark recovery.</p>
+                <p>
+                    When α is very small, the watermark introduces little
+                    distortion, but the embedded information can become
+                    more difficult to recover after degradation.
+                </p>
+                <p>
+                    Increasing α makes the watermark stronger. However,
+                    increasing the strength indefinitely does not guarantee
+                    better recovery because additional distortion and
+                    clipping can affect the result.
+                </p>
+                <figure><img src="../images/projects/svd/psnr_vs_alpha_noise.png" alt="PSNR versus alpha under Gaussian noise" loading="lazy"><figcaption>Effect of watermark strength under Gaussian noise.</figcaption></figure>
+
+                <h2>Robustness to Gaussian noise</h2>
+                <p>Gaussian noise was added to the watermarked images before attempting watermark recovery.</p>
+                <p>
+                    The experiment was used to study how increasing noise
+                    affects the quality of the recovered watermark and
+                    the ability to decode the QR information.
+                </p>
+
+                <h2>Robustness to JPEG compression</h2>
+                <p>
+                    JPEG compression was used as a second degradation
+                    experiment. Different compression quality factors
+                    were applied before recovering the watermark.
+                </p>
+                <figure><img src="../images/projects/svd/psnr_vs_alpha_compression.png" alt="PSNR versus alpha under JPEG compression" loading="lazy"><figcaption>Effect of watermark strength under JPEG compression.</figcaption></figure>
+
+                <h2>Evaluation</h2>
+                <p>The experiments use multiple measures to evaluate the watermarking system.</p>
+                <p>
+                    <strong>PSNR</strong> measures the numerical similarity
+                    between images and provides a way to quantify image
+                    quality and watermark recovery.
+                </p>
+                <p>
+                    <strong>QR decoding</strong> provides a more practical
+                    test: whether the recovered watermark still contains
+                    usable information.
+                </p>
+
+                <h2>What the experiments showed</h2>
+                <p>
+                    The experiments demonstrate a trade-off between
+                    watermark strength and image quality. A weak watermark
+                    produces less distortion but can be more sensitive to
+                    degradation.
+                </p>
+                <p>
+                    A stronger watermark can improve recovery under some
+                    degradation levels, but increasing the strength too
+                    much introduces additional distortion and does not
+                    necessarily provide better recovery.
+                </p>
+                <p>
+                    The results therefore show that the watermark strength
+                    should be selected based on the expected degradation
+                    rather than simply maximized.
+                </p>
+
+                <h2>Conclusion</h2>
+                <p>
+                    This project provided a practical look at how SVD can
+                    be used for image watermarking and how the choice of
+                    embedding strength affects both visual quality and
+                    robustness.
+                </p>
+                <p>
+                    The project also connected the mathematical properties
+                    of SVD with an actual image-processing application,
+                    including implementation, reconstruction, degradation,
+                    and watermark recovery.
+                </p>
+
+                <h2>Tools used</h2>
+                <ul class="chips"><li>Python</li><li>NumPy</li><li>OpenCV</li><li>Matplotlib</li><li>Singular Value Decomposition</li><li>QR decoding</li></ul>
+
+                <div class="page-end">
+                    <a href="../index.html#projects">← Back to projects</a>
+                    <a href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis" target="_blank" rel="noopener noreferrer">View the complete project on GitHub ↗</a>
                 </div>
 
-                <div>
-                    <span>02</span>
-                    <strong>SVD</strong>
-                </div>
-
-                <div class="pipeline-arrow">
-                    →
-                </div>
-
-                <div>
-                    <span>03</span>
-                    <strong>Embedding</strong>
-                </div>
-
-                <div class="pipeline-arrow">
-                    →
-                </div>
-
-                <div>
-                    <span>04</span>
-                    <strong>Reconstruction</strong>
-                </div>
-
-            </div>
-
-
-            <div class="pipeline-vertical">
-                ↓
-            </div>
-
-
-            <div class="article-pipeline pipeline-second">
-
-                <div>
-                    <span>05</span>
-                    <strong>Degradation</strong>
-                </div>
-
-                <div class="pipeline-arrow">
-                    →
-                </div>
-
-                <div>
-                    <span>06</span>
-                    <strong>Recovery</strong>
-                </div>
-
-                <div class="pipeline-arrow">
-                    →
-                </div>
-
-                <div>
-                    <span>07</span>
-                    <strong>QR Check</strong>
-                </div>
-
-            </div>
-
-
-            <figure class="article-figure">
-
-                <figcaption>
-                    Figure 1 — Overview of the watermarking and
-                    recovery pipeline.
-                </figcaption>
-
-            </figure>
-
-
-            <h2>
-                Embedding the Watermark
-            </h2>
-
-            <p>
-                Let the cover image be represented by C. Its singular
-                value decomposition is:
-            </p>
-
-            <div class="article-equation">
-                C = U<sub>C</sub>Σ<sub>C</sub>V<sub>C</sub><sup>T</sup>
-            </div>
-
-            <p>
-                The QR-code watermark Q is similarly decomposed:
-            </p>
-
-            <div class="article-equation">
-                Q = U<sub>Q</sub>Σ<sub>Q</sub>V<sub>Q</sub><sup>T</sup>
-            </div>
-
-            <p>
-                The watermark is embedded by modifying the singular
-                values of the cover image:
-            </p>
-
-            <div class="article-equation">
-                Σ̃ = Σ<sub>C</sub> + αΣ<sub>Q</sub>
-            </div>
-
-            <p>
-                Here, α controls the watermark strength. Increasing α
-                makes the watermark stronger, but can also increase
-                distortion in the cover image.
-            </p>
-
-            <p>
-                The watermarked image is then reconstructed using
-                the original singular vectors:
-            </p>
-
-            <div class="article-equation">
-                C<sub>α</sub> =
-                U<sub>C</sub>Σ̃V<sub>C</sub><sup>T</sup>
-            </div>
-
-            <p>
-                The same process is applied independently to the
-                three RGB channels.
-            </p>
-
-
-            <h2>
-                Implementing SVD from Eigendecomposition
-            </h2>
-
-            <p>
-                One part of the project involved implementing SVD
-                without directly relying on a library SVD routine.
-            </p>
-
-            <p>
-                For a matrix M, the Gram matrix can be constructed as:
-            </p>
-
-            <div class="article-equation">
-                G = MM<sup>T</sup>
-            </div>
-
-            <p>
-                The eigenvalues of this matrix are related to the
-                singular values of M:
-            </p>
-
-            <div class="article-equation">
-                σ<sub>i</sub> = √λ<sub>i</sub>
-            </div>
-
-            <p>
-                The resulting eigenvectors and singular values can
-                then be used to construct the SVD components and
-                reconstruct the original matrix.
-            </p>
-
-
-            <h2>
-                Recovering the Watermark
-            </h2>
-
-            <p>
-                After obtaining a watermarked image, the embedded
-                watermark component can be estimated from the
-                difference between the original and modified
-                singular values.
-            </p>
-
-            <div class="article-equation">
-                Σ′<sub>Q</sub> =
-                (Σ′ − Σ<sub>C</sub>) / α
-            </div>
-
-            <p>
-                The estimated watermark singular values are combined
-                with the watermark singular vectors to reconstruct
-                the recovered QR image.
-            </p>
-
-            <p>
-                Recovery is evaluated using both numerical similarity
-                and whether the recovered QR code can actually be
-                decoded.
-            </p>
-
-
-            <h2>
-                Baseline Results
-            </h2>
-
-            <p>
-                Before testing robustness, the basic embedding and
-                recovery pipeline was evaluated on the cover images.
-            </p>
-
-
-            <!--
-                Replace these image paths with the exact paths
-                used in your repository.
-            -->
-
-            <div class="image-row">
-
-                <figure class="article-figure">
-
-                    <img
-                        src="../images/projects/svd/baseline/Recovered_img.png"
-                        alt="Recovered watermark"
-                    >
-
-                    <figcaption>
-                        Figure 2 — Example of the recovered watermark.
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="article-figure">
-
-                    <img
-                        src="../images/projects/svd/baseline/psnr_comparison.png"
-                        alt="PSNR comparison"
-                    >
-
-                    <figcaption>
-                        Figure 3 — PSNR comparison for the
-                        watermarking experiment.
-                    </figcaption>
-
-                </figure>
-
-            </div>
-
-
-            <h2>
-                Choosing the Watermark Strength
-            </h2>
-
-            <p>
-                The watermark strength α was varied to study how it
-                affects image quality and watermark recovery.
-            </p>
-
-            <p>
-                When α is very small, the watermark introduces little
-                distortion, but the embedded information can become
-                more difficult to recover after degradation.
-            </p>
-
-            <p>
-                Increasing α makes the watermark stronger. However,
-                increasing the strength indefinitely does not guarantee
-                better recovery because additional distortion and
-                clipping can affect the result.
-            </p>
-
-
-            <figure class="article-figure">
-
-                <img
-                    src="../images/projects/svd/psnr_vs_alpha_noise.png"
-                    alt="PSNR versus alpha under Gaussian noise"
-                >
-
-                <figcaption>
-                    Figure 4 — Effect of watermark strength under
-                    Gaussian noise.
-                </figcaption>
-
-            </figure>
-
-
-            <h2>
-                Robustness to Gaussian Noise
-            </h2>
-
-            <p>
-                Gaussian noise was added to the watermarked images
-                before attempting watermark recovery.
-            </p>
-
-            <p>
-                The experiment was used to study how increasing noise
-                affects the quality of the recovered watermark and
-                the ability to decode the QR information.
-            </p>
-
-
-            <h2>
-                Robustness to JPEG Compression
-            </h2>
-
-            <p>
-                JPEG compression was used as a second degradation
-                experiment. Different compression quality factors
-                were applied before recovering the watermark.
-            </p>
-
-            <figure class="article-figure">
-
-                <img
-                    src="../images/projects/svd/psnr_vs_alpha_compression.png"
-                    alt="PSNR versus alpha under JPEG compression"
-                >
-
-                <figcaption>
-                    Figure 5 — Effect of watermark strength under
-                    JPEG compression.
-                </figcaption>
-
-            </figure>
-
-
-            <h2>
-                Evaluation
-            </h2>
-
-            <p>
-                The experiments use multiple measures to evaluate
-                the watermarking system.
-            </p>
-
-            <p>
-                <strong>PSNR</strong> measures the numerical similarity
-                between images and provides a way to quantify image
-                quality and watermark recovery.
-            </p>
-
-            <p>
-                <strong>QR decoding</strong> provides a more practical
-                test: whether the recovered watermark still contains
-                usable information.
-            </p>
-
-
-            <h2>
-                What the Experiments Showed
-            </h2>
-
-            <p>
-                The experiments demonstrate a trade-off between
-                watermark strength and image quality. A weak watermark
-                produces less distortion but can be more sensitive to
-                degradation.
-            </p>
-
-            <p>
-                A stronger watermark can improve recovery under some
-                degradation levels, but increasing the strength too
-                much introduces additional distortion and does not
-                necessarily provide better recovery.
-            </p>
-
-            <p>
-                The results therefore show that the watermark strength
-                should be selected based on the expected degradation
-                rather than simply maximized.
-            </p>
-
-
-            <h2>
-                Conclusion
-            </h2>
-
-            <p>
-                This project provided a practical look at how SVD can
-                be used for image watermarking and how the choice of
-                embedding strength affects both visual quality and
-                robustness.
-            </p>
-
-            <p>
-                The project also connected the mathematical properties
-                of SVD with an actual image-processing application,
-                including implementation, reconstruction, degradation,
-                and watermark recovery.
-            </p>
-
-
-            <h2>
-                Tools Used
-            </h2>
-
-            <p class="article-tools">
-                Python · NumPy · OpenCV · Matplotlib ·
-                Singular Value Decomposition · QR Decoding
-            </p>
-
-
-            <div class="article-end">
-
-                <a
-                    href="https://github.com/Aech-7/SVD-based-image-watermarking-and-robustness-analysis"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="article-github"
-                >
-                    View the complete project on GitHub →
-                </a>
-
-            </div>
-
-
-        </article>
-
+            </article>
+        </div>
     </main>
 
-
-    <footer>
-
-        <p>
-            © 2026 Harshada Kale
-        </p>
-
+    <footer class="site-footer">
+        <p>© 2026 Harshada Kale</p>
     </footer>
 
-
 </body>
-
 </html>

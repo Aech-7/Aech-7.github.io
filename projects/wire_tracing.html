@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire Tracing with DLS-IK — Harshada Kale</title>
+    <meta name="description" content="A trajectory-tracing system for the Addverb HEAL robotic arm using gravity-compensated teaching, recorded waypoints, trajectory processing, DLS inverse kinematics, and velocity-controlled replay.">
+    <meta name="theme-color" content="#F7F4EC">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .demo-links { display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 30px; }
+        .demo-links a { display:inline-flex; align-items:center; gap:8px; padding:11px 15px; border:1px solid var(--border, #d8d8d2); border-radius:12px; text-decoration:none; font-weight:600; }
+        .demo-links a:hover { transform:translateY(-1px); }
+        .comparison { width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:.95rem; }
+        .comparison th,.comparison td { border:1px solid var(--border, #d8d8d2); padding:11px 12px; text-align:left; vertical-align:top; }
+        .comparison th { background:var(--surface, #efeee8); }
+        .note { padding:16px 18px; border-left:3px solid #6C9FBA; background:var(--surface, #efeee8); border-radius:0 10px 10px 0; margin:20px 0; }
+        .small-label { font-size:.85rem; opacity:.75; margin-bottom:6px; }
+        @media (max-width:600px) { .comparison { font-size:.85rem; } .comparison th,.comparison td { padding:8px; } }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <a href="../index.html" class="logo">Harshada Kale</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#projects">Projects</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="article-page">
+        <div class="article">
+            <header class="article-header">
+                <p class="article-category">Robotics · Motion Planning · Manipulation</p>
+                <h1>Wire Tracing with DLS-IK</h1>
+                <p class="article-subtitle">Teaching a robot arm a 3D path by demonstration, then replaying it autonomously with inverse kinematics.</p>
+                <div class="article-meta"><span>Harshada Kale</span><span>·</span><span>Robotics Coursework · Task 3</span></div>
+                <ul class="chips">
+                    <li>Addverb HEAL</li><li>DLS-IK</li><li>Trajectory Recording</li><li>Gravity Compensation</li><li>Velocity Control</li>
+                </ul>
+            </header>
+
+            <article class="article-content">
+                <h2>Overview</h2>
+                <p>
+                    The wire-tracing task focuses on teaching a robot arm to follow a three-dimensional wire path
+                    without making contact. Using the Addverb HEAL manipulator, the path is demonstrated manually
+                    and then replayed autonomously.
+                </p>
+
+                <h2>Teaching and trajectory replay</h2>
+                <p>
+                    Gravity compensation allows the end effector to be guided by hand along the wire while recording
+                    its position and orientation. The recorded waypoints are processed into a trajectory suitable for
+                    execution, and a Damped Least Squares Inverse Kinematics (DLS-IK) solver converts the desired
+                    end-effector motion into joint commands. Joint-velocity control is used to replay the path.
+                </p>
+
+                <h2>Key challenge</h2>
+                <p>
+                    The robot must reproduce the demonstrated path smoothly and accurately while maintaining clearance
+                    from the wire. Trajectory quality, IK stability, and velocity control all affect whether the motion
+                    can be executed without contact.
+                </p>
+
+                <p class="note">
+                    <strong>Core idea:</strong> record a motion through physical demonstration, process the waypoints,
+                    and use DLS-IK to execute the trajectory autonomously on the robot.
+                </p>
+
+                <h2>Technologies and concepts</h2>
+                <ul class="chips">
+                    <li>Addverb HEAL</li><li>DLS-IK</li><li>Trajectory Recording</li>
+                    <li>Gravity Compensation</li><li>Trajectory Processing</li><li>Velocity Control</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Harshada Kale</p>
+    </footer>
+
+</body>
+</html>
