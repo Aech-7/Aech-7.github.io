@@ -23,9 +23,16 @@
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js" defer></script>
     <style>
-        .demo-links { display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 30px; }
+        .demo-links { display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 18px; }
         .demo-links a { display:inline-flex; align-items:center; gap:8px; padding:11px 15px; border:1px solid var(--border, #d8d8d2); border-radius:12px; text-decoration:none; font-weight:600; }
         .demo-links a:hover { transform:translateY(-1px); }
+        .app-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; margin:14px 0 34px; max-width:1000px; }
+        .app-grid figure { margin:0; }
+        .app-grid a { border-bottom:none !important; display:block; }
+        .app-grid img { width:100%; height:auto; display:block; border-radius:10px; border:1px solid var(--border, #d8d8d2); box-shadow:var(--shadow, 0 4px 14px rgba(0,0,0,0.06)); transition:transform .2s ease; }
+        .app-grid a:hover img { transform:translateY(-2px); }
+        .app-grid figcaption { font-size:12px; margin-top:8px; text-align:center; color:var(--text-faint); font-family:var(--font-body); }
+        @media (max-width:600px) { .app-grid { grid-template-columns:1fr; } }
         .comparison { width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:.95rem; }
         .comparison th,.comparison td { border:1px solid var(--border, #d8d8d2); padding:11px 12px; text-align:left; vertical-align:top; }
         .comparison th { background:var(--surface, #efeee8); }
@@ -77,8 +84,23 @@
                 </p>
 
                 <div class="demo-links" aria-label="Deployed applications">
-                    <a href="https://es33525assignment3-l5g2kjqbabbkm3yw5dg6je.streamlit.app/" target="_blank" rel="noopener noreferrer">Try Sherlock Holmes app <span aria-hidden="true">↗</span></a>
-                    <a href="https://es33525assignment3-ytgpbc7ydssbpmejxrxb7q.streamlit.app/" target="_blank" rel="noopener noreferrer">Try Linux Kernel app <span aria-hidden="true">↗</span></a>
+                    <a href="https://nextwordprediction-sherlock-holmes.streamlit.app/" target="_blank" rel="noopener noreferrer">Try Sherlock Holmes app <span aria-hidden="true">↗</span></a>
+                    <a href="https://nextwordprediction-linux-kernel.streamlit.app/" target="_blank" rel="noopener noreferrer">Try Linux Kernel app <span aria-hidden="true">↗</span></a>
+                </div>
+
+                <div class="app-grid">
+                    <figure>
+                        <a href="https://nextwordprediction-sherlock-holmes.streamlit.app/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/nwp/app11.png" alt="Sherlock Holmes Streamlit app preview" loading="lazy">
+                        </a>
+                        <figcaption>Sherlock Holmes app</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="https://nextwordprediction-linux-kernel.streamlit.app/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/nwp/app2.png" alt="Linux Kernel Streamlit app preview" loading="lazy">
+                        </a>
+                        <figcaption>Linux Kernel app</figcaption>
+                    </figure>
                 </div>
 
                 <h2>Approach</h2>
