@@ -42,7 +42,7 @@
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="#projects">Projects</a>
-                    <a href="#repository">Repository</a>
+                    <a href="#coursework">Coursework</a>
                     <a href="#contact">Contact</a>
                 </div>
 
@@ -113,7 +113,7 @@
         <div class="featured-block" id="projects">
 
             <p class="section-kicker">Selected Work</p>
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Projects</h2>
 
             <div class="featured-grid">
 
@@ -190,30 +190,93 @@
                     </div>
                 </article>
 
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>VR-Based Hand Rehabilitation Glove</h3>
+                        <p class="card-desc">
+                            Developed a wearable glove using flex sensors to track finger motion in
+                            real time and translate it into gamified VR exercises for hand rehabilitation
+                            and post-stroke therapy.
+                        </p>
+                        <ul class="chips">
+                            <li>Arduino</li><li>Flex Sensors</li><li>Python</li><li>Vizard VR</li><li>Rehabilitation</li>
+                        </ul>
+                        <a class="card-button" href="projects/vr_glove.html">View Project</a>
+                    </div>
+                    <div class="card-media">
+                        <video src="assets/VR/vr1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="VR rehabilitation glove demo"></video>
+                    </div>
+                </article>
+
+                <article class="featured-card">
+                    <div class="card-body">
+                        <h3>Towfish Cable Dynamics</h3>
+                        <p class="card-desc">
+                            Developed a lumped-mass model of a towed underwater cable and compared
+                            numerical approaches for predicting its steady-state and dynamic
+                            configuration under hydrodynamic forces.
+                        </p>
+                        <ul class="chips">
+                            <li>Python</li><li>Lumped-Mass Model</li><li>Velocity Verlet</li><li>BDF Solver</li><li>Marine Robotics</li>
+                        </ul>
+                        <a class="card-button" href="projects/towfish_cable.html">View Project</a>
+                    </div>
+                    <div class="card-media ph">
+                        <span>Marine robotics</span>
+                        <em>Numerical modelling</em>
+                    </div>
+                </article>
+
             </div>
 
 
-            <!-- Repository -->
-            <h2 class="section-title spaced" id="repository">Project repository</h2>
+            <!-- Coursework -->
+            <h2 class="section-title spaced" id="coursework">Coursework</h2>
 
             <div class="portfolio-grid">
 
                 <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Robotics</span><em>Mechanism design</em></div>
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>Text &amp; speech</em></div>
                     <div class="portfolio-body">
-                        <h3>Team RUDRA — DD-Robocon</h3>
-                        <p>Designed robotic mechanisms for game-object handling, robot lifting, weapon assembly, and autonomous navigation as part of Team RUDRA for National DD-Robocon.</p>
+                        <h3>Multimodal Sentiment Analysis</h3>
+                        <p>Built a cost-efficient labeling pipeline combining human annotation, weak supervision, active learning, and LLM-based labeling for text and speech sentiment data.</p>
+                        <a class="card-button" href="projects/multimodal_sentiment_analysis.html">View project</a>
                     </div>
                 </article>
 
                 <article class="portfolio-card">
-                    <div class="portfolio-media">
-                        <video src="assets/VR/vr1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="VR rehabilitation glove demo"></video>
-                    </div>
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>MLP</em></div>
                     <div class="portfolio-body">
-                        <h3>VR-Based Hand Rehabilitation Glove</h3>
-                        <p>Developed a wearable glove using flex sensors to track finger motion in real time and translate it into gamified VR exercises for hand rehabilitation.</p>
-                        <a class="card-button" href="projects/vr_glove.html">View project</a>
+                        <h3>Next word prediction with MLP</h3>
+                        <p>Implemented a Multi-Layer Perceptron for next word prediction, utilizing various preprocessing techniques and hyperparameter tuning to optimize performance.</p>
+                        <a class="card-button" href="projects/next_word_prediction.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Machine learning</span><em>Accelerometer data</em></div>
+                    <div class="portfolio-body">
+                        <h3>Human Activity Recognition with Decision Trees</h3>
+                        <p>Implemented a Decision Tree classifier from scratch and used accelerometer data, feature engineering, PCA, and nested cross-validation to study activity recognition and the trade-off between model complexity and performance.</p>
+                        <a class="card-button" href="projects/har_decision_trees.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Computer vision</span><em>Linear algebra</em></div>
+                    <div class="portfolio-body">
+                        <h3>SVD-Based Image Watermarking</h3>
+                        <p>Implemented SVD-based QR watermark embedding and recovery, then evaluated the trade-off between image quality and robustness under noise and JPEG compression.</p>
+                        <a class="card-button" href="projects/svd-watermarking.html">View project</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <div class="portfolio-media ph"><span>Computer vision</span><em>From scratch</em></div>
+                    <div class="portfolio-body">
+                        <h3>Classical Computer Vision from Scratch</h3>
+                        <p>Implemented image-processing and feature-detection methods from scratch, then built template- and feature-based object detectors robust to scale, rotation, noise, and occlusion.</p>
+                        <a class="card-button" href="projects/classical_computer_vision.html">View project</a>
                     </div>
                 </article>
 
@@ -240,7 +303,9 @@
                 </article>
 
                 <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Manipulation</span><em>MuJoCo → hardware</em></div>
+                    <div class="portfolio-media">
+                        <video src="assets/pick_place/pick_place.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Robot pick-and-place demo"></video>
+                    </div>
                     <div class="portfolio-body">
                         <h3>Robot Pick-and-Place — Simulation to Hardware</h3>
                         <p>Developed a pick-and-place workflow that progressed from randomized MuJoCo simulation and inverse-kinematics comparison to physical robot execution and Cartesian control.</p>
@@ -249,56 +314,10 @@
                 </article>
 
                 <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Marine robotics</span><em>Numerical modelling</em></div>
+                    <div class="portfolio-media ph"><span>Robotics</span><em>Mechanism design</em></div>
                     <div class="portfolio-body">
-                        <h3>Towfish Cable Dynamics</h3>
-                        <p>Developed a lumped-mass model of a towed underwater cable and compared numerical approaches for predicting its steady-state and dynamic configuration under hydrodynamic forces.</p>
-                        <a class="card-button" href="projects/towfish_cable.html">View project</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Machine learning</span><em>Text &amp; speech</em></div>
-                    <div class="portfolio-body">
-                        <h3>Multimodal Sentiment Analysis</h3>
-                        <p>Built a cost-efficient labeling pipeline combining human annotation, weak supervision, active learning, and LLM-based labeling for text and speech sentiment data.</p>
-                        <a class="card-button" href="projects/multimodal_sentiment_analysis.html">View project</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Computer vision</span><em>Linear algebra</em></div>
-                    <div class="portfolio-body">
-                        <h3>SVD-Based Image Watermarking</h3>
-                        <p>Implemented SVD-based QR watermark embedding and recovery, then evaluated the trade-off between image quality and robustness under noise and JPEG compression.</p>
-                        <a class="card-button" href="projects/svd-watermarking.html">View project</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Computer vision</span><em>From scratch</em></div>
-                    <div class="portfolio-body">
-                        <h3>Classical Computer Vision from Scratch</h3>
-                        <p>Implemented image-processing and feature-detection methods from scratch, then built template- and feature-based object detectors robust to scale, rotation, noise, and occlusion.</p>
-                        <a class="card-button" href="projects/classical_computer_vision.html">View project</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Machine learning</span><em>Accelerometer data</em></div>
-                    <div class="portfolio-body">
-                        <h3>Human Activity Recognition with Decision Trees</h3>
-                        <p>Implemented a Decision Tree classifier from scratch and used accelerometer data, feature engineering, PCA, and nested cross-validation to study activity recognition and the trade-off between model complexity and performance.</p>
-                        <a class="card-button" href="projects/har_decision_trees.html">View project</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-card">
-                    <div class="portfolio-media ph"><span>Machine learning</span><em>MLP</em></div>
-                    <div class="portfolio-body">
-                        <h3>Next word prediction with MLP</h3>
-                        <p>Implemented a Multi-Layer Perceptron for next word prediction, utilizing various preprocessing techniques and hyperparameter tuning to optimize performance.</p>
-                        <a class="card-button" href="projects/next_word_prediction.html">View project</a>
+                        <h3>Team RUDRA — DD-Robocon</h3>
+                        <p>Designed robotic mechanisms for game-object handling, robot lifting, weapon assembly, and autonomous navigation as part of Team RUDRA for National DD-Robocon.</p>
                     </div>
                 </article>
 
